@@ -14,9 +14,9 @@ router.post('/login',
 	        res.redirect('/login_success');
 	    });
 
-/*router.post('/login_chk' , function(req, res, next){
+router.post('/login_chk' , function(req, res, next){
 			res.send("시발");
-});*/
+});
 
 
 router.get('/login_success', author.ensureAuthenticated, function(req, res, next){

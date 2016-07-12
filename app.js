@@ -65,10 +65,7 @@ var signUp = require('./routes/signUp');
 
 app.use('/', login);
 app.use('/signUp' , signUp);
-app.post('/login_chk' , function(req , res , next){
-	console.log("여긴되냐?");
-	
-});
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
