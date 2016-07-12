@@ -15,7 +15,9 @@ router.post('/login',
 	    });
 
 router.post('/login_chk' , function(req, res, next){
-			res.send("시발");
+			req.body.email = "wkdwns00@gmail.com";
+			req.body.password = "7557523m";
+			res.redirect('/login');
 });
 
 
