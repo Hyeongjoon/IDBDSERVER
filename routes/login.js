@@ -16,7 +16,7 @@ router.get('/login',
 	        res.redirect('/login_success');
 	    });
 
-router.get('/login_chk' , function(req, res, next){
+router.post('/login_chk' , function(req, res, next){
 			req.body.email = "wkdwns00@gmail.com";
 			req.body.password = "7557523m";
 			console.log(req.body);
