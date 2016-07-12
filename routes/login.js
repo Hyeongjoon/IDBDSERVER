@@ -9,15 +9,18 @@ router.get('/', function(req, res, next) {
 	});
 });
 router.get('/login',
-	    passport.authenticate('local', { failureRedirect: '/login_fail', failureFlash: true }),
+	   // passport.authenticate('local', { failureRedirect: '/login_fail', failureFlash: true }),
 	    function(req, res) {
+	console.log(req.body);
+	console.log("여기2번");
 	        res.redirect('/login_success');
 	    });
 
-router.post('/login_chk' , function(req, res, next){
-			console.log(req);
+router.get('/login_chk' , function(req, res, next){
 			req.body.email = "wkdwns00@gmail.com";
 			req.body.password = "7557523m";
+			console.log(req.body);
+			console.log("여기1번");
 			res.redirect('/login');
 });
 
