@@ -10,7 +10,7 @@ SET foreign_key_checks = 0;
 create table user
 		(uid int unsigned NOT NULL AUTO_INCREMENT,
          email VARCHAR(30) NOT NULL,
-         password VARCHAR (20) NOT NULL,
+         password VARCHAR (255) NOT NULL,
          phone_number VARCHAR (15) default NULL,
          phone_verify boolean default false NOT NULL,
          name VARCHAR(255) NOT NULL,
@@ -18,7 +18,8 @@ create table user
          birth_date date default NULL,
          primary key(uid),
          unique(email),
-         unique(phone_number)
+         unique(phone_number),
+         unique(name)
 ) Engine =InnoDB DEFAULT CHARSET = utf8;
 
 
