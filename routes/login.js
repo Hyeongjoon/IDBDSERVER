@@ -14,6 +14,11 @@ router.post('/login',
 	        res.redirect('/login_success');
 	    });
 
+router.post('/login_chk' , function(req, res, next){
+			console.log(req);
+});
+
+
 router.get('/login_success', author.ensureAuthenticated, function(req, res, next){
 	console.log(req.session);
 	res.send(req.session.passport);
