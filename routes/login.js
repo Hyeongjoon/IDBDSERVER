@@ -15,7 +15,7 @@ router.post('/login',
 	    });
 
 router.post('/login_chk' , function(req, res, next){
-			console.log(req);
+			console.log("여긴되냐??");
 });
 
 
