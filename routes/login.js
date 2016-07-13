@@ -5,6 +5,7 @@ var author = require('../helper/authorize');
 
 var io = require('../app.js').tmp;
 
+
 io.on('connection', function(socket) {
 	socket.on('login', function(data) {
 		console.log("뿌잉");

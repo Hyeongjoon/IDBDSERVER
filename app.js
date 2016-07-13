@@ -59,15 +59,23 @@ exports.passport = passport;
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
+
+
+
+
+
+var sharedsession = require("express-socket.io-session");
+var io = require('socket.io').listen(80);
+
+exports.tmp = io.use(sharedsession(session));
+
 var login = require('./routes/login');
 var signUp = require('./routes/signUp');
 
-
 app.use('/', login);
 app.use('/signUp' , signUp);
-
-var io = require('socket.io').listen(80);
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
