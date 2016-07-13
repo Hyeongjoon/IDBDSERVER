@@ -11,7 +11,7 @@ var io = require('../app.js').tmp;
 io.on('connection', function(socket) {
 	socket.on('login', function(data) {
 		async.series([function(callback){
-      	  userDAO.findUser(email , callback);
+      	  userDAO.findUser(data.email , callback);
   	  }], function(err , result){
 			if(result[0]==''){
 				console.log("그딴 이메일 없음");
