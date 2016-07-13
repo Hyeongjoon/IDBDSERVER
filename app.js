@@ -31,8 +31,8 @@ var session = new Session({
 
 var app = express();
 
-app.set('port', 80);
-app.listen(app.get('port'));
+/*app.set('port', 80);
+app.listen(app.get('port'));*/
 //ejs
 
 var engine = require('ejs-locals');
@@ -65,6 +65,8 @@ var signUp = require('./routes/signUp');
 
 app.use('/', login);
 app.use('/signUp' , signUp);
+
+var io = require('socket.io').listen(80);
 
 
 // catch 404 and forward to error handler

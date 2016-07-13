@@ -3,6 +3,15 @@ var router = express.Router();
 var passport = require('../app.js').passport;
 var author = require('../helper/authorize');
 
+var io = require('../app.js').tmp;
+
+io.on('connection', function(socket) {
+	socket.on('login', function(data) {
+		console.log("뿌잉");
+		console.log(data);
+	});
+});
+/*
 router.get('/', function(req, res, next) {
 	res.render('login', {
 		
@@ -33,7 +42,7 @@ router.get('/login_success', author.ensureAuthenticated, function(req, res, next
 
 router.get('/login_fail' , function(req, res, next){
 	res.send("로긴실패");
-});
+});*/
 
 
 
