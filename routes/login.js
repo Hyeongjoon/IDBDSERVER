@@ -11,6 +11,7 @@ var io = require('../app.js').tmp;
 
 io.on('connection', function(socket) {
 	socket.on('login', function(data) {
+		console.log(data);
 		async.series([function(callback){
       	  userDAO.findUser(data.email , callback);
   	  }], function(err , result){
