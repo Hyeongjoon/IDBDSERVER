@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require('../app.js').passport;
 var async = require('async');
 var author = require('../helper/authorize');
+var userDAO = require('../model/UserDAO');
 
 var io = require('../app.js').tmp;
 
