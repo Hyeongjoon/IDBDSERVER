@@ -51,7 +51,7 @@ io.on('connection', function(socket) {
 				userDAO.findUser(data.email , callback);
 			} , function(args1 , callback){
 				if(args1.length!==0){
-					callback('error' , false);
+					callback('existed email' , false);
 				} else{
 					console.log("결과 없음");
 				}
@@ -60,7 +60,7 @@ io.on('connection', function(socket) {
 				console.log("여긴 2번째꺼");
 			}] , function(err , results){
 				console.log("최종창");
-				console.log(results);
+				console.log(err);
 				
 			});
 		}
