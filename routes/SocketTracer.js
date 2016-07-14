@@ -50,7 +50,11 @@ io.on('connection', function(socket) {
 			async.waterfall([function(callback){
 				userDAO.findUser(data.email , callback);
 			} , function(args1 , callback){
-				console.log(args1[0]);
+				if(args1.length!==0){
+					console.log("결과존재");
+				} else{
+					console.log("결과 없음");
+				}
 			}] , function(err , results){
 				
 				
