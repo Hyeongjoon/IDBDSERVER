@@ -14,7 +14,7 @@ io.on('connection', function(socket) {
 	socket.on('login', function(data) {
 		console.log(data);
 		async.series([function(callback){
-      	  userDAO.findUser(data.email , callback);
+      	  userDAO.findUserByEmail(data.email , callback);
   	  }], function(err , result){
 			if(result[0]==''){
 				console.log("그딴 이메일 없음");
@@ -48,16 +48,15 @@ io.on('connection', function(socket) {
 			socket.emit('signUp_result' , result);
 		} else{
 			async.waterfall([function(callback){
-				userDAO.findUser(data.email , callback);
+				userDAO.findUserByEmail(data.email , callback);
 			} , function(args1 , callback){
 				if(args1.length!==0){
 					callback('existed email' , false);
 				} else{
-					console.log("결과 없음");
+					userDAO.findUserByName(data.name , callback);
 				}
 			} , function(args1 , callback){
-				
-				console.log("여긴 2번째꺼");
+				console.log(args1);
 			}] , function(err , results){
 				console.log("최종창");
 				console.log(err);

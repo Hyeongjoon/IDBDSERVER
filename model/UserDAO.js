@@ -3,7 +3,7 @@ var mysql = require('mysql');
 
 
 
-exports.findUser = function(userEmail, callback) {
+exports.findUserByEmail = function(userEmail, callback) {
 	var sqlQuery = 'SELECT * from user WHERE email = ' + mysql.escape(userEmail);
 	base.select(sqlQuery, callback);
 };
@@ -14,6 +14,10 @@ exports.register = function(inform, callback) {
 	base.insert(sqlQuery, inform, callback);
 };
 
+exports.findUserByName = function(userName , callback){
+	var sqlQuery = 'SELECT * from user WHERE name = ' + mysql.escape(userName);
+	base.select(sqlQuery, callback);
+}
 
 /*
 exports.certifyEmail = function(userEmail, callback) {
