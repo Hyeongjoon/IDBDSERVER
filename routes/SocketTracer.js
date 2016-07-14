@@ -51,12 +51,13 @@ io.on('connection', function(socket) {
 				userDAO.findUser(data.email , callback);
 			} , function(args1 , callback){
 				if(args1.length!==0){
-					console.log("결과존재");
+					callback(err , false);
 				} else{
 					console.log("결과 없음");
 				}
 			}] , function(err , results){
-				
+				console.log("최종창");
+				console.log(results);
 				
 			});
 		}
