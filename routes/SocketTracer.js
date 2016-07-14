@@ -68,7 +68,7 @@ io.on('connection', function(socket) {
 				}
 			}] , function(err , results){
 				console.log("최종창");
-				console.log(err);
+				console.log(results);
 			
 			});
 		}

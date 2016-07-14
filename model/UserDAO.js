@@ -9,8 +9,7 @@ exports.findUserByEmail = function(userEmail, callback) {
 };
 
 exports.register = function(inform, callback) {
-	var sqlQuery = 'INSERT INTO user set ?'
-		console.log(inform);
+	var sqlQuery = 'INSERT INTO user set ?';
 	base.insert(sqlQuery, inform, callback);
 };
 
