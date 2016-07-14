@@ -51,7 +51,7 @@ io.on('connection', function(socket) {
 				userDAO.findUser(data.email , callback);
 			} , function(args1 , callback){
 				if(args1.length!==0){
-					callback(err , false);
+					callback(err);
 				} else{
 					console.log("결과 없음");
 				}
