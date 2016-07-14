@@ -59,12 +59,17 @@ io.on('connection', function(socket) {
 				if(args1.length!==0){
 					callback('existed name' , false);
 				} else{
-					console.log("여기까지옴??");
+					var tmpPassword = encryptHelper.encryption(data.password).toString();
+					var insert = {
+							'email' : data.email,
+			        		'password' : tmpPassword,
+			        		'name' : data.name};
+					userDAO.register(insert , callback);
 				}
 			}] , function(err , results){
 				console.log("최종창");
 				console.log(err);
-				
+			
 			});
 		}
 	});
