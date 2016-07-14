@@ -68,9 +68,9 @@ io.on('connection', function(socket) {
 				}
 			}] , function(err , results){
 				if(err!==null){
-					console(err);
+					console.log(err);
 				} else {
-					console("회원가입 완료");
+					console.log("회원가입 완료");
 				}
 			
 			});
