@@ -25,6 +25,8 @@ io.on('connection', function(socket) {
 					console.log("일치합니당");
 					var result = {result : "true"};
 					socket.emit('login_result' , result);
+					socket.handshake.session.login = true;
+					socket.handshake.session.save();
 					return;
 	        	} else{
 	        		console.log("암호화 풀었더니 틀림");
@@ -34,6 +36,10 @@ io.on('connection', function(socket) {
 	        	}
 			}
 		})
+	});
+	
+	socket.on('signUp',function(data){
+		console.log(data);
 	});
 });
 /*
