@@ -55,6 +55,9 @@ io.on('connection', function(socket) {
 				} else{
 					console.log("결과 없음");
 				}
+			} , function(args1 , callback){
+				
+				console.log("여긴 2번째꺼");
 			}] , function(err , results){
 				console.log("최종창");
 				console.log(results);
