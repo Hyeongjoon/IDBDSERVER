@@ -56,7 +56,11 @@ io.on('connection', function(socket) {
 					userDAO.findUserByName(data.name , callback);
 				}
 			} , function(args1 , callback){
-				console.log(args1);
+				if(args1.length!==0){
+					callback('existed name' , false);
+				} else{
+					console.log("여기까지옴??");
+				}
 			}] , function(err , results){
 				console.log("최종창");
 				console.log(err);
