@@ -67,8 +67,11 @@ io.on('connection', function(socket) {
 					userDAO.register(insert , callback);
 				}
 			}] , function(err , results){
-				console.log("최종창");
-				console.log(results);
+				if(err!==null){
+					console(err);
+				} else {
+					console("회원가입 완료");
+				}
 			
 			});
 		}
