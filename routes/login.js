@@ -17,15 +17,18 @@ io.on('connection', function(socket) {
   	  }], function(err , result){
 			if(result[0]==''){
 				console.log("그딴 이메일 없음");
+				var result = {result : "false"};
 				socket.emit('login_result' , false);
 				return;
 			} else{
 				if(decryptHelper.decryption(result[0][0].password)== data.password){
 					console.log("일치합니당");
+					var result = {result : "true"};
 					socket.emit('login_result' , true);
 					return;
 	        	} else{
 	        		console.log("암호화 풀었더니 틀림");
+	        		var result = {result : "false"};
 	        		socket.emit('login_result' , false);
 	        		return;
 	        	}
