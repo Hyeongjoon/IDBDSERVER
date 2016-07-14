@@ -71,10 +71,10 @@ var io = require('socket.io').listen(80);
 
 exports.tmp = io.use(sharedsession(session));
 
-var login = require('./routes/login');
+var socketT = require('./routes/SocketTracer');
 var signUp = require('./routes/signUp');
 
-app.use('/', login);
+app.use('/', socketT);
 app.use('/signUp' , signUp);
 
 // catch 404 and forward to error handler

@@ -5,6 +5,7 @@ var async = require('async');
 var author = require('../helper/authorize');
 var userDAO = require('../model/UserDAO');
 var decryptHelper = require('../helper/DecryptHelper');
+var encryptHelper = require('../helper/EncryptHelper');
 
 var io = require('../app.js').tmp;
 
@@ -40,6 +41,21 @@ io.on('connection', function(socket) {
 	
 	socket.on('signUp',function(data){
 		console.log(data);
+		var result = {result : ""};
+		if(data==undefined||data.password!==data.password_confirm||data.email==''||data.password==''||data.name==''||data.password_confirm==''){
+			console.log("이상하게 안걸러지네?");
+			result.result = "wrong";
+			socket.emit('signUp_result' , result);
+		} else{
+			async.waterfall([function(callback){
+				userDAO.findUser(data.email , callback);
+			} , function(args1 , callback){
+				console.log(args1);
+			}] , function(err , results){
+				
+				
+			});
+		}
 	});
 });
 /*
