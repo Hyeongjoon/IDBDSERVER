@@ -44,8 +44,9 @@ io.on('connection', function(socket) {
 		var result = {result : ""};
 		if(data==undefined||data.password!==data.password_confirm||data.email==''||data.password==''||data.name==''||data.password_confirm==''){
 			console.log("이상하게 안걸러지네?");
-			result.result = "wrong";
+			result.result = "inner Server error";
 			socket.emit('signUp_result' , result);
+			return;
 		} else{
 			async.waterfall([function(callback){
 				userDAO.findUserByEmail(data.email , callback);
@@ -68,11 +69,12 @@ io.on('connection', function(socket) {
 				}
 			}] , function(err , results){
 				if(err!==null){
-					console.log(err);
+					result.result = err;
 				} else {
-					console.log("회원가입 완료");
+					result.result = true;
 				}
-			
+				socket.emit('signUp_result' , result);
+				return;
 			});
 		}
 	});
