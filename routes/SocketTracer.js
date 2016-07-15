@@ -54,12 +54,6 @@ io.on('connection', function(socket) {
 				if(args1.length!==0){
 					callback('existed email' , false);
 				} else{
-					userDAO.findUserByName(data.name , callback);
-				}
-			} , function(args1 , callback){
-				if(args1.length!==0){
-					callback('existed name' , false);
-				} else{
 					var tmpPassword = encryptHelper.encryption(data.password).toString();
 					var insert = {
 							'email' : data.email,
