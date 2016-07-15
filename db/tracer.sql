@@ -13,13 +13,13 @@ create table user
          password VARCHAR (255) NOT NULL,
          phone_number VARCHAR (15) default NULL,
          phone_verify boolean default false NOT NULL,
+         email_verify boolean default false NOT NULL,
          name VARCHAR(255) NOT NULL,
          profile VARCHAR(255) default NULL,
          birth_date date default NULL,
          primary key(uid),
          unique(email),
-         unique(phone_number),
-         unique(name)
+         unique(phone_number)
 ) Engine =InnoDB DEFAULT CHARSET = utf8;
 
 
