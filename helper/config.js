@@ -20,4 +20,23 @@ exports.secretKey = 'NodeSibal';
 	
 exports.sessionKey = 'sid';
 
-exports.dbSecretKey = 'akwWkdwkfEmsi'
+exports.dbSecretKey = 'akwWkdwkfEmsi';
+	
+exports.emailSecretKey = 'audclakwdmffo';
+
+exports.emailConfig = {
+						host : 'smtp.gmail.com' ,
+						port :465,
+						secure : true,
+						auth : {
+								user : 'sendwitch.co@gmail.com',
+								pass : '7557523m'
+							}
+						}
+
+exports.mailOption = {
+		from : '"시발" <sendwitch.co@gmail.com>',
+		to : '',
+		subject : 'Hello',
+		html : '<b>뿌잉 <b/>'
+}
