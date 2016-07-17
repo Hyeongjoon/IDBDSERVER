@@ -76,13 +76,14 @@ io.on('connection', function(socket) {
 				}
 				socket.emit('signUp_result' , result);
 				config.mailOption.to = data.email;
+				var tmpEmail = encryptHelper.encryptEmail(data.email).toString();
+				config.mailOption.html = '<b>' + tmpEmail+'<b/>'
 				emailTransport.sendMail(config.mailOption , function(err , info){
 					if(err){
 						return console.log(err);
 					}
 					console.log(info.response);
 				});
-				return;
 			});
 		}
 	});
