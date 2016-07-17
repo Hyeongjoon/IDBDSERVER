@@ -76,7 +76,7 @@ io.on('connection', function(socket) {
 				}
 				socket.emit('signUp_result' , result);
 				config.mailOption.to = data.email;
-				emailTransport.sendMail(mailOption , function(err , info){
+				emailTransport.sendMail(config.mailOption , function(err , info){
 					if(err){
 						return console.log(err);
 					}
