@@ -82,7 +82,7 @@ io.on('connection', function(socket) {
 	});
 	
 	socket.on('reEmail' , function(data){
-		console.log(data);
+		EmailHelper.makeEmail(data.email);
 	});
 });
 /*
