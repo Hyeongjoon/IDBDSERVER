@@ -1,4 +1,4 @@
-var EncryptHelper = require('../helper/EncrtptHelper.js');
+var EncryptHelper = require('../helper/EncryptHelper.js');
 var email = require('nodemailer');
 
 var emailTransport = email.createTransport(config.emailConfig);
