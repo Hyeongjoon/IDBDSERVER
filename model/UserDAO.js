@@ -18,6 +18,11 @@ exports.findUserByName = function(userName , callback){
 	base.select(sqlQuery, callback);
 }
 
+exports.verifyEmail = function(userEmail , callback){
+	var sqlQuery = 'UPDATE user SET email_verify =' +mysql.escape(true) + 'WHERE email = ' + mysql.escape(userEmail);
+	base.update(sqlQuery , callback);
+}
+
 /*
 exports.certifyEmail = function(userEmail, callback) {
 	var sqlQuery = 'SELECT * from account WHERE email = ' + mysql.escape(userEmail);

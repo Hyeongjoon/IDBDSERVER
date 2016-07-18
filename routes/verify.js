@@ -13,13 +13,19 @@ router.get('/' , function(req , res , next){
 			console.log(tmp);
 			var tmpEmail = tmp.slice(8);
 			var email = DecryptHelper.decryptEmail(tmpEmail);
-			console.log(email);
 			UserDAO.findUserByEmail(email , callback);
 		}, function(args1 , callback){
-			console.log(args1);
-			
+			if(args1.length!==1){
+				callback(true , false);
+			} else{
+				UserDAO.verifyEmail(email , callback);
+			}
 		}], function(err , results){
-			
+			if(err){
+				res.render('veryfyAlready' , {});
+			} else{
+				console.log(results);
+			}
 		});
 	}
 });
