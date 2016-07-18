@@ -2,15 +2,13 @@ var express = require('express');
 var router = express.Router();
 var passport = require('../app.js').passport;
 var async = require('async');
-var email = require('nodemailer');
 var author = require('../helper/authorize');
 var userDAO = require('../model/UserDAO');
 var decryptHelper = require('../helper/DecryptHelper');
 var encryptHelper = require('../helper/EncryptHelper');
+var EmailHelper = require('../helper/EmailMake');
 
 var config = require('../helper/config.js');
-
-var emailTransport = email.createTransport(config.emailConfig);
 
 
 
@@ -75,16 +73,8 @@ io.on('connection', function(socket) {
 					result.result = true;
 				}
 				socket.emit('signUp_result' , result);
-				config.mailOption.to = data.email;
-				var tmpEmail = encryptHelper.encryptEmail(data.email).toString();
-				config.mailOption.html = '<b>' + tmpEmail+'<b/>'
-				emailTransport.sendMail(config.mailOption , function(err , info){
-					if(err){
-						return console.log(err);
-					}
-					console.log(info.response);
-					return;
-				});
+				EmailHelper.makeEmail(data.email);
+				return;
 			});
 		}
 	});

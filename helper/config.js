@@ -34,9 +34,3 @@ exports.emailConfig = {
 							}
 						}
 
-exports.mailOption = {
-		from : '"시발" <sendwitch.co@gmail.com>',
-		to : '',
-		subject : 'Hello',
-		html : '<b>뿌잉 <b/>'
-}
