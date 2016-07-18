@@ -23,7 +23,7 @@ router.get('/' , function(req , res , next){
 			}
 		}], function(err , results){
 			if(err){
-				res.render('veryfyAlready' , {});
+				res.render('verifSuccess' , {});
 			} else{
 				console.log(results);
 			}
