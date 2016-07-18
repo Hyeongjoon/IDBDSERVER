@@ -1,11 +1,21 @@
 var express = require('express');
 var router = express.Router();
+var async = require('async');
+var DecryptHelper = require('../helper/DecryptHelper');
 
 router.get('/' , function(req , res , next){
-	console.log("여긴오냐??");
-	console.log(req.url);
-	var tmp = req.url;
-	console.log(tmp.slice(8));
+	if(req.url.length <= 8){
+		res.render('failReq', {});
+	} else{
+		async.waterfall([function(callback){ 
+			var tmp = req.url.slice(8);
+			var email = DecryptHelper.decryptEmail(tmp);
+			console.log(email);
+		}], 
+		function(err , results){
+			
+		});
+	}
 });
 
 

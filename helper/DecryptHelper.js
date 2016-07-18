@@ -8,7 +8,7 @@ exports.decryption = function(input){
 }
 
 exports.decryptEmail = function(input){
-	var bytes  = cryptoJS.AES.decrypt(input.toString(), config.emailSecretKey);
+	var bytes  = cryptoJS.AES.decrypt(input, config.emailSecretKey);
 	var result = bytes.toString(cryptoJS.enc.Utf8);
 	return result;
 	
