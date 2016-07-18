@@ -1,9 +1,10 @@
 var EncryptHelper = require('../helper/EncryptHelper.js');
 var email = require('nodemailer');
+var config = require('../helper/config.js');
 
 var emailTransport = email.createTransport(config.emailConfig);
 
-var config = require('../helper/config.js');
+
 
 
 var mailOption = {
