@@ -23,9 +23,9 @@ router.get('/' , function(req , res , next){
 			}
 		}], function(err , results){
 			if(err){
-				res.render('verifSuccess' , {});
+				res.render('verifyAlready' , {});
 			} else{
-				console.log(results);
+				res.render('verifSuccess' , {});
 			}
 		});
 	}
