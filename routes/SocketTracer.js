@@ -28,7 +28,7 @@ io.on('connection', function(socket) {
 				return;
 			} else{
 				if(decryptHelper.decryption(result[0][0].password)== data.password){
-					console.log("일치합니당");
+					console.log(result[0]);
 					var result = {result : "true"};
 					socket.emit('login_result' , result);
 					socket.handshake.session.login = true;
