@@ -8,8 +8,10 @@ router.get('/' , function(req , res , next){
 		res.render('failReq', {});
 	} else{
 		async.waterfall([function(callback){ 
-			var tmp = req.url.slice(8);
-			var email = DecryptHelper.decryptEmail(tmp);
+			var tmp = req.url;
+			console.log(tmp);
+			var tmpEmail = tmp.slice(8);
+			var email = DecryptHelper.decryptEmail(tmpEmail);
 			console.log(email);
 		}], 
 		function(err , results){
