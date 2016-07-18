@@ -18,7 +18,7 @@ router.get('/' , function(req , res , next){
 			if(args1.length!==1){
 				callback(true , false);
 			} else{
-				UserDAO.verifyEmail(email , callback);
+				UserDAO.verifyEmail(args1[0].email , callback);
 			}
 		}], function(err , results){
 			if(err){
