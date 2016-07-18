@@ -28,12 +28,16 @@ io.on('connection', function(socket) {
 				return;
 			} else{
 				if(decryptHelper.decryption(result[0][0].password)== data.password){
-					console.log(result[0]);
+					if(result[0].phone_verify==true){
 					var result = {result : "true"};
 					socket.emit('login_result' , result);
 					socket.handshake.session.login = true;
 					socket.handshake.session.save();
 					return;
+					} else{
+						var result = {result : "verify"};
+						socket.emit('login_result' , result);
+					}
 	        	} else{
 	        		console.log("암호화 풀었더니 틀림");
 	        		var result = {result : "false"};
