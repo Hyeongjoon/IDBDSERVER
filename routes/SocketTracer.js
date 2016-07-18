@@ -83,6 +83,7 @@ io.on('connection', function(socket) {
 						return console.log(err);
 					}
 					console.log(info.response);
+					return;
 				});
 			});
 		}
