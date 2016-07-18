@@ -70,12 +70,10 @@ exports.tmp = io.use(sharedsession(session));
 
 var socketT = require('./routes/SocketTracer');
 var signUp = require('./routes/signUp');
-var email = require('./routes/email');
 var verify = require('./routes/verify');
 
 app.use('/', socketT);
 app.use('/signUp' , signUp);
-app.use('/email' , email);
 app.use('/verify' , verify);
 
 // catch 404 and forward to error handler
