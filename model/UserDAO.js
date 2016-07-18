@@ -19,6 +19,7 @@ exports.findUserByName = function(userName , callback){
 }
 
 exports.verifyEmail = function(userEmail , callback){
+	console.log(userEmail);
 	var sqlQuery = 'UPDATE user SET email_verify =' +mysql.escape(true) + 'WHERE email = ' + mysql.escape(userEmail);
 	base.update(sqlQuery , callback);
 }

@@ -10,7 +10,6 @@ router.get('/' , function(req , res , next){
 	} else{
 		async.waterfall([function(callback){ 
 			var tmp = req.url;
-			console.log(tmp);
 			var tmpEmail = tmp.slice(8);
 			var email = DecryptHelper.decryptEmail(tmpEmail);
 			UserDAO.findUserByEmail(email , callback);
