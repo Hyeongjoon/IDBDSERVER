@@ -73,10 +73,16 @@ io.on('connection', function(socket) {
 					result.result = true;
 				}
 				socket.emit('signUp_result' , result);
+				if(result.result==true){
 				EmailHelper.makeEmail(data.email);
+				}
 				return;
 			});
 		}
+	});
+	
+	socket.on('reEmail' , function(data){
+		console.log(data);
 	});
 });
 /*

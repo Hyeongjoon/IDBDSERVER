@@ -7,7 +7,7 @@ var UserDAO = require('../model/UserDAO');
 router.get('/' , function(req , res , next){
 	if(req.url.length <= 8){
 		res.render('failReq', {});
-	} else{
+	} else {
 		async.waterfall([function(callback){ 
 			var tmp = req.url;
 			var tmpEmail = tmp.slice(8);
