@@ -13,6 +13,7 @@ router.get('/' , function(req , res , next){
 			console.log(tmp);
 			var tmpEmail = tmp.slice(8);
 			var email = DecryptHelper.decryptEmail(tmpEmail);
+			console.log(email);
 			UserDAO.findUserByEmail(email , callback);
 		}, function(args1 , callback){
 			console.log(args1);
