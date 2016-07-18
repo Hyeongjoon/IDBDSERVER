@@ -18,7 +18,7 @@ var mailOption = {
 exports.makeEmail = function(email){
 	mailOption.to = email;
 	var encryptedEmail = EncryptHelper.encryptEmail(email).toString();
-	mailOption.html = '<a href="http://52.78.18.19/verify/?query='+encryptedEmail+'">인증하기</a>';
+	mailOption.html = '<a href="http://52.78.18.19:3000/verify/?query='+encryptedEmail+'">인증하기</a>';
 	emailTransport.sendMail(mailOption , function(err , info){
 		if(err){
 			return console.log(err);
