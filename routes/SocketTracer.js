@@ -17,7 +17,6 @@ var io = require('../app.js').tmp;
 
 io.on('connection', function(socket) {
 	socket.on('login', function(data) {
-		console.log(data);
 		async.series([function(callback){
       	  userDAO.findUserByEmail(data.email , callback);
   	  }], function(err , result){
@@ -28,20 +27,19 @@ io.on('connection', function(socket) {
 				return;
 			} else{
 				if(decryptHelper.decryption(result[0][0].password)== data.password){
-					console.log(result[0][0]);
-					console.log(result[0].phone_verify);
-					console.log(result[0][0].phone_verify);
-					if(result[0].phone_verify==true){
+					if(result[0][0].email_verify==true){
 					var result = {result : "true"};
 					socket.emit('login_result' , result);
 					socket.handshake.session.login = true;
 					socket.handshake.session.save();
 					return;
 					} else{
-						var result = {result : "verify",
-									  email : result[0][0].email
-						};
+						var result = {
+										result : "verify",
+										email : result[0][0].email
+									 };
 						socket.emit('login_result' , result);
+						return;
 					}
 	        	} else{
 	        		console.log("암호화 풀었더니 틀림");
