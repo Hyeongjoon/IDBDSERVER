@@ -28,7 +28,7 @@ io.on('connection', function(socket) {
 				return;
 			} else{
 				if(decryptHelper.decryption(result[0][0].password)== data.password){
-					if(result[0].phone_verify==true){
+					if(result[0][0].phone_verify==true){
 					var result = {result : "true"};
 					socket.emit('login_result' , result);
 					socket.handshake.session.login = true;
@@ -37,7 +37,7 @@ io.on('connection', function(socket) {
 					} else{
 						console.log(result[0]);
 						var result = {result : "verify",
-									  email : result[0].email
+									  email : result[0][0].email
 						};
 						console.log(result);
 						socket.emit('login_result' , result);
