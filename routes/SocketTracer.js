@@ -28,6 +28,9 @@ io.on('connection', function(socket) {
 				return;
 			} else{
 				if(decryptHelper.decryption(result[0][0].password)== data.password){
+					console.log(result[0][0]);
+					console.log(result[0].phone_verify);
+					console.log(result[0][0].phone_verify);
 					if(result[0].phone_verify==true){
 					var result = {result : "true"};
 					socket.emit('login_result' , result);
