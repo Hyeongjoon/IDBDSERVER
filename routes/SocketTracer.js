@@ -35,6 +35,7 @@ io.on('connection', function(socket) {
 					socket.handshake.session.save();
 					return;
 					} else{
+						console.log(result[0]);
 						var result = {result : "verify",
 									email : result[0].email
 						};
