@@ -35,7 +35,9 @@ io.on('connection', function(socket) {
 					socket.handshake.session.save();
 					return;
 					} else{
-						var result = {result : "verify"};
+						var result = {result : "verify",
+									email : result[0].email
+						};
 						socket.emit('login_result' , result);
 					}
 	        	} else{
