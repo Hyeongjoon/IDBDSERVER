@@ -35,6 +35,7 @@ create table gr(
 create table belong_gr
 	(uid int unsigned NOT NULL,
 	 gid  int unsigned NOT NULL,
+     name VARCHAR(20) default NULL,
      favorite boolean default false,
      filter boolean default false,
      primary key(uid , gid),
