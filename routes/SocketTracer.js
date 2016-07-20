@@ -21,7 +21,6 @@ io.on('connection', function(socket) {
       	  userDAO.findUserByEmail(data.email , callback);
   	  }], function(err , result){
 			if(result[0]==''){
-				console.log("그딴 이메일 없음");
 				var result = {result : "false"};
 				socket.emit('login_result' , result);
 				return;
@@ -42,7 +41,6 @@ io.on('connection', function(socket) {
 						return;
 					}
 	        	} else{
-	        		console.log("암호화 풀었더니 틀림");
 	        		var result = {result : "false"};
 	        		socket.emit('login_result' , result);
 	        		return;
