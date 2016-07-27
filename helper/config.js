@@ -44,6 +44,6 @@ exports.awsS3UploadConfig = {
 
 exports.awsS3GetConfig = {
 	Bucket : 'sendwitchtracer',
-	key : 'temp.png'
+	Key : 'temp.png'
 		
 };
