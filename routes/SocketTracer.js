@@ -7,13 +7,15 @@ var userDAO = require('../model/UserDAO');
 var decryptHelper = require('../helper/DecryptHelper');
 var encryptHelper = require('../helper/EncryptHelper');
 var EmailHelper = require('../helper/EmailMake');
+var AWS = require('aws-sdk');
+var fs = require('fs');
+AWS.config.region = 'ap-northeast-2';
+
+var s3 = new AWS.S3();
 
 var config = require('../helper/config.js');
 
-
-
 var io = require('../app.js').tmp;
-
 
 io.on('connection', function(socket) {
 	socket.on('login', function(data) {
@@ -89,7 +91,15 @@ io.on('connection', function(socket) {
 	socket.on('reEmail' , function(data){
 		EmailHelper.makeEmail(data.email);
 	});
+	
+	socket.on('getProfile' , function(data){
+		var file = fs.createWriteStream('/path/to/file.jpg');
+		s3.getObject(config.awsS3GetConfig).createReadStream().pipe(file);
+	});
+	
 });
+
+
 /*
 router.get('/', function(req, res, next) {
 	res.render('login', {

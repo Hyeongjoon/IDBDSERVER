@@ -71,10 +71,12 @@ exports.tmp = io.use(sharedsession(session));
 var socketT = require('./routes/SocketTracer');
 var signUp = require('./routes/signUp');
 var verify = require('./routes/verify');
+var imageReq = require('./routes/imageReq');
 
 app.use('/', socketT);
 app.use('/signUp' , signUp);
 app.use('/verify' , verify);
+app.use('/imageReq' , imageReq);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

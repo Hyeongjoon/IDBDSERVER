@@ -32,5 +32,18 @@ exports.emailConfig = {
 								user : 'sendwitch.co@gmail.com',
 								pass : '7557523m'
 							}
-						}
+						};
 
+exports.awsS3UploadConfig = {
+		Bucket : 'sendwitchtracer',
+		Key : 'tmptmp.png',
+		ACL : 'public-read-write',
+		Body : '',
+		ContentType : 'image/png'	
+};
+
+exports.awsS3GetConfig = {
+	Bucket : 'sendwitchtracer',
+	key : 'temp.png'
+		
+};
