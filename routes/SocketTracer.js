@@ -96,7 +96,10 @@ io.on('connection', function(socket) {
 		var file = fs.createWriteStream('/path/to/file.jpg');
 		s3.getObject(config.awsS3GetConfig).createReadStream().pipe(file);
 	});
-	
+	socket.on('temp', function(data){
+		console.log(data);
+		console.log(socket.handshake.session);
+	});
 });
 
 
