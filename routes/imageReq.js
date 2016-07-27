@@ -8,7 +8,7 @@ router.get('/' , function(req ,res ,next){
 	console.log("여긴오냐?");
 	var s3 = new AWS.S3();
 	var params = {Bucket : 'sendwitchtracer' , Key : 'temp.png'};
-	var file = require('fs').createWriteStream('temp.png');
+	var file = require('fs').createWriteStream('/temp/temp.png');
 	s3.getObject(params).createReadStream().pipe(file);	
 });
 
