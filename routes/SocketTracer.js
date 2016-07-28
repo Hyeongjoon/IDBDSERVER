@@ -97,7 +97,7 @@ io.on('connection', function(socket) {
 		async.waterfall([function(callback){
 			userDAO.findUserByEmail(socket.handshake.session.email , callback);
 		}, function(args1 , callback){
-			console.log(args1);
+			console.log(args1.profile);
 			/*var params = config.awsS3GetConfig;
 			s3.getSignedUrl('getObject', params, function (err, url) {
 				console.log("The URL is", url); // https 주소 http로 바꿀것
