@@ -9,7 +9,7 @@ AWS.config.region = 'ap-northeast-2';
 router.get('/' , function(req ,res ,next){
 	var s3 = new AWS.S3();
 	var params = config.awsS3GetConfig;
-	console.log(req.body);
+	console.log(req);
 	s3.getSignedUrl('getObject', params, function (err, url) {
 		console.log(err);
 		  console.log("The URL is", url);
