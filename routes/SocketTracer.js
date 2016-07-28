@@ -97,12 +97,12 @@ io.on('connection', function(socket) {
 		async.waterfall([function(callback){
 			userDAO.findUserByEmail(socket.handshake.session.email , callback);
 		}, function(args1 , callback){
-			console.log(args1[0].profile);
-			/*var params = config.awsS3GetConfig;
+			var params = config.awsS3GetConfig;
+			params.Key = args1[0].profile;
 			s3.getSignedUrl('getObject', params, function (err, url) {
 				console.log("The URL is", url); // https 주소 http로 바꿀것
 				callback(null , url);
-			});*/
+			});
 		}] , function(err , results){
 			var result = {URL : results};
 			socket.emit('GroupImageResult' , result);
