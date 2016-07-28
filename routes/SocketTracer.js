@@ -103,7 +103,7 @@ io.on('connection', function(socket) {
 		}] , function(err , results){
 			console.log("---------");
 			var result = {URL : results};
-			socket.emilt('GroupImageResult' , result);
+			socket.emit('GroupImageResult' , result);
 		});
 	});
 });
