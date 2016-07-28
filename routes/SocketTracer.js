@@ -95,7 +95,7 @@ io.on('connection', function(socket) {
 	
 	socket.on('getGroupImage', function(data){
 		async.waterfall([function(callback){
-			UserDAO.findUserByEmail(socket.handshake.session.email , callback);
+			userDAO.findUserByEmail(socket.handshake.session.email , callback);
 		}, function(args1 , callback){
 			console.log(args1);
 			/*var params = config.awsS3GetConfig;
