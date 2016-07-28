@@ -96,7 +96,7 @@ io.on('connection', function(socket) {
 		async.waterfall([function(callback){
 			//UserDAO.findUserByEmail( , callback);
 			console.log(socket.handshake.session);
-		});
+		
 		}, function(args1 , callback){
 			var params = config.awsS3GetConfig;
 			s3.getSignedUrl('getObject', params, function (err, url) {
