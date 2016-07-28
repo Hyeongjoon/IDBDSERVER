@@ -102,7 +102,8 @@ io.on('connection', function(socket) {
 		});
 		}] , function(err , results){
 			console.log("---------");
-			console.log(results);
+			var result = {URL : results};
+			socket.emilt('GroupImageResult' , result);
 		});
 	});
 });
