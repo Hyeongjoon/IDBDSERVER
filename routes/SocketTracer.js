@@ -93,13 +93,17 @@ io.on('connection', function(socket) {
 	});
 	
 	socket.on('getGroupImage', function(data){
+		async.waterfall([function(callback){
 		var s3 = new AWS.S3();
 		var params = config.awsS3GetConfig;
 		s3.getSignedUrl('getObject', params, function (err, url) {
-			console.log(err);
-			console.log("The URL is", url);
+			console.log("The URL is", url); // https 주소 http로 바꿀것
+			callback(null , url);
 		});
-		
+		}] , function(err , results){
+			console.log("---------");
+			console.log(results);
+		});
 	});
 });
 

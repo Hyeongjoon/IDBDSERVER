@@ -11,8 +11,7 @@ router.get('/' , function(req ,res ,next){
 	var params = config.awsS3GetConfig;
 	console.log(req);
 	s3.getSignedUrl('getObject', params, function (err, url) {
-		console.log(err);
-		  console.log("The URL is", url);
+		  console.log("The URL is", url); 
 	});
 });
 
