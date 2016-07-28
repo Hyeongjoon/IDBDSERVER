@@ -31,7 +31,8 @@ io.on('connection', function(socket) {
 					if(result[0][0].email_verify==true){
 					var result = {result : "true"};
 					socket.emit('login_result' , result);
-					socket.handshake.session.email = result[0][0].email; 
+					console.log(result[0]);
+		//			socket.handshake.session.email = result[0][0].email; 
 					socket.handshake.session.login = true;
 					socket.handshake.session.save();
 					return;
