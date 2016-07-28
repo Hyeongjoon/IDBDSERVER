@@ -95,7 +95,6 @@ io.on('connection', function(socket) {
 	socket.on('getGroupImage', function(data){
 		var s3 = new AWS.S3();
 		var params = config.awsS3GetConfig;
-		console.log(data);
 		s3.getSignedUrl('getObject', params, function (err, url) {
 			console.log(err);
 			console.log("The URL is", url);
