@@ -31,6 +31,7 @@ io.on('connection', function(socket) {
 					if(result[0][0].email_verify==true){
 					var result = {result : "true"};
 					socket.emit('login_result' , result);
+					socket.handshake.session.email = result[0][0].email; 
 					socket.handshake.session.login = true;
 					socket.handshake.session.save();
 					return;
@@ -95,7 +96,7 @@ io.on('connection', function(socket) {
 	socket.on('getGroupImage', function(data){
 		async.waterfall([function(callback){
 			//UserDAO.findUserByEmail( , callback);
-			console.log(socket.handshake.session);
+			console.log(socket.handshake.session.email);
 		
 		}, function(args1 , callback){
 			var params = config.awsS3GetConfig;
