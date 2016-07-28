@@ -9,8 +9,8 @@ var encryptHelper = require('../helper/EncryptHelper');
 var EmailHelper = require('../helper/EmailMake');
 var AWS = require('aws-sdk');
 var fs = require('fs');
-AWS.config.region = 'ap-northeast-2';
 
+AWS.config.region = 'ap-northeast-2';
 var s3 = new AWS.S3();
 
 var config = require('../helper/config.js');
@@ -94,12 +94,14 @@ io.on('connection', function(socket) {
 	
 	socket.on('getGroupImage', function(data){
 		async.waterfall([function(callback){
-		var s3 = new AWS.S3();
-		var params = config.awsS3GetConfig;
-		s3.getSignedUrl('getObject', params, function (err, url) {
-			console.log("The URL is", url); // https 주소 http로 바꿀것
-			callback(null , url);
+			//UserDAO.findUserByEmail( , callback);
+			console.log(socket.handshake.session);
 		});
+		}, function(args1 , callback){
+			var params = config.awsS3GetConfig;
+			s3.getSignedUrl('getObject', params, function (err, url) {
+				console.log("The URL is", url); // https 주소 http로 바꿀것
+				callback(null , url);	
 		}] , function(err , results){
 			console.log("---------");
 			var result = {URL : results};
