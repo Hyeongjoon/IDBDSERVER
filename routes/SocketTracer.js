@@ -52,7 +52,6 @@ io.on('connection', function(socket) {
 	});
 	
 	socket.on('signUp',function(data){
-		console.log(socket.handshake.session);
 		console.log(data);
 		var result = {result : ""};
 		if(data==undefined||data.password!==data.password_confirm||data.email==''||data.password==''||data.name==''||data.password_confirm==''){
@@ -98,8 +97,8 @@ io.on('connection', function(socket) {
 		s3.getObject(config.awsS3GetConfig).createReadStream().pipe(file);
 	});
 	socket.on('temp', function(data){
-		console.log(data);
-		console.log(socket.handshake.session);
+		
+		
 	});
 });
 
