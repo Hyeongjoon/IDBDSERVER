@@ -98,9 +98,16 @@ io.on('connection', function(socket) {
 		async.waterfall([function(callback){
 			userDAO.findUserByEmail(socket.handshake.session.email , callback);
 		}, function(args1, callback){ 
-			belong_grDAO.getGidByUid(args1[0].uid , callback);
+			if(args1[0]==''){
+				callback('err' , false);
+			} else{
+			belong_grDAO.getGidByUid(args1[0].uid , callback);}
 		},function(args1, callback){
-			console.log(args1.length);
+			if(args1[0]==''){
+				callback('nullGroup' , false);
+			} else{
+				belong_grDAO.getUidInGroup(args1 , callback);
+			}
 		}, function(args1 , callback){
 			var params = config.awsS3GetConfig;
 			params.Key = args1[0].profile;
