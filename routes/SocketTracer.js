@@ -4,6 +4,7 @@ var passport = require('../app.js').passport;
 var async = require('async');
 var author = require('../helper/authorize');
 var userDAO = require('../model/UserDAO');
+var belong_grDAO = require('../model/Belong_grDAO');
 var decryptHelper = require('../helper/DecryptHelper');
 var encryptHelper = require('../helper/EncryptHelper');
 var EmailHelper = require('../helper/EmailMake');
@@ -97,7 +98,7 @@ io.on('connection', function(socket) {
 		async.waterfall([function(callback){
 			userDAO.findUserByEmail(socket.handshake.session.email , callback);
 		}, function(args1 , callback){ 
-			console.log(args1);
+			belong_grDAO.getGidByUid(args1[0].uid , callback);
 		}, function(args1 , callback){
 			var params = config.awsS3GetConfig;
 			params.Key = args1[0].profile;
@@ -107,8 +108,8 @@ io.on('connection', function(socket) {
 			});
 		}] , function(err , results){
 			var result = {URL : results};
-			var tempResult = {result : "abc"}
-			socket.emit('GroupImageResult' , result , tempResult);
+			//var tempResult = {result : "abc"}
+			socket.emit('GroupImageResult' , result);
 		});
 	});
 });
