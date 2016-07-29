@@ -186,8 +186,8 @@ create table alarm_reply(
     foreign key(belong_rid) references reply(rid) ON DELETE CASCADE ON UPDATE CASCADE
 ) Engine =InnoDB DEFAULT CHARSET = utf8;
 
-DROP TABLE IF exists alarm_reply;
-create table alarm_reply(
+DROP TABLE IF exists alarm_re_reply;
+create table alarm_re_reply(
 	belong_aid int unsigned NOT NULL,
     belong_rrid int unsigned NOT NULL,
     primary key(belong_aid , belong_rrid),

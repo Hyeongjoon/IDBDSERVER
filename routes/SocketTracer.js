@@ -96,6 +96,8 @@ io.on('connection', function(socket) {
 	socket.on('getGroupImage', function(data){
 		async.waterfall([function(callback){
 			userDAO.findUserByEmail(socket.handshake.session.email , callback);
+		}, function(args1 , callback){ 
+			console.log(args1);
 		}, function(args1 , callback){
 			var params = config.awsS3GetConfig;
 			params.Key = args1[0].profile;
@@ -105,7 +107,8 @@ io.on('connection', function(socket) {
 			});
 		}] , function(err , results){
 			var result = {URL : results};
-			socket.emit('GroupImageResult' , result);
+			var tempResult = {result : "abc"}
+			socket.emit('GroupImageResult' , result , tempResult);
 		});
 	});
 });
