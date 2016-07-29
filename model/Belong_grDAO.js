@@ -7,5 +7,10 @@ exports.getGidByUid = function(uid , callback){
 };
 
 exports.getUidInGroup = function(gidArr , callback){
-	console.log(gidArr);
+	var sqlQuery = 'Select * from belong_gr WHERE gid = ';
+	for (var i = 0 ; i < gidArr.length ; i ++){
+		sqlQuery = sqlQuery + gidArr[i].gid + ','
+	}
+	sqlQuery = sqlQuery.substring(0,sqlQuery.length-2);
+	console.log(sqlQuery);
 };
