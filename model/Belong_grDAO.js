@@ -12,6 +12,6 @@ exports.getUidInGroup = function(gidArr , callback){
 		sqlQuery = sqlQuery + gidArr[i].gid + ','
 	}
 	sqlQuery = sqlQuery.substring(0,sqlQuery.length-1);
-	sqlQuery = sqlQuery + ' AND NOT (uid = ' + mysql.escape(gidArr[0].uid) + ')';
+	sqlQuery = sqlQuery + ' AND  (uid != ' + mysql.escape(gidArr[0].uid) + ')';
 	base.select(sqlQuery , callback);
 };
