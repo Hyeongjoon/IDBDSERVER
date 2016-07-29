@@ -11,6 +11,6 @@ exports.getUidInGroup = function(gidArr , callback){
 	for (var i = 0 ; i < gidArr.length ; i ++){
 		sqlQuery = sqlQuery + gidArr[i].gid + ','
 	}
-	sqlQuery = sqlQuery.substring(0,sqlQuery.length-2);
+	sqlQuery = sqlQuery.substring(0,sqlQuery.length-1);
 	console.log(sqlQuery);
 };
