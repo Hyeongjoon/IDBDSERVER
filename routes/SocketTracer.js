@@ -146,6 +146,7 @@ io.on('connection', function(socket) {
 				params.Key = args1[i].profile;
 				s3.getSignedUrl('getObject', params, function (err, url) {
 					console.log("The URL is", url); // https 주소 http로 바꿀것
+					url.replace("https://" , "http://")
 					args1[i].profile = url;
 				}); 
 				}
