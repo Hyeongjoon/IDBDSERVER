@@ -22,4 +22,6 @@ exports.getProfileByUid = function(uidArr , callback){
 		sqlQuery = sqlQuery + mysql.escape(uidArr[i]) + ' OR '
 	}
 	console.log(sqlQuery);
+	sqlQuery = sqlQuery.substring(0 , sqlQuery.length-4);
+	console.log(sqlQuery);
 }
