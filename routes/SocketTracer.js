@@ -120,7 +120,7 @@ io.on('connection', function(socket) {
 				var tmp;
 				tmp = args1[i].gid;
 					if(temp != tmp){
-						result.length = args1[i].uid;
+						result.lengths = args1[i].uid;
 						++lengths;
 						count =0;
 					} else if(count >= 4){
@@ -128,7 +128,7 @@ io.on('connection', function(socket) {
 						continue;
 					} else {
 						++count;
-						result.length = args1[i].uid;
+						result.lengths = args1[i].uid;
 						++lengths;
 					}
 					
