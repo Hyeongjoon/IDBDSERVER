@@ -145,17 +145,17 @@ io.on('connection', function(socket) {
 				for(var i = 0 ; i <args1.length ; i++){
 				params.Key = args1[i].profile;
 				s3.getSignedUrl('getObject', params, function (err, url) {
-					console.log("The URL is", url); // https 주소 http로 바꿀것
 					url = url.replace("https://" , "http://")
 					args1[i].profile = url;
 				}); 
 				}
-				console.log(args1);
+				callback(null , args1);
 			}
 		}] , function(err , results){
+			console.log(results);
 			var result = {URL : results};
 			//var tempResult = {result : "abc"}
-			socket.emit('GroupImageResult' , result);
+			//socket.emit('GroupImageResult' , result);
 		});
 	});
 });
