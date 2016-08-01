@@ -133,13 +133,10 @@ io.on('connection', function(socket) {
 						tempArr.push(args1[i].uid);
 					}
 			} //그거임 그거 그룹내 중복 UID 없에서 요청보내는거 최소화
-			console.log(tempArr);
 			tempArr.sort();
 			var tmpCount = 0;
-			console.log(args1);
-			console.log(deleteNum);
 			for(var i = 0 ; i < deleteNum.length ; i++){
-				 args1.splice(deleteNum - tmpCount , 1);
+				 args1.splice(deleteNum[i] - tmpCount , 1);
 				 ++tmpCount;
 			} //그룹별 4개 이상인거 다지울꺼
 			console.log(args1);
