@@ -168,6 +168,8 @@ io.on('connection', function(socket) {
 				console.log(err);
 				//에러처리 나중에 꼭하기
 			}else{
+				console.log(results);
+				console.log(group);
 				socket.emit('GroupImageResult' , results , group);
 			}
 		});
