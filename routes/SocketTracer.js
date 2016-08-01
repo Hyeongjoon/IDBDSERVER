@@ -126,7 +126,6 @@ io.on('connection', function(socket) {
 						count =0;
 					} else if(count >= 4){
 						++count;
-						console.log(i);
 						deleteNum.push(i);
 						continue;
 					} else {
@@ -134,10 +133,11 @@ io.on('connection', function(socket) {
 						tempArr.push(args1[i].uid);
 					}
 			} //그거임 그거 그룹내 중복 UID 없에서 요청보내는거 최소화
+			console.log(tempArr);
 			tempArr.sort();
 			var tmpCount = 0;
-			//console.log(tempArr);
-			//console.log(deleteNum);
+			console.log(args1);
+			console.log(deleteNum);
 			for(var i = 0 ; i < deleteNum.length ; i++){
 				 args1.splice(deleteNum - tmpCount , 1);
 				 ++tmpCount;
