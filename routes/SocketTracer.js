@@ -118,6 +118,7 @@ io.on('connection', function(socket) {
 				var tmp;
 				tmp = args1[i].gid;
 					if(temp != tmp){
+						temp = tmp;
 						tempArr.push(args1[i].uid);
 						count =0;
 					} else if(count >= 4){
