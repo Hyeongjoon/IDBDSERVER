@@ -131,6 +131,7 @@ io.on('connection', function(socket) {
 			} //그거임 그거 그룹내 중복 UID 없에서 요청보내는거 최소화
 			tempArr.sort();
 			var tmpCount = 0;
+			console.log(tempArr);
 			console.log(deleteNum);
 			for(var i = 0 ; i < deleteNum.length ; i++){
 				 args1.splice(deleteNum - tmpCount , 1);
