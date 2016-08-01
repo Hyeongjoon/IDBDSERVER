@@ -134,7 +134,7 @@ io.on('connection', function(socket) {
 			console.log(tempArr);
 			var result = [];
 			result.push(tempArr[0]);
-			for(var i = 1 ; i < tempArr ; i++){
+			for(var i = 1 ; i < tempArr.length ; i++){
 				if(tempArr[i-1]!=tempArr[i]){
 					result.push(tempArr[i]);
 				}
