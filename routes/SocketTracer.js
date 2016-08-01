@@ -138,12 +138,13 @@ io.on('connection', function(socket) {
 			}
 			belong_grDAO.getProfileByUid(result , callback);
 		}, function(args1 , callback){
-			var params = config.awsS3GetConfig;
+			console.log(args1);
+			/*var params = config.awsS3GetConfig;
 			params.Key = args1[0].profile;
 			s3.getSignedUrl('getObject', params, function (err, url) {
 				console.log("The URL is", url); // https 주소 http로 바꿀것
 				callback(null , url);
-			});
+			});*/
 		}] , function(err , results){
 			var result = {URL : results};
 			//var tempResult = {result : "abc"}
