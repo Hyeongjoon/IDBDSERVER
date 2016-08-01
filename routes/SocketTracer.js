@@ -122,7 +122,7 @@ io.on('connection', function(socket) {
 						count =0;
 					} else if(count >= 4){
 						++count;
-						deleteNum.push(i);
+						console.log(i);
 						continue;
 					} else {
 						++count;
