@@ -128,8 +128,9 @@ io.on('connection', function(socket) {
 						++count;
 						result.push(args1[i].uid);
 					}
-					
 			} //그거임 그거 그룹내 중복 UID 없에서 요청보내는거 최소화
+			console.log(result);
+			result.sort();
 			console.log(result);
 		}, function(args1 , callback){
 			var params = config.awsS3GetConfig;
