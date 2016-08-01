@@ -166,9 +166,7 @@ io.on('connection', function(socket) {
 		}] , function(err , results){
 			var result = {URL : results};
 			var tempResult = {group : group}
-			console.log(result);
-			console.log(tempResult);
-			//socket.emit('GroupImageResult' , result);
+			socket.emit('GroupImageResult' , result , tempResult);
 		});
 	});
 });
