@@ -164,9 +164,12 @@ io.on('connection', function(socket) {
 				callback(null , args1);
 			}
 		}] , function(err , results){
-			var result = {URL : results};
-			var tempResult = {group : group}
-			socket.emit('GroupImageResult' , result , tempResult);
+			if(err){
+				console.log(err);
+				//에러처리 나중에 꼭하기
+			}else{
+				socket.emit('GroupImageResult' , results , group);
+			}
 		});
 	});
 });
