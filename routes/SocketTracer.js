@@ -131,11 +131,13 @@ io.on('connection', function(socket) {
 			} //그거임 그거 그룹내 중복 UID 없에서 요청보내는거 최소화
 			tempArr.sort();
 			var tmpCount = 0;
+			console.log(deleteNum);
 			for(var i = 0 ; i < deleteNum.length ; i++){
 				 args1.splice(deleteNum - tmpCount , 1);
 				 ++tmpCount;
 			} //그룹별 4개 이상인거 다지울꺼
 			console.log(args1);
+			
 			var result = [];
 			result.push(tempArr[0]);
 			for(var i = 1 ; i < tempArr.length ; i++){
@@ -143,6 +145,7 @@ io.on('connection', function(socket) {
 					result.push(tempArr[i]);
 				}
 			}
+			console.log(result);
 			belong_grDAO.getProfileByUid(result , callback);
 		}, function(args1 , callback){
 			if(args1[0] == ''){
