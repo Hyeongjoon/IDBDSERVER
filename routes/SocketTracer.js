@@ -111,7 +111,6 @@ io.on('connection', function(socket) {
 			}
 		},function(args1 , callback){
 			group = args1;
-			console.log(group);
 			var temp= args1[0].gid;
 			var tempArr = [];
 			var count = 0;
@@ -129,9 +128,7 @@ io.on('connection', function(socket) {
 						tempArr.push(args1[i].uid);
 					}
 			} //그거임 그거 그룹내 중복 UID 없에서 요청보내는거 최소화
-			
 			tempArr.sort();
-			console.log(tempArr);
 			var result = [];
 			result.push(tempArr[0]);
 			for(var i = 1 ; i < tempArr.length ; i++){
@@ -139,7 +136,7 @@ io.on('connection', function(socket) {
 					result.push(tempArr[i]);
 				}
 			}
-			console.log(result);
+			belong_grDAO.getProfileByUid(result , callback);
 		}, function(args1 , callback){
 			var params = config.awsS3GetConfig;
 			params.Key = args1[0].profile;
