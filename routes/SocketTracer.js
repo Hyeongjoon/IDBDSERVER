@@ -113,24 +113,31 @@ io.on('connection', function(socket) {
 			group = args1;
 			console.log(group);
 			var temp= args1[0].gid;
-			var result = [];
+			var tempArr = [];
 			var count = 0;
 			for (var i = 0 ; i < args1.length ; i++){
 				var tmp;
 				tmp = args1[i].gid;
 					if(temp != tmp){
-						result.push(args1[i].uid);
+						tempArr.push(args1[i].uid);
 						count =0;
 					} else if(count >= 4){
 						++count;
 						continue;
 					} else {
 						++count;
-						result.push(args1[i].uid);
+						tempArr.push(args1[i].uid);
 					}
 			} //그거임 그거 그룹내 중복 UID 없에서 요청보내는거 최소화
-			console.log(result);
-			result.sort();
+			console.log(tempArr);
+			tempArr.sort();
+			var result = [];
+			result.push(tempArr[0]);
+			for(var i = 1 ; i < tempArr ; i++){
+				if(tempArr[i-1]!==tempArr[i]){
+					result.push(tempArr[i]);
+				}
+			}
 			console.log(result);
 		}, function(args1 , callback){
 			var params = config.awsS3GetConfig;
