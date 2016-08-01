@@ -132,9 +132,9 @@ io.on('connection', function(socket) {
 			tempArr.sort();
 			console.log(deleteNum);
 			for(var i = 0 ; i < deleteNum.length ; i++){
-				delete args1[deleteNum[i]];
+				 args1[deleteNum[i]] == null;
 			} //그룹별 4개 이상인거 다지울꺼
-			console.log(args1[5]);
+			console.log(args1);
 			var result = [];
 			result.push(tempArr[0]);
 			for(var i = 1 ; i < tempArr.length ; i++){
