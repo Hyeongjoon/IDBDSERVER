@@ -139,8 +139,7 @@ io.on('connection', function(socket) {
 				 args1.splice(deleteNum[i] - tmpCount , 1);
 				 ++tmpCount;
 			} //그룹별 4개 이상인거 다지울꺼
-			console.log(args1);
-			
+			group = args1;
 			var result = [];
 			result.push(tempArr[0]);
 			for(var i = 1 ; i < tempArr.length ; i++){
@@ -148,7 +147,6 @@ io.on('connection', function(socket) {
 					result.push(tempArr[i]);
 				}
 			}
-			console.log(result);
 			belong_grDAO.getProfileByUid(result , callback);
 			}
 		}, function(args1 , callback){
@@ -161,14 +159,15 @@ io.on('connection', function(socket) {
 				s3.getSignedUrl('getObject', params, function (err, url) {
 					url = url.replace("https://" , "http://")
 					args1[i].profile = url;
-				}); 
+				}); //https -> http로 바꾸기
 				}
 				callback(null , args1);
 			}
 		}] , function(err , results){
-			console.log(results);
 			var result = {URL : results};
-			//var tempResult = {result : "abc"}
+			var tempResult = {group : group}
+			console.log(result);
+			console.log(tempResult);
 			//socket.emit('GroupImageResult' , result);
 		});
 	});
