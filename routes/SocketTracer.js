@@ -134,7 +134,7 @@ io.on('connection', function(socket) {
 			for(var i = 0 ; i < deleteNum.length ; i++){
 				delete args1[deleteNum[i]];
 			} //그룹별 4개 이상인거 다지울꺼
-			console.log(args1);
+			console.log(args1[4]);
 			var result = [];
 			result.push(tempArr[0]);
 			for(var i = 1 ; i < tempArr.length ; i++){
