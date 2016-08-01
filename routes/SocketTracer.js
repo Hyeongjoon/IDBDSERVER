@@ -117,7 +117,6 @@ io.on('connection', function(socket) {
 			var tempArr = [];
 			var count = 0;
 			var deleteNum = [];
-			console.log(args1);
 			for (var i = 0 ; i < args1.length ; i++){
 				var tmp;
 				tmp = args1[i].gid;
@@ -125,9 +124,9 @@ io.on('connection', function(socket) {
 						temp = tmp;
 						tempArr.push(args1[i].uid);
 						count =0;
-						console.log(i);
 					} else if(count >= 4){
 						++count;
+						console.log(i);
 						deleteNum.push(i);
 						continue;
 					} else {
