@@ -110,10 +110,14 @@ io.on('connection', function(socket) {
 				belong_grDAO.getUidInGroupNotMe(args1 , callback);
 			}
 		},function(args1 , callback){
+			if(args1[0]== ''){
+				callback('nullMemberNotMe' , false);
+			}else{
 			var temp= args1[0].gid;
 			var tempArr = [];
 			var count = 0;
 			var deleteNum = [];
+			console.log(args1);
 			for (var i = 0 ; i < args1.length ; i++){
 				var tmp;
 				tmp = args1[i].gid;
@@ -121,6 +125,7 @@ io.on('connection', function(socket) {
 						temp = tmp;
 						tempArr.push(args1[i].uid);
 						count =0;
+						console.log(i);
 					} else if(count >= 4){
 						++count;
 						deleteNum.push(i);
@@ -132,8 +137,8 @@ io.on('connection', function(socket) {
 			} //그거임 그거 그룹내 중복 UID 없에서 요청보내는거 최소화
 			tempArr.sort();
 			var tmpCount = 0;
-			console.log(tempArr);
-			console.log(deleteNum);
+			//console.log(tempArr);
+			//console.log(deleteNum);
 			for(var i = 0 ; i < deleteNum.length ; i++){
 				 args1.splice(deleteNum - tmpCount , 1);
 				 ++tmpCount;
@@ -149,6 +154,7 @@ io.on('connection', function(socket) {
 			}
 			console.log(result);
 			belong_grDAO.getProfileByUid(result , callback);
+			}
 		}, function(args1 , callback){
 			if(args1[0] == ''){
 				callback('nullURL' , false);
