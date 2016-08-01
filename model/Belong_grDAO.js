@@ -6,7 +6,7 @@ exports.getGidByUid = function(uid , callback){
 	base.select(sqlQuery, callback);
 };
 
-exports.getUidInGroup = function(gidArr , callback){
+exports.getUidInGroupNotMe = function(gidArr , callback){
 	var sqlQuery = 'Select * from belong_gr WHERE (gid = ';
 	for (var i = 0 ; i < gidArr.length ; i ++){
 		sqlQuery = sqlQuery + gidArr[i].gid + ' OR '

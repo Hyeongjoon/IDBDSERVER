@@ -95,6 +95,7 @@ io.on('connection', function(socket) {
 	});
 	
 	socket.on('getGroupImage', function(data){
+		var group;
 		async.waterfall([function(callback){
 			userDAO.findUserByEmail(socket.handshake.session.email , callback);
 		}, function(args1, callback){ 
@@ -106,10 +107,34 @@ io.on('connection', function(socket) {
 			if(args1[0]==''){
 				callback('nullGroup' , false);
 			} else{
-				belong_grDAO.getUidInGroup(args1 , callback);
+				belong_grDAO.getUidInGroupNotMe(args1 , callback);
 			}
 		},function(args1 , callback){
-			console.log(args1);
+			group = args1;
+			console.log(group);
+			var temp= args1[0].gid;
+			var result = {};
+			var count = 0;
+			var lengths = 0;
+			for (var i = 0 ; i < args1.length ; i++){
+				var tmp;
+				tmp = args1[i].gid;
+					if(temp != tmp){
+						result.length = args1[i].uid;
+						++lengths;
+						count =0;
+					} else if(count >= 4){
+						++count;
+						continue;
+					} else {
+						++count;
+						result.length = args1[i].uid;
+						++lengths;
+					}
+					
+			} //그거임 그거 그룹내 중복 UID 없에서 요청보내는거 최소화
+			
+			console.log(result);
 		}, function(args1 , callback){
 			var params = config.awsS3GetConfig;
 			params.Key = args1[0].profile;
