@@ -123,7 +123,7 @@ io.on('connection', function(socket) {
 					if(temp != tmp){
 						temp = tmp;
 						tempArr.push(args1[i].uid);
-						count =0;
+						count =1;
 					} else if(count >= 4){
 						++count;
 						deleteNum.push(i);
