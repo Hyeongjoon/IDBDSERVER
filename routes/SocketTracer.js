@@ -130,8 +130,10 @@ io.on('connection', function(socket) {
 					}
 			} //그거임 그거 그룹내 중복 UID 없에서 요청보내는거 최소화
 			tempArr.sort();
+			var tmpCount = 0;
 			for(var i = 0 ; i < deleteNum.length ; i++){
-				 delete args1[deleteNum[i]]; 
+				 args1.splice(deleteNum - tmpCount , 1);
+				 ++tmpCount;
 			} //그룹별 4개 이상인거 다지울꺼
 			console.log(args1);
 			var result = [];
