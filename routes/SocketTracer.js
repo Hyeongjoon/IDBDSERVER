@@ -129,12 +129,13 @@ io.on('connection', function(socket) {
 						tempArr.push(args1[i].uid);
 					}
 			} //그거임 그거 그룹내 중복 UID 없에서 요청보내는거 최소화
-			console.log(tempArr);
+			
 			tempArr.sort();
+			console.log(tempArr);
 			var result = [];
 			result.push(tempArr[0]);
 			for(var i = 1 ; i < tempArr ; i++){
-				if(tempArr[i-1]!==tempArr[i]){
+				if(tempArr[i-1]!=tempArr[i]){
 					result.push(tempArr[i]);
 				}
 			}
