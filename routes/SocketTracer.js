@@ -115,6 +115,7 @@ io.on('connection', function(socket) {
 			if(args1[0]== ''){
 				callback('nullMemberNotMe' , false);
 			}else{
+				console.log(args1);
 			var temp= args1[0].gid;
 			var tempArr = [];
 			var count = 0;
