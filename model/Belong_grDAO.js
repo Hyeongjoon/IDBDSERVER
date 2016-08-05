@@ -13,6 +13,7 @@ exports.getUidInGroupNotMe = function(gidArr , callback){
 	}
 	sqlQuery = sqlQuery.substring(0,sqlQuery.length-4);
 	sqlQuery = sqlQuery + ') AND  (uid != ' + mysql.escape(gidArr[0].uid) + ') ORDER BY gid ASC';
+	console.log(sqlQuery);
 	base.select(sqlQuery , callback);
 };
 

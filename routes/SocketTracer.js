@@ -155,7 +155,6 @@ io.on('connection', function(socket) {
 			if(args1[0] == ''){
 				callback('nullURL' , false);
 			} else{
-				console.log(args1);
 				var params = config.awsS3GetConfig;
 				for(var i = 0 ; i <args1.length ; i++){
 				params.Key = args1[i].profile;
