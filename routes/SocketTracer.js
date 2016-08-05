@@ -115,6 +115,7 @@ io.on('connection', function(socket) {
 			if(args1[0]== ''){
 				callback('nullMemberNotMe' , false);
 			}else{
+				console.log(args1);
 			var temp= args1[0].gid;
 			var tempArr = [];
 			var count = 0;
@@ -144,7 +145,6 @@ io.on('connection', function(socket) {
 			group = args1;
 			var result = [];
 			result.push(tempArr[0]);
-			console.log(result);
 			for(var i = 1 ; i < tempArr.length ; i++){
 				if(tempArr[i-1]!=tempArr[i]){
 					result.push(tempArr[i]);
