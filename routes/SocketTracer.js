@@ -150,6 +150,7 @@ io.on('connection', function(socket) {
 					result.push(tempArr[i]);
 				}
 			}
+			console.log(result);
 			belong_grDAO.getProfileByUid(result , callback);
 			}
 		}, function(args1 , callback){
@@ -157,7 +158,6 @@ io.on('connection', function(socket) {
 				callback('nullURL' , false);
 			} else{
 				var params = config.awsS3GetConfig;
-				console.log(args1);
 				for(var i = 0 ; i <args1.length ; i++){
 				params.Key = args1[i].profile;
 				s3.getSignedUrl('getObject', params, function (err, url) {
