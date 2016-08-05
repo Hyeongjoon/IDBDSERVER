@@ -23,5 +23,6 @@ exports.getProfileByUid = function(uidArr , callback){
 	}
 	sqlQuery = sqlQuery.substring(0 , sqlQuery.length-4);
 	sqlQuery = sqlQuery + ')'
+	console.log(sqlQuery);
 	base.select(sqlQuery , callback);
 }

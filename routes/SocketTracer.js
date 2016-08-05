@@ -115,7 +115,6 @@ io.on('connection', function(socket) {
 			if(args1[0]== ''){
 				callback('nullMemberNotMe' , false);
 			}else{
-				console.log(args1);
 			var temp= args1[0].gid;
 			var tempArr = [];
 			var count = 0;
@@ -150,7 +149,6 @@ io.on('connection', function(socket) {
 					result.push(tempArr[i]);
 				}
 			}
-			console.log(result);
 			belong_grDAO.getProfileByUid(result , callback);
 			}
 		}, function(args1 , callback){
