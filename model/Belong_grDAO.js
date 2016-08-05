@@ -7,9 +7,9 @@ exports.getGidByUid = function(uid , callback){
 };
 
 exports.getUidInGroupNotMe = function(gidArr , callback){
-	var sqlQuery = 'Select * from belong_gr WHERE (gid = ';
+	var sqlQuery = 'Select * from belong_gr WHERE ( ';
 	for (var i = 0 ; i < gidArr.length ; i ++){
-		sqlQuery = sqlQuery + gidArr[i].gid + ' OR '
+		sqlQuery = sqlQuery + ' gid = ' + gidArr[i].gid + ' OR '
 	}
 	sqlQuery = sqlQuery.substring(0,sqlQuery.length-4);
 	sqlQuery = sqlQuery + ') AND  (uid != ' + mysql.escape(gidArr[0].uid) + ') ORDER BY gid ASC';
