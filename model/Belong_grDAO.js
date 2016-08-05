@@ -17,12 +17,12 @@ exports.getUidInGroupNotMe = function(gidArr , callback){
 };
 
 exports.getProfileByUid = function(uidArr , callback){
-	var sqlQuery = 'SELECT uid , profile from user WHERE profile != \'\' AND ';
+	var sqlQuery = 'SELECT uid , profile from user WHERE profile != \'\' AND (';
 	for (var i = 0 ; i<uidArr.length ; i++){
 		sqlQuery = sqlQuery + 'uid = ' + mysql.escape(uidArr[i]) + ' OR '
 	}
 	sqlQuery = sqlQuery.substring(0 , sqlQuery.length-4);
-	sqlQuery = sqlQuery + ';'
+	sqlQuery = sqlQuery + ');'
 	console.log(sqlQuery);
 	base.select(sqlQuery , callback);
 }
