@@ -97,6 +97,7 @@ io.on('connection', function(socket) {
 	socket.on('getGroupImage', function(data){
 		var group;
 		var groupNum = {groupNum : 0};
+		var groupInfo;
 		async.waterfall([function(callback){
 			userDAO.findUserByEmail(socket.handshake.session.email , callback);
 		}, function(args1, callback){ 
@@ -109,6 +110,7 @@ io.on('connection', function(socket) {
 				callback('nullGroup' , false);
 			} else{
 				groupNum.groupNum = args1.length;
+				groupInfo = args1;
 				belong_grDAO.getUidInGroupNotMe(args1 , callback);
 			}
 		},function(args1 , callback){
@@ -172,7 +174,8 @@ io.on('connection', function(socket) {
 			}else{
 				console.log(results);
 				console.log(group);
-				socket.emit('GroupImageResult' , results , group , groupNum);
+				console.log(groupInfo);
+				socket.emit('GroupImageResult' , results , group , groupNum , groupInfo);
 			}
 		});
 	});
