@@ -173,13 +173,18 @@ io.on('connection', function(socket) {
 				callback('nullURL' , false);
 			} else{
 			    groupProfile = args1;
+			    var groupUID = [];
 			    for(var i = 0 ; i < groupInfo.length ; i++ ){
 			    	if(groupInfo[i].name == null){
-			    		console.log("여기까진 오냐??");
-			    	} else{
-			    		console.log("여긴 오면 안되는데");
-			    	}
+			    		for(var j = 0 ; j < group.length ; j++){
+			    			if(groupInfo[i].gid == group[j].gid ){
+			    				groupUID.push(group[j].uid);
+			    			}
+			    		}
+			    	} //그룹명 null일때 uid로 유저네임 불러올라고
 			    }
+			    groupUID.sort();
+			    console.log(groupUID);
 			}
 		}] , function (err , results) {
 			if(err){
