@@ -168,13 +168,20 @@ io.on('connection', function(socket) {
 				}
 				callback(null , args1);
 			}
+		} , function(args1 , callback){
+			if(args1[0] == ''){
+				callback('nullURL' , false);
+			} else{
+			    groupProfile = results;
+			    callback(null , true);
+			}
 		}] , function (err , results) {
 			if(err){
 				console.log(err);
 				//에러처리 나중에 꼭하기
 			} else {
-				groupProfile= results;
-				console.log(results);
+		
+				console.log(groupProfile);
 				console.log(group);
 				console.log(groupInfo);
 				socket.emit('GroupImageResult' , groupProfile , group , groupNum , groupInfo);
