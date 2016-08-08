@@ -181,10 +181,22 @@ io.on('connection', function(socket) {
 			    				groupUID.push(group[j].uid);
 			    			}
 			    		}
-			    	} //그룹명 null일때 uid로 유저네임 불러올라고
-			    }
+			    	}
+			    } //그룹명 null일때 uid로 유저네임 불러올라고
+			    if(groupUID.length == 0){
+			    	callback(null , false);
+			    } else {
 			    groupUID.sort();
 			    console.log(groupUID);
+			    var temp[];
+			    temp.push(groupUID[0]);
+			    for (var i = 1 ; i<group.length ; i++){
+			    	if(groupUID[i-1]!=groupUID[i]){
+			    		temp.push(groupUID[i]);
+			    		}
+			    	}
+			    console.log(groupUID);
+			    }
 			}
 		}] , function (err , results) {
 			if(err){
