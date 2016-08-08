@@ -173,7 +173,7 @@ io.on('connection', function(socket) {
 				callback('nullURL' , false);
 			} else{
 			    groupProfile = args1;
-			    for(int i = 0 ; i < groupInfo.length ; i++ ){
+			    for(var i = 0 ; i < groupInfo.length ; i++ ){
 			    	if(groupInfo[i].name == null){
 			    		console.log("여기까진 오냐??");
 			    	} else{
