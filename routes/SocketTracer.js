@@ -98,14 +98,15 @@ io.on('connection', function(socket) {
 		var group;
 		var groupNum = {groupNum : 0};
 		var groupInfo;
-		async.waterfall([ function(callback){
+		var groupProfile;
+		async.waterfall([ function(callback) {
 			userDAO.findUserByEmail(socket.handshake.session.email , callback);
 		}, function(args1, callback){ 
 			if(args1[0]==''){
 				callback('err' , false);
 			} else{
 			belong_grDAO.getGidByUid(args1[0].uid , callback);}
-		},function(args1, callback){
+		}, function(args1, callback){
 			if(args1[0]==''){
 				callback('nullGroup' , false);
 			} else{
@@ -113,10 +114,10 @@ io.on('connection', function(socket) {
 				groupInfo = args1;
 				belong_grDAO.getUidInGroupNotMe(args1 , callback);
 			}
-		},function(args1 , callback){
+		}, function (args1 , callback) {
 			if (args1[0]== '') {
 				callback('nullMemberNotMe' , false);
-			} else{
+			} else {
 			var temp = args1[0].gid;
 			var tempArr = [];
 			var count = 0;
@@ -172,10 +173,11 @@ io.on('connection', function(socket) {
 				console.log(err);
 				//에러처리 나중에 꼭하기
 			} else {
+				groupProfile= results;
 				console.log(results);
 				console.log(group);
 				console.log(groupInfo);
-				socket.emit('GroupImageResult' , results , group , groupNum , groupInfo);
+				socket.emit('GroupImageResult' , groupProfile , group , groupNum , groupInfo);
 			}
 		});
 	});
