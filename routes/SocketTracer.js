@@ -188,7 +188,7 @@ io.on('connection', function(socket) {
 			    } else {
 			    groupUID.sort();
 			    console.log(groupUID);
-			    var temp[];
+			    var temp = [];
 			    temp.push(groupUID[0]);
 			    for (var i = 1 ; i<group.length ; i++){
 			    	if(groupUID[i-1]!=groupUID[i]){
