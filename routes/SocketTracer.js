@@ -195,7 +195,7 @@ io.on('connection', function(socket) {
 			    		temp.push(groupUID[i]);
 			    		}
 			    	}
-			    console.log(groupUID);
+			    console.log(temp);
 			    }
 			}
 		}] , function (err , results) {
