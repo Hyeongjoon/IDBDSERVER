@@ -172,7 +172,7 @@ io.on('connection', function(socket) {
 			if(args1[0] == ''){
 				callback('nullURL' , false);
 			} else{
-			    groupProfile = results;
+			    groupProfile = args1;
 			    callback(null , true);
 			}
 		}] , function (err , results) {
