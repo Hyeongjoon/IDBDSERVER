@@ -98,7 +98,7 @@ io.on('connection', function(socket) {
 		var group;
 		var groupNum = {groupNum : 0};
 		var groupInfo;
-		async.waterfall([function(callback){
+		async.waterfall([ function(callback){
 			userDAO.findUserByEmail(socket.handshake.session.email , callback);
 		}, function(args1, callback){ 
 			if(args1[0]==''){
@@ -111,13 +111,13 @@ io.on('connection', function(socket) {
 			} else{
 				groupNum.groupNum = args1.length;
 				groupInfo = args1;
-				belong_grDAO.getUidInGroupNotMe(args1 , callback);
+				userDAO.getUidInGroupNotMe(args1 , callback);
 			}
 		},function(args1 , callback){
-			if(args1[0]== ''){
+			if (args1[0]== '') {
 				callback('nullMemberNotMe' , false);
-			}else{
-			var temp= args1[0].gid;
+			} else{
+			var temp = args1[0].gid;
 			var tempArr = [];
 			var count = 0;
 			var deleteNum = [];
@@ -127,7 +127,7 @@ io.on('connection', function(socket) {
 					if(temp != tmp){
 						temp = tmp;
 						tempArr.push(args1[i].uid);
-						count =1;
+						count = 1;
 					} else if(count >= 4){
 						++count;
 						deleteNum.push(i);
@@ -146,7 +146,7 @@ io.on('connection', function(socket) {
 			group = args1;
 			var result = [];
 			result.push(tempArr[0]);
-			for(var i = 1 ; i < tempArr.length ; i++){
+			for (var i = 1 ; i < tempArr.length ; i++){
 				if(tempArr[i-1]!=tempArr[i]){
 					result.push(tempArr[i]);
 				}
@@ -154,9 +154,9 @@ io.on('connection', function(socket) {
 			belong_grDAO.getProfileByUid(result , callback);
 			}
 		}, function(args1 , callback){
-			if(args1[0] == ''){
+			if(args1[0] == '') {
 				callback('nullURL' , false);
-			} else{
+			} else {
 				var params = config.awsS3GetConfig;
 				for(var i = 0 ; i <args1.length ; i++){
 				params.Key = args1[i].profile;
@@ -167,11 +167,11 @@ io.on('connection', function(socket) {
 				}
 				callback(null , args1);
 			}
-		}] , function(err , results){
+		}] , function (err , results) {
 			if(err){
 				console.log(err);
 				//에러처리 나중에 꼭하기
-			}else{
+			} else {
 				console.log(results);
 				console.log(group);
 				console.log(groupInfo);

@@ -17,13 +17,3 @@ exports.getUidInGroupNotMe = function(gidArr , callback){
 	base.select(sqlQuery , callback);
 };
 
-exports.getProfileByUid = function(uidArr , callback){
-	var sqlQuery = 'SELECT uid , profile from user WHERE profile != \'\' AND (';
-	for (var i = 0 ; i<uidArr.length ; i++){
-		sqlQuery = sqlQuery + 'uid = ' + mysql.escape(uidArr[i]) + ' OR '
-	}
-	sqlQuery = sqlQuery.substring(0 , sqlQuery.length-4);
-	sqlQuery = sqlQuery + ');'
-	
-	base.select(sqlQuery , callback);
-}
