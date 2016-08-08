@@ -34,6 +34,11 @@ exports.getProfileByUid = function(uidArr , callback){
 	base.select(sqlQuery , callback);
 }
 
+exports.getUserNameByUID = function( args1 , callback){
+	
+	
+}
+
 /*
 exports.certifyEmail = function(userEmail, callback) {
 	var sqlQuery = 'SELECT * from account WHERE email = ' + mysql.escape(userEmail);
