@@ -111,7 +111,7 @@ io.on('connection', function(socket) {
 			} else{
 				groupNum.groupNum = args1.length;
 				groupInfo = args1;
-				userDAO.getUidInGroupNotMe(args1 , callback);
+				belong_grDAO.getUidInGroupNotMe(args1 , callback);
 			}
 		},function(args1 , callback){
 			if (args1[0]== '') {
@@ -151,7 +151,7 @@ io.on('connection', function(socket) {
 					result.push(tempArr[i]);
 				}
 			}
-			belong_grDAO.getProfileByUid(result , callback);
+			userDAO.getProfileByUid(result , callback);
 			}
 		}, function(args1 , callback){
 			if(args1[0] == '') {
