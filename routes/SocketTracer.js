@@ -211,6 +211,7 @@ io.on('connection', function(socket) {
 					if(groupInfo[i].gid == group[j].gid && groupInfo[i].name != null){
 						for(var k = 0 ; k<results.length ; k++){
 							if(group[j].uid == results[k].uid){
+								console.log("여긴 들어오냐?");'
 								groupInfo[i].name = ''+ groupInfo[i].name + ',' + results[k].name;//붙일것 이름
 								}
 							}
