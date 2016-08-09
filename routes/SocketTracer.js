@@ -207,7 +207,7 @@ io.on('connection', function(socket) {
 				console.log(group);
 				console.log(groupInfo);
 				for(var i = 0 ; i < groupInfo.length ; i++){
-					if(groupInfo[i]==null){
+					if(groupInfo[i].name==null){
 						for(var j = 0 ; j <group.length ; j++){
 							if(groupInfo[i].gid == group[j].gid){
 							for(var k = 0 ; k<results.length ; k++){
