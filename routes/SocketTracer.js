@@ -111,21 +111,23 @@ io.on('connection', function(socket) {
 				callback('nullGroup' , false);
 			} else{
 				groupNum.groupNum = args1.length;
+				
 				groupInfo = args1;
+				for(var i = 0 ; i < groupInfo.length ; i++){
+					groupInfo[i].number = 1;
+				}
 				belong_grDAO.getUidInGroupNotMe(args1 , callback);
 			}
 		}, function (args1 , callback) {
 			if (args1[0]== '') {
 				callback('nullMemberNotMe' , false);
 			} else {
-				console.log(args1);
 			var temp = args1[0].gid;
 			var tempArr = [];
 			var count = 0;
 			var deleteNum = [];
 			var tempCount = 0;
 			for(var i = 0 ; i <groupInfo.length ; i++){
-				groupInfo[i].number = 1;
 				for(var j = tempCount ; j < args1.length ; j++){
 					if(groupInfo[i].gid==args1[j].gid){
 						++groupInfo[i].number;
