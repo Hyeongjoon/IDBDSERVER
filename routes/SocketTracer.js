@@ -123,7 +123,7 @@ io.on('connection', function(socket) {
 			var count = 0;
 			var deleteNum = [];
 			var tempCount = 0;
-			for(var i = 0 ; i <groupInfo.legth ; i++){
+			for(var i = 0 ; i <groupInfo.length ; i++){
 				groupInfo[i].number = 0;
 				for(var j = tempCount ; j < args1.length ; j++){
 					if(groupInfo[i].gid==args1[j].gid){
