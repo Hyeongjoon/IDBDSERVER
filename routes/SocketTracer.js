@@ -206,7 +206,19 @@ io.on('connection', function(socket) {
 				console.log(groupProfile);
 				console.log(group);
 				console.log(groupInfo);
-				socket.emit('GroupImageResult' , groupProfile , group , groupNum , groupInfo);
+				for(var i = 0 ; i < groupInfo.length ; i++){
+					for(var j = 0 ; j <group.length ; j++){
+					if(groupInfo[i].gid == group[j].gid && groupInfo[i].name != null){
+						for(var k = 0 ; k<results.length ; k++){
+							if(group[j].uid == results[k].uid){
+								groupInfo[i].name = ''+ groupInfo[i].name + ','//붙일것 이름
+								}
+							}
+						} 
+					}
+				}
+				console.log(groupInfo);
+				//socket.emit('GroupImageResult' , groupProfile , group , groupNum , groupInfo);
 			}
 		});
 	});
