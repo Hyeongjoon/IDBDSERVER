@@ -122,6 +122,19 @@ io.on('connection', function(socket) {
 			var tempArr = [];
 			var count = 0;
 			var deleteNum = [];
+			var tempCount = 0;
+			for(var i = 0 ; i <groupInfo.legth ; i++){
+				groupInfo[i].number = 0;
+				for(var j = tempCount ; j < args1.length ; j++){
+					if(groupInfo[i].gid==args1[j].gid){
+						++groupInfo[i].number;
+					} else{
+						tempCount = j;
+						break;
+					}
+				}
+			}
+			
 			for (var i = 0 ; i < args1.length ; i++){
 				var tmp;
 				tmp = args1[i].gid;
@@ -189,7 +202,7 @@ io.on('connection', function(socket) {
 			    groupUID.sort();
 			    var temp = [];
 			    temp.push(groupUID[0]);
-			    for (var i = 1 ; i<group.length ; i++){
+			    for (var i = 1 ; i < group.length ; i++){
 			    	if(groupUID[i-1]!=groupUID[i]){
 			    		temp.push(groupUID[i]);
 			    		}
