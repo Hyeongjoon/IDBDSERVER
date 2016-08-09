@@ -187,7 +187,6 @@ io.on('connection', function(socket) {
 			    	callback(null , false);
 			    } else {
 			    groupUID.sort();
-			    console.log(groupUID);
 			    var temp = [];
 			    temp.push(groupUID[0]);
 			    for (var i = 1 ; i<group.length ; i++){
@@ -195,15 +194,15 @@ io.on('connection', function(socket) {
 			    		temp.push(groupUID[i]);
 			    		}
 			    	}
-			    console.log(temp);
+			    	userDAO.getUserNameByUID(temp , callback);
 			    }
-			}
+			}//이 이후에 그룹거기에 이름 넣는 알고리즘 고안해낼것
 		}] , function (err , results) {
 			if(err){
 				console.log(err);
 				//에러처리 나중에 꼭하기
 			} else {
-		
+				console.log(results);
 				console.log(groupProfile);
 				console.log(group);
 				console.log(groupInfo);
