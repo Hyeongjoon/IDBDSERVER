@@ -220,7 +220,7 @@ io.on('connection', function(socket) {
 					}
 				}
 				for(var i = 0 ; i <groupInfo.length ; i++){
-					groupInfo.name[i] = groupInfo.name[i].slice(5);
+					groupInfo[i].name = groupInfo[i].name.slice(5);
 				}
 				console.log(groupInfo);
 				//socket.emit('GroupImageResult' , groupProfile , group , groupNum , groupInfo);
