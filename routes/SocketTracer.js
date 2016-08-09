@@ -233,6 +233,9 @@ io.on('connection', function(socket) {
 				}
 				for(var i = 0 ; i <groupInfo.length ; i++){
 					groupInfo[i].name = groupInfo[i].name.slice(5);
+					if(groupInfo[i].number>4){
+						groupInfo[i].name = groupInfo[i].name +'...';
+					}
 				}
 				console.log(results);
 				console.log(groupProfile);
