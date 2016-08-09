@@ -202,10 +202,6 @@ io.on('connection', function(socket) {
 				console.log(err);
 				//에러처리 나중에 꼭하기
 			} else {
-				console.log(results);
-				console.log(groupProfile);
-				console.log(group);
-				console.log(groupInfo);
 				for(var i = 0 ; i < groupInfo.length ; i++){
 					if(groupInfo[i].name==null){
 						for(var j = 0 ; j <group.length ; j++){
@@ -222,8 +218,11 @@ io.on('connection', function(socket) {
 				for(var i = 0 ; i <groupInfo.length ; i++){
 					groupInfo[i].name = groupInfo[i].name.slice(5);
 				}
+				console.log(results);
+				console.log(groupProfile);
+				console.log(group);
 				console.log(groupInfo);
-				//socket.emit('GroupImageResult' , groupProfile , group , groupNum , groupInfo);
+				socket.emit('GroupImageResult' , groupProfile , group , groupNum , groupInfo);
 			}
 		});
 	});
