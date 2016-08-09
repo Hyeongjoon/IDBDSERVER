@@ -34,9 +34,8 @@ exports.getProfileByUid = function(uidArr , callback){
 	base.select(sqlQuery , callback);
 }
 
-exports.getUserNameByUID = function( uidArr , callback){
-	
-	
+exports.getUserNameByUID = function( uidArr , callback ){
+	console.log(uidArr);
 }
 
 /*
