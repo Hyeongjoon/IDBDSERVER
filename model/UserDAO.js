@@ -35,7 +35,13 @@ exports.getProfileByUid = function(uidArr , callback){
 }
 
 exports.getUserNameByUID = function( uidArr , callback ){
-	console.log(uidArr);
+	var sqlQuery = 'SELECT uid , name from user WHERE '
+		for(var i = 0 ; i < uidArr.length ; i++ ){
+			sqlQuery = sqlQuery + 'uid = ' + mysql.escape(uidArr[i]) + ' OR '
+		}
+	sqlQuery = sqlQuery.substring(0 , sqlQuery.length-4);
+	sqlQuery = sqlQuery+';'
+	console.log(sqlQuery);
 }
 
 /*
