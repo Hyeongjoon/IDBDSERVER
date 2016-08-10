@@ -95,8 +95,18 @@ io.on('connection', function(socket) {
 	});
 	
 	socket.on('getAlram' , function(data){
-		
-		console.log(socket.handshake.session.uid);
+		if(socket.handshake.session.uid==null){
+			//세션 만료됐을때
+		}else{
+			async.waterfall([function(callback){
+				findAlramByUid(socket.handshake.session.uid , callback)	
+			} , function(args1 , callback){
+				
+			}] , function(err , results){
+				
+				
+			});
+		}
 	});
 	
 	socket.on('getGroupImage', function(data){
