@@ -125,11 +125,13 @@ create table dislike_location(
 	DROP TABLE IF exists reply;
 create table reply(
 	rid int unsigned NOT NULL AUTO_INCREMENT,
+    aid int unsigned NOT NULL,
     belong_lid int unsigned NOT NULL,
     contents varchar(255) NOT NULL,
     writed_time datetime default now() NOT NULL,
     writer int unsigned,
     primary key (rid),
+    foreign key (aid) references alram(aid) ON DELETE SET NULL ON UPDATE CASCADE,
     foreign key (belong_lid) references location(lid) ON DELETE CASCADE ON UPDATE CASCADE,
     foreign key (writer) references user(uid) ON DELETE SET NULL ON UPDATE CASCADE
 ) Engine =InnoDB DEFAULT CHARSET = utf8;
@@ -138,11 +140,13 @@ create table reply(
 	DROP TABLE IF exists re_reply;
 create table re_reply(
 	rrid int unsigned NOT NULL AUTO_INCREMENT,
+    aid int unsigned NOT NULL,
     belong_rid int unsigned NOT NULL,
     contents varchar(255) NOT NULL,
     writed_time datetime default now() NOT NULL,
     writer int unsigned,
     primary key (rrid),
+    foreign key (aid) references alram(aid) ON DELETE CASCADE ON UPDATE CASCADE,
     foreign key(belong_rid) references reply(rid) ON DELETE CASCADE ON UPDATE CASCADE,
     foreign key(writer) references user(uid) ON DELETE SET NULL ON UPDATE CASCADE
     ) Engine =InnoDB DEFAULT CHARSET = utf8;
@@ -177,22 +181,5 @@ create table alram(
     foreign key(target_lid) references location(lid) ON DELETE CASCADE ON UPDATE CASCADE
 ) Engine =InnoDB DEFAULT CHARSET = utf8;
 
-	DROP TABLE IF exists alarm_reply;
-create table alarm_reply(
-	belong_aid int unsigned NOT NULL,
-    belong_rid int unsigned NOT NULL,
-    primary key(belong_aid , belong_rid),
-    foreign key(belong_aid) references alram(aid) ON DELETE CASCADE ON UPDATE CASCADE,
-    foreign key(belong_rid) references reply(rid) ON DELETE CASCADE ON UPDATE CASCADE
-) Engine =InnoDB DEFAULT CHARSET = utf8;
-
-DROP TABLE IF exists alarm_re_reply;
-create table alarm_re_reply(
-	belong_aid int unsigned NOT NULL,
-    belong_rrid int unsigned NOT NULL,
-    primary key(belong_aid , belong_rrid),
-    foreign key(belong_aid) references alram(aid) ON DELETE CASCADE ON UPDATE CASCADE,
-    foreign key(belong_rrid) references re_reply(rrid) ON DELETE CASCADE ON UPDATE CASCADE
-) Engine =InnoDB DEFAULT CHARSET = utf8;
  
  SET foreign_key_checks = 1;
