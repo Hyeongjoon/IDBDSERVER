@@ -96,7 +96,7 @@ io.on('connection', function(socket) {
 	
 	socket.on('getAlram' , function(data){
 		
-		console.log("여기까진오냐");
+		console.log(socket.handshake.sesssion.uid);
 	});
 	
 	socket.on('getGroupImage', function(data){
@@ -110,6 +110,7 @@ io.on('connection', function(socket) {
 			if(args1[0]==''){
 				callback('err' , false);
 			} else{
+				socket.handshake.session.uid = args1[0].uid; // 세션에다가 uid 저장
 			belong_grDAO.getGidByUid(args1[0].uid , callback);}
 		}, function(args1, callback){
 			if(args1[0]==''){
