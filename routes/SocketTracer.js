@@ -5,6 +5,7 @@ var async = require('async');
 var author = require('../helper/authorize');
 var userDAO = require('../model/UserDAO');
 var belong_grDAO = require('../model/Belong_grDAO');
+var alramDAO = require('../model/AlramDAO');
 var decryptHelper = require('../helper/DecryptHelper');
 var encryptHelper = require('../helper/EncryptHelper');
 var EmailHelper = require('../helper/EmailMake');
@@ -99,7 +100,7 @@ io.on('connection', function(socket) {
 			//세션 만료됐을때
 		}else{
 			async.waterfall([function(callback){
-				findAlramByUid(socket.handshake.session.uid , callback)	
+				alramDAO.findAlramByUid(socket.handshake.session.uid , callback)	
 			} , function(args1 , callback){
 				
 			}] , function(err , results){
