@@ -94,6 +94,11 @@ io.on('connection', function(socket) {
 		EmailHelper.makeEmail(data.email);
 	});
 	
+	socket.on('getAlram' , function(data){
+		
+		console.log("여기까진오냐");
+	});
+	
 	socket.on('getGroupImage', function(data){
 		var group;
 		var groupNum = {groupNum : 0};

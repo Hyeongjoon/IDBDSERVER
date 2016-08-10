@@ -167,14 +167,14 @@ create table like_re_reply(
     foreign key(belong_uid) references user(uid) ON DELETE SET NULL ON UPDATE CASCADE
 ) Engine = InnoDB DEFAULT CHARSET = utf8;
     
-    DROP TABLE IF exists alarm;
+    DROP TABLE IF exists alram;
 create table alram(
 	aid int unsigned NOT NULL AUTO_INCREMENT,
     target_uid int unsigned NOT NULL,
     target_gid int unsigned NOT NULL,
     target_lid int unsigned NOT NULL,
     unconfirmed boolean default true NOT NULL,
-    kind tinyint unsigned NOT NULL check(kind = 0 or 1 or 2 or 3 or 4 or 5 or 6), /** 0 = 새사진 , 1 = 새 좋아요 , 2= 새 싫어요 , 3= 새 댓글 4 = 새 대댓글 5 = 댓글 좋아요 6 = 대 댓글 좋아요**/
+    kind tinyint unsigned NOT NULL check (kind = 0 or kind = 1 or kind=2 or kind=3 or kind=4 or kind=5 or kind = 6), /**체크 무시한데 -_- 0 = 새사진 , 1 = 새 좋아요 , 2= 새 싫어요 , 3= 새 댓글 4 = 새 대댓글 5 = 댓글 좋아요 6 = 대 댓글 좋아요**/
     primary key (aid),
     foreign key(target_uid) references user(uid) ON DELETE CASCADE ON UPDATE CASCADE,
     foreign key(target_gid) references gr(gid) ON DELETE CASCADE ON UPDATE CASCADE,
