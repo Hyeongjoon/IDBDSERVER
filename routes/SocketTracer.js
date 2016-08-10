@@ -96,7 +96,7 @@ io.on('connection', function(socket) {
 	
 	socket.on('getAlram' , function(data){
 		
-		console.log(socket.handshake.sesssion.uid);
+		console.log(socket.handshake.session.uid);
 	});
 	
 	socket.on('getGroupImage', function(data){
