@@ -113,8 +113,7 @@ io.on('connection', function(socket) {
 					if(classifiedAlram.location.length==0){
 						subCallback(null , null);
 					} else{
-						console.log(1);
-						subCallback(null, true);
+						alramDAO.findLocationWriterProfile(classifiedAlram.location ,subCallback); 
 					}
 				} , function(subCallback){
 					if(classifiedAlram.like.length==0){
