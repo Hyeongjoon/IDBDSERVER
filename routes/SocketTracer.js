@@ -114,42 +114,49 @@ io.on('connection', function(socket) {
 						callback(null , null);
 					} else{
 						console.log(1);
+						callback(null, null);
 					}
 				} , function(subCallback){
 					if(classifiedAlram.like.length==0){
 						callback(null , null);
 					} else{
 						console.log(2);
+						callback(null, null);
 					}
 				}, function(subCallback){
 					if(classifiedAlram.dislike.length==0){
 						callback(null , null);
 					} else{
 						console.log(3);
+						callback(null, null);
 					}
 				}, function(subCallback){
 					if(classifiedAlram.reply.length==0){
 						callback(null , null);
 					} else{
 						console.log(4);
+						callback(null, null);
 					}
 				}, function(subCallback){
 					if(classifiedAlram.re_reply.length==0){
 						callback(null , null);
 					} else{
 						console.log(5);
+						callback(null, null);
 					}
 				}, function(subCallback){
 					if(classifiedAlram.like_reply.length==0){
 						callback(null , null);
 					} else{
 						console.log(6);
+						callback(null, null);
 					}
 				}, function(subCallback){
 					if(classifiedAlram.like_re_reply.length==0){
 						callback(null , null);
 					} else{
 						console.log(7);
+						callback(null, null);
 					}
 				}] , function(subErr , subResult){
 					
