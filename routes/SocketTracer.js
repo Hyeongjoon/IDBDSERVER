@@ -102,7 +102,7 @@ io.on('connection', function(socket) {
 			async.waterfall([function(callback){
 				alramDAO.findAlramByUid(socket.handshake.session.uid , callback)	
 			} , function(args1 , callback){
-				
+				console.log(args1);
 			}] , function(err , results){
 				
 				
