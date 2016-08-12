@@ -103,11 +103,13 @@ io.on('connection', function(socket) {
 			async.waterfall([ function(callback){
 				alramDAO.findAlramByUid(socket.handshake.session.uid , callback)	
 			} , function(args , callback){
+				var classifiedAlram;
 				if(args[0] == ''){
 					callback('null alram' , false)
 				} else{
-					alramHelper.classifyAlram(args);
+					classifiedAlram = alramHelper.classifyAlram(args);
 				}
+				console.log(classifiedAlram);
 			}] , function(err , results){
 				
 				

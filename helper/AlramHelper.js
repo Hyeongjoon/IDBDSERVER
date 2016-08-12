@@ -23,5 +23,5 @@ exports.classifyAlram = function(args){
 		 break;
 		}
 	}
-	console.log(kind);
+	return kind;
 };
