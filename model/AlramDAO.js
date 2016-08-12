@@ -13,6 +13,6 @@ exports.findLocationWriterProfile = function(AlramArr , callback){
 	for(var i = 0 ; i < AlramArr.length ; i++){
 		sqlQuery = sqlQuery + mysql.escape(AlramArr[i].target_lid) + ' AND lid = '
 	}
-	
+	sqlQuery = sqlQuery.substring(0 , sqlQuery.length-10);
 	console.log(sqlQuery);
 }
