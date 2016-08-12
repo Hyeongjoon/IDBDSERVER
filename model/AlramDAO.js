@@ -8,11 +8,20 @@ exports.findAlramByUid = function(uid , callback){
 	base.select(sqlQuery , callback);
 }
 
-exports.findLocationWriterProfile = function(AlramArr , callback){
+exports.findLocationWriter = function(AlramArr , callback){
 	sqlQuery = 'SELECT lid , writer from location WHERE lid = '
 	for(var i = 0 ; i < AlramArr.length ; i++){
 		sqlQuery = sqlQuery + mysql.escape(AlramArr[i].target_lid) + ' AND lid = '
 	}
 	sqlQuery = sqlQuery.substring(0 , sqlQuery.length-10);
-	console.log(sqlQuery);
+	base.select(sqlQuery , callback);
+}
+
+exports.findLikeUser = function(AlramArr , callback){
+	sqlQuery = 'SELECT * from like_location WHERE lid = '
+	for(var i = 0 ; i <AlramArr.length ; i ++){
+		sqlQuery = sqlQuery + mysql.escape(AlramArr[i].target_lid) + ' AND lid = '
+	}
+	sqlQuery = sqlQuery.substring(0 , sqlQuery.length-10);
+	base.select(sqlQuery , callback);
 }

@@ -113,14 +113,13 @@ io.on('connection', function(socket) {
 					if(classifiedAlram.location.length==0){
 						subCallback(null , null);
 					} else{
-						alramDAO.findLocationWriterProfile(classifiedAlram.location ,subCallback); 
+						alramDAO.findLocationWriter(classifiedAlram.location ,subCallback); 
 					}
 				} , function(subCallback){
 					if(classifiedAlram.like.length==0){
 						subCallback(null , null);
 					} else{
-						console.log(2);
-						subCallback(null, true);
+						alramDAO.findLikeUser(classifiedAlram.like , subCallback);
 					}
 				}, function(subCallback){
 					if(classifiedAlram.dislike.length==0){
