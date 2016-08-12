@@ -35,3 +35,13 @@ exports.findDislikeUser = function(AlramArr , callback){
 		base.select(sqlQuery , callback);
 	
 }
+
+exports.findReplyUser = function(AlramArr , callback){
+	sqlQuery = 'SELECT aid , writer , contents from reply WHERE aid = '
+		for(var i = 0 ; i <AlramArr.length ; i ++){
+			sqlQuery = sqlQuery + mysql.escape(AlramArr[i].aid) + ' AND aid = '
+		}
+		sqlQuery = sqlQuery.substring(0 , sqlQuery.length-10);
+		console.log(sqlQuery);
+		//base.select(sqlQuery , callback);
+}
