@@ -132,7 +132,6 @@ io.on('connection', function(socket) {
 						subCallback(null , null);
 					} else{
 						alramDAO.findReplyUser(classifiedAlram.reply , subCallback);
-						subCallback(null, true);
 					}
 				}, function(subCallback){
 					if(classifiedAlram.re_reply.length==0){
