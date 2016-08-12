@@ -9,6 +9,7 @@ var alramDAO = require('../model/AlramDAO');
 var decryptHelper = require('../helper/DecryptHelper');
 var encryptHelper = require('../helper/EncryptHelper');
 var EmailHelper = require('../helper/EmailMake');
+var alramHelper = require('../helper/AlramHelper');
 var AWS = require('aws-sdk');
 var fs = require('fs');
 
@@ -99,10 +100,14 @@ io.on('connection', function(socket) {
 		if(socket.handshake.session.uid==null){
 			//세션 만료됐을때
 		}else{
-			async.waterfall([function(callback){
+			async.waterfall([ function(callback){
 				alramDAO.findAlramByUid(socket.handshake.session.uid , callback)	
-			} , function(args1 , callback){
-				console.log(args1);
+			} , function(args , callback){
+				if(args[0] == ''){
+					callback('null alram' , false)
+				} else{
+					alramHelper.classifyAlram(args);
+				}
 			}] , function(err , results){
 				
 				
