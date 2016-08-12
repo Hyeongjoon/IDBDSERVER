@@ -42,6 +42,5 @@ exports.findReplyUser = function(AlramArr , callback){
 			sqlQuery = sqlQuery + mysql.escape(AlramArr[i].aid) + ' AND aid = '
 		}
 		sqlQuery = sqlQuery.substring(0 , sqlQuery.length-10);
-		console.log(sqlQuery);
-		//base.select(sqlQuery , callback);
+		base.select(sqlQuery , callback);
 }
