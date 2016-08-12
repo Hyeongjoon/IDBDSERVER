@@ -1,5 +1,5 @@
 exports.classifyAlram = function(args){
-	var kind = {0: [] , 1 : [] , 2: [] , 3: [] , 4: [] , 5: [] , 6: [] };
+	var kind = {'0': [] , '1' : [] , '2': [] , '3': [] , '4': [] , '5': [] , '6': [] };
 	for(var i = 0 ; i < args.length ; i++){
 		switch(args[i].kind){
 		case 0 : kind.0.push(args[i]); 
