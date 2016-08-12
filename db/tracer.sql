@@ -174,6 +174,7 @@ create table alram(
     target_gid int unsigned NOT NULL,
     target_lid int unsigned NOT NULL,
     unconfirmed boolean default true NOT NULL,
+    updated_time datetime default now() NOT NULL, 
     kind tinyint unsigned NOT NULL check (kind = 0 or kind = 1 or kind=2 or kind=3 or kind=4 or kind=5 or kind = 6), /**체크 무시한데 -_- 0 = 새사진 , 1 = 새 좋아요 , 2= 새 싫어요 , 3= 새 댓글 4 = 새 대댓글 5 = 댓글 좋아요 6 = 대 댓글 좋아요**/
     primary key (aid),
     foreign key(target_uid) references user(uid) ON DELETE CASCADE ON UPDATE CASCADE,

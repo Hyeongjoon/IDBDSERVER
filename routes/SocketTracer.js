@@ -110,6 +110,8 @@ io.on('connection', function(socket) {
 		}
 	});
 	
+	
+	//이거 시발 날잡고 갈아엎자
 	socket.on('getGroupImage', function(data){
 		var group;
 		var groupNum = {groupNum : 0};
