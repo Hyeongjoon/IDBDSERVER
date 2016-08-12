@@ -125,8 +125,7 @@ io.on('connection', function(socket) {
 					if(classifiedAlram.dislike.length==0){
 						subCallback(null , null);
 					} else{
-						console.log(3);
-						subCallback(null, true);
+						alramDAO.findDislikeUser(classifiedAlram.dislike , subCallback);
 					}
 				}, function(subCallback){
 					if(classifiedAlram.reply.length==0){

@@ -25,3 +25,13 @@ exports.findLikeUser = function(AlramArr , callback){
 	sqlQuery = sqlQuery.substring(0 , sqlQuery.length-10);
 	base.select(sqlQuery , callback);
 }
+
+exports.findDislikeUser = function(AlramArr , callback){
+	sqlQuery = 'SELECT * from dislike_location WHERE lid = '
+		for(var i = 0 ; i <AlramArr.length ; i ++){
+			sqlQuery = sqlQuery + mysql.escape(AlramArr[i].target_lid) + ' AND lid = '
+		}
+		sqlQuery = sqlQuery.substring(0 , sqlQuery.length-10);
+		base.select(sqlQuery , callback);
+	
+}
