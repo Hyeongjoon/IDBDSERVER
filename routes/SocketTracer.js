@@ -153,7 +153,8 @@ io.on('connection', function(socket) {
 					}
 				}] , function(subErr , subResult){
 					if(subErr){
-						//subErr처리할곳
+						console.log(subErr);
+						//subErr 처리할곳
 					} else{
 						alramHelper.addProfileUID(classifiedAlram , subResult , callback);
 					}

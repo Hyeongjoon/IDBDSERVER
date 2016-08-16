@@ -62,5 +62,5 @@ exports.addProfileUID  = function(addTarget , contentsArr , callback){
 		addTarget.dislike[i].alramProfileUid = contentsArr[6][i].belong_uid;
 	}//like_re_reply 정보처리
 	
-	callbakc(addTarget);
+	callback(null , addTarget);
 }
