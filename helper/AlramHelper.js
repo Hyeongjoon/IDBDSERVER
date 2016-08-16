@@ -80,9 +80,8 @@ exports.finalAlramInfo = function(nameArr , profileArr , alramInfo){
 				alramInfo.location[i].alramName =  nameArr[j].name;
 				break;
 			}
-			console.log("몇번되냐");
 		}
-		
 	}
+	console.log(alramInfo);
 	return;
 } 
