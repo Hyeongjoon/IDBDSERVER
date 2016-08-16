@@ -163,7 +163,14 @@ io.on('connection', function(socket) {
 			}, function(args1 , args2 , callback){
 				alramInfo =args1;
 				var temp = args2.sort();
-				console.log(temp);
+				var uidArr = []
+				uidArr.push(temp[0]);
+				for (var i = 1 ; i <temp.length ; i++){
+					if(temp[i-1] !== temp[i]){
+						uidArr.push(temp[i]);
+					}
+				}
+				console.log(uidArr);
 			}] , function(err , results){
 				
 			});
