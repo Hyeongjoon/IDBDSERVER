@@ -184,7 +184,7 @@ io.on('connection', function(socket) {
 				console.log(results);
 				console.log(profileArr);
 				console.log(alramInfo);
-				finalAlramInfo(results , profileArr , alramInfo);
+				alramHelper.finalAlramInfo(results , profileArr , alramInfo);
 				}
 			});
 		}
