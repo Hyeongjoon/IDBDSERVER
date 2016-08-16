@@ -159,9 +159,10 @@ io.on('connection', function(socket) {
 						alramHelper.addProfileUID(classifiedAlram , subResult , callback);
 					}
 				});
+			}, function(args , callback){
+				console.log(args);
 			}] , function(err , results){
 				
-				console.log(results);
 			});
 		}
 	});
