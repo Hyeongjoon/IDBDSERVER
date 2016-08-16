@@ -83,13 +83,13 @@ exports.finalAlramInfo = function(nameArr , profileArr , alramInfo){
 				break;
 			}
 		}
-		/*for(var j = 0 ; j < profileArr.length ; j++){
-			if(alramInfo.location[i].alramProfileUid == nameArr[j].uid){
-				alramInfo.location[i].alramName =  nameArr[j].name;
+		for(var j = 0 ; j < profileArr.length ; j++){
+			if(alramInfo.location[i].alramProfileUid == profileArr[j].uid){
+				alramInfo.location[i].profile =  profileArr[j].profile;
 				break;
 			}
-		}*/
+		}
 	}
-	
+	console.log(alramInfo);
 	return;
 } 

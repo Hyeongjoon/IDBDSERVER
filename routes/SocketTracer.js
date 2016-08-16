@@ -174,9 +174,17 @@ io.on('connection', function(socket) {
 				}
 				tempUIDArr = uidArr;
 				userDAO.getProfileByUid(tempUIDArr , callback);
-			} , function(args1 , callback){
+			} ,function(args1 , callback){
+				var params = config.awsS3GetConfig;
+				for(var i = 0 ; i <args1.length ; i++){
+				params.Key = args1[i].profile;
+				s3.getSignedUrl('getObject', params, function (err, url) {
+					url = url.replace("https://" , "http://")
+					args1[i].profile = url;
+				}); //https -> http로 바꾸기
+				}
 				profileArr = args1;
-				userDAO.getUserNameByUID(tempUIDArr , callback);				
+				userDAO.getUserNameByUID(tempUIDArr , callback);
 			}] , function(err , results){
 				if(err){
 					console.log9(err);
