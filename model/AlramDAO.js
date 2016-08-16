@@ -18,12 +18,12 @@ exports.findLocationWriter = function(AlramArr , callback){
 }
 
 exports.findLikeUser = function(AlramArr , callback){
-	sqlQuery = 'SELECT * from like_location WHERE ('
+	sqlQuery = 'SELECT * from like_location WHERE ( '
 	for(var i = 0 ; i <AlramArr.length ; i ++){
-		sqlQuery = sqlQuery +'lid = ' + mysql.escape(AlramArr[i].target_lid) + ' AND uid = ' + mysql.escape(AlramArr[i].target_uid);
+		sqlQuery = sqlQuery +'aid = ' + mysql.escape(AlramArr[i].target_lid) + ' AND ';
 	}
 	
-	sqlQuery = sqlQuery.substring(0 , sqlQuery.length-10);
+	//sqlQuery = sqlQuery.substring(0 , sqlQuery.length-10);
 	console.log(sqlQuery);
 	base.select(sqlQuery , callback);
 }
