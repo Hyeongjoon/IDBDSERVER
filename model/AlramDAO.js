@@ -23,8 +23,8 @@ exports.findLikeUser = function(AlramArr , callback){
 		sqlQuery = sqlQuery +'aid = ' + mysql.escape(AlramArr[i].target_lid) + ' AND ';
 	}
 	
-    sqlQuery = sqlQuery.substring(0 , sqlQuery.length-4);
-	console.log(sqlQuery);
+    sqlQuery = sqlQuery.substring(0 , sqlQuery.length-4) + ')';
+    console.log(sqlQuery);
 	base.select(sqlQuery , callback);
 }
 
