@@ -74,6 +74,8 @@ exports.addProfileUID  = function(addTarget , contentsArr , callback){
 }
 
 exports.finalAlramInfo = function(nameArr , profileArr , alramInfo){
+	console.log(nameArr);
+	console.log(profileArr);
 	for(var i = 0 ; i <alramInfo.location.length ; i++){
 		for(var j = 0 ; j < nameArr.length ; j++){
 			if(alramInfo.location[i].alramProfileUid == nameArr[j].uid){
@@ -81,7 +83,13 @@ exports.finalAlramInfo = function(nameArr , profileArr , alramInfo){
 				break;
 			}
 		}
+		/*for(var j = 0 ; j < profileArr.length ; j++){
+			if(alramInfo.location[i].alramProfileUid == nameArr[j].uid){
+				alramInfo.location[i].alramName =  nameArr[j].name;
+				break;
+			}
+		}*/
 	}
-	console.log(alramInfo);
+	
 	return;
 } 
