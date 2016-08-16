@@ -120,6 +120,21 @@ exports.finalAlramInfo = function(nameArr , profileArr , alramInfo){
 			}
 		}
 	}
+	
+	for(var i = 0 ; i <alramInfo.reply.length ; i++){
+		for(var j = 0 ; j < nameArr.length ; j++){
+			if(alramInfo.reply[i].alramProfileUid == nameArr[j].uid){
+				alramInfo.reply[i].alramName =  nameArr[j].name;
+				break;
+			}
+		}
+		for(var j = 0 ; j < profileArr.length ; j++){
+			if(alramInfo.reply[i].alramProfileUid == profileArr[j].uid){
+				alramInfo.reply[i].profile =  profileArr[j].profile;
+				break;
+			}
+		}
+	}
 	console.log(alramInfo);
 	return;
 } 
