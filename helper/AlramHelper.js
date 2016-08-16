@@ -30,37 +30,45 @@ exports.addProfileUID  = function(addTarget , contentsArr , callback){
 	console.log(addTarget);
 	console.log(contentsArr);
 	var MaxTextLength = 10;
+	var tempProfileUid = [];
 	for(var i = 0 ; i < addTarget.location.length ; i++){
 		addTarget.location[i].alramProfileUid = contentsArr[0][i].writer;
+		tempProfileUid.push(contentsArr[0][i].writer);
 	}//location 정보처리
 	
 	for(var i = 0 ; i < addTarget.like.length ; i++){
 		addTarget.like[i].alramProfileUid = contentsArr[1][i].uid;
+		tempProfileUid.push(contentsArr[1][i].uid);
 	}//like 정보처리
 	
 	for(var i = 0 ; i < addTarget.dislike.length ; i++){
 		addTarget.dislike[i].alramProfileUid = contentsArr[2][i].uid;
+		tempProfileUid.push(contentsArr[2][i].uid);
 	}//dislike 정보처리
 	
 	for(var i = 0 ; i < addTarget.reply.length ; i++){
 		addTarget.reply[i].alramProfileUid = contentsArr[3][i].writer;
 		var temp = contentsArr[3][i].contents.substring(0,MaxTextLength) +'...';
 		addTarget.reply[i].replyText = temp;
+		tempProfileUid.push(contentsArr[3][i].writer);
 	}//reply 정보처리
 	
 	for(var i = 0 ; i < addTarget.re_reply.length ; i++){
 		addTarget.re_reply[i].alramProfileUid = contentsArr[4][i].writer;
 		var temp = contentsArr[4][i].contents.substring(0,MaxTextLength) +'...';
 		addTarget.re_reply[i].re_replyText = temp;
+		tempProfileUid.push(contentsArr[4][i].writer);
 	}//re_reply 정보처리
 	
 	for(var i = 0 ; i < addTarget.like_reply.length ; i++){
 		addTarget.like_reply[i].alramProfileUid = contentsArr[5][i].belong_uid;
+		tempProfileUid.push(contentsArr[5][i].belong_uid);
 	}//like_reply 정보처리
 	
 	for(var i = 0 ; i < addTarget.like_re_reply.length ; i++){
 		addTarget.dislike[i].alramProfileUid = contentsArr[6][i].belong_uid;
+		tempProfileUid.push(contentsArr[6][i].belong_uid);
 	}//like_re_reply 정보처리
 	
-	callback(null , addTarget);
+	callback(null , addTarget , tempProfileUid);
 }

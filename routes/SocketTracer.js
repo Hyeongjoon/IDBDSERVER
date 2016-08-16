@@ -100,6 +100,7 @@ io.on('connection', function(socket) {
 		if(socket.handshake.session.uid==null){
 			//세션 만료됐을때
 		}else{
+			var alramInfo;
 			async.waterfall([ function(callback){
 				alramDAO.findAlramByUid(socket.handshake.session.uid , callback)	
 			} , function(args , callback){
@@ -159,8 +160,9 @@ io.on('connection', function(socket) {
 						alramHelper.addProfileUID(classifiedAlram , subResult , callback);
 					}
 				});
-			}, function(args , callback){
-				console.log(args);
+			}, function(args1 , args2,callback){
+				alramInfo =args1;
+				console.log(args2);
 			}] , function(err , results){
 				
 			});
@@ -315,10 +317,10 @@ io.on('connection', function(socket) {
 						groupInfo[i].name = groupInfo[i].name +'...';
 					}
 				}
-				console.log(results);
-				console.log(groupProfile);
-				console.log(group);
-				console.log(groupInfo);
+				//console.log(results);
+				//console.log(groupProfile);
+				//console.log(group);
+				//console.log(groupInfo);
 				socket.emit('GroupImageResult' , groupProfile , group , groupNum , groupInfo);
 			}
 		});
