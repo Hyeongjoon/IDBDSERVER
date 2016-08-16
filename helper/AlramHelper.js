@@ -75,7 +75,7 @@ exports.addProfileUID  = function(addTarget , contentsArr , callback){
 
 exports.finalAlramInfo = function(nameArr , profileArr , alramInfo){
 	for(var i = 0 ; i <alramInfo.location.length ; i++){
-		for(var j = 0 ; j < nameArr.length){
+		for(var j = 0 ; j < nameArr.length ; j++){
 			if(alramInfo.location[i].alramProfileUid == nameArr[j].uid){
 				alramInfo.location[i].alramName =  nameArr[j].name;
 				break;
