@@ -33,7 +33,6 @@ exports.findDislikeUser = function(AlramArr , callback){
 			sqlQuery = sqlQuery +'aid = ' + mysql.escape(AlramArr[i].aid) + ' OR ';
 		}
 	    sqlQuery = sqlQuery.substring(0 , sqlQuery.length-3) + ')';
-	    console.log(sqlQuery);
 		base.select(sqlQuery , callback);
 	
 }
