@@ -26,11 +26,11 @@ exports.classifyAlram = function(args){
 	return kind;
 };
 
-exports.addProfileUID  = function(addTarget , uid , callback){
+exports.addProfileUID  = function(addTarget , contentsArr , callback){
 	console.log(addTarget);
-	console.log(uid);
+	console.log(contentsArr);
 	for(var i = 0 ; i < addTarget.location.length ; i++){
-		
-		console.log(i);
-	}
+		addTarget.location[i].alramProfileUid = contentsArr[0][i].writer;
+	}//location 정보처리
+	console.log(addTarget);
 }
