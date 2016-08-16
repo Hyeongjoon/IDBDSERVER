@@ -90,6 +90,7 @@ exports.finalAlramInfo = function(nameArr , profileArr , alramInfo){
 			}
 		}
 	}
+	console.log(alramInfo[0]);
 	console.log(alramInfo);
 	return;
 } 
