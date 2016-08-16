@@ -29,8 +29,7 @@ exports.getProfileByUid = function(uidArr , callback){
 		sqlQuery = sqlQuery + 'uid = ' + mysql.escape(uidArr[i]) + ' OR '
 	}
 	sqlQuery = sqlQuery.substring(0 , sqlQuery.length-4);
-	sqlQuery = sqlQuery + ');'
-	
+	sqlQuery = sqlQuery + ');'	
 	base.select(sqlQuery , callback);
 }
 

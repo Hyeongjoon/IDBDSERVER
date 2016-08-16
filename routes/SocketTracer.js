@@ -170,7 +170,10 @@ io.on('connection', function(socket) {
 						uidArr.push(temp[i]);
 					}
 				}
-				console.log(uidArr);
+				userDAO.getProfileByUid(uidArr , callback);
+			} , function(args1 , callback){
+				console.log(args1);
+				
 			}] , function(err , results){
 				
 			});
