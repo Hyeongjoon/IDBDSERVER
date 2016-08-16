@@ -43,7 +43,7 @@ exports.addProfileUID  = function(addTarget , contentsArr , callback){
 	
 	for(var i = 0 ; i < addTarget.reply.length ; i++){
 		addTarget.reply[i].alramProfileUid = contentsArr[3][i].writer;
-		addTarget.reply[i].replyText = contentsArr[3][i].contents.substring(20);
+		addTarget.reply[i].replyText = contentsArr[3][i].contents.substring(0,20);
 	}//reply 정보처리
 	console.log(addTarget);
 }
