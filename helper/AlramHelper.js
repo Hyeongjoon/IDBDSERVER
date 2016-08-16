@@ -90,7 +90,36 @@ exports.finalAlramInfo = function(nameArr , profileArr , alramInfo){
 			}
 		}
 	}
-	console.log(alramInfo[0]);
+	
+	for(var i = 0 ; i <alramInfo.like.length ; i++){
+		for(var j = 0 ; j < nameArr.length ; j++){
+			if(alramInfo.like[i].alramProfileUid == nameArr[j].uid){
+				alramInfo.like[i].alramName =  nameArr[j].name;
+				break;
+			}
+		}
+		for(var j = 0 ; j < profileArr.length ; j++){
+			if(alramInfo.like[i].alramProfileUid == profileArr[j].uid){
+				alramInfo.like[i].profile =  profileArr[j].profile;
+				break;
+			}
+		}
+	}
+	
+	for(var i = 0 ; i <alramInfo.dislike.length ; i++){
+		for(var j = 0 ; j < nameArr.length ; j++){
+			if(alramInfo.dislike[i].alramProfileUid == nameArr[j].uid){
+				alramInfo.dislike[i].alramName =  nameArr[j].name;
+				break;
+			}
+		}
+		for(var j = 0 ; j < profileArr.length ; j++){
+			if(alramInfo.dislike[i].alramProfileUid == profileArr[j].uid){
+				alramInfo.dislike[i].profile =  profileArr[j].profile;
+				break;
+			}
+		}
+	}
 	console.log(alramInfo);
 	return;
 } 
