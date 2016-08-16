@@ -160,7 +160,7 @@ io.on('connection', function(socket) {
 				});
 			}] , function(err , results){
 				
-				
+				console.log(results);
 			});
 		}
 	});

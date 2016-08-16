@@ -29,6 +29,7 @@ exports.classifyAlram = function(args){
 exports.addProfileUID  = function(addTarget , contentsArr , callback){
 	console.log(addTarget);
 	console.log(contentsArr);
+	var MaxTextLength = 10;
 	for(var i = 0 ; i < addTarget.location.length ; i++){
 		addTarget.location[i].alramProfileUid = contentsArr[0][i].writer;
 	}//location 정보처리
@@ -43,23 +44,23 @@ exports.addProfileUID  = function(addTarget , contentsArr , callback){
 	
 	for(var i = 0 ; i < addTarget.reply.length ; i++){
 		addTarget.reply[i].alramProfileUid = contentsArr[3][i].writer;
-		var temp = contentsArr[3][i].contents.substring(0,10) +'...';
+		var temp = contentsArr[3][i].contents.substring(0,MaxTextLength) +'...';
 		addTarget.reply[i].replyText = temp;
 	}//reply 정보처리
 	
 	for(var i = 0 ; i < addTarget.re_reply.length ; i++){
 		addTarget.re_reply[i].alramProfileUid = contentsArr[4][i].writer;
-		var temp = contentsArr[4][i].contents.substring(0,10) +'...';
+		var temp = contentsArr[4][i].contents.substring(0,MaxTextLength) +'...';
 		addTarget.re_reply[i].re_replyText = temp;
 	}//re_reply 정보처리
 	
 	for(var i = 0 ; i < addTarget.like_reply.length ; i++){
-		addTarget.like_reply[i].alramProfileUid = contentsArr[5][i]. belong_uid;
+		addTarget.like_reply[i].alramProfileUid = contentsArr[5][i].belong_uid;
 	}//like_reply 정보처리
 	
 	for(var i = 0 ; i < addTarget.like_re_reply.length ; i++){
-		addTarget.dislike[i].alramProfileUid = contentsArr[6][i]. belong_uid;
+		addTarget.dislike[i].alramProfileUid = contentsArr[6][i].belong_uid;
 	}//like_re_reply 정보처리
 	
-	console.log(addTarget);
+	callbakc(addTarget);
 }
