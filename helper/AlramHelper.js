@@ -135,6 +135,51 @@ exports.finalAlramInfo = function(nameArr , profileArr , alramInfo){
 			}
 		}
 	}
+	
+	for(var i = 0 ; i <alramInfo.re_reply.length ; i++){
+		for(var j = 0 ; j < nameArr.length ; j++){
+			if(alramInfo.re_reply[i].alramProfileUid == nameArr[j].uid){
+				alramInfo.re_reply[i].alramName =  nameArr[j].name;
+				break;
+			}
+		}
+		for(var j = 0 ; j < profileArr.length ; j++){
+			if(alramInfo.re_reply[i].alramProfileUid == profileArr[j].uid){
+				alramInfo.re_reply[i].profile =  profileArr[j].profile;
+				break;
+			}
+		}
+	}
+	
+	for(var i = 0 ; i <alramInfo.like_reply.length ; i++){
+		for(var j = 0 ; j < nameArr.length ; j++){
+			if(alramInfo.like_reply[i].alramProfileUid == nameArr[j].uid){
+				alramInfo.like_reply[i].alramName =  nameArr[j].name;
+				break;
+			}
+		}
+		for(var j = 0 ; j < profileArr.length ; j++){
+			if(alramInfo.like_reply[i].alramProfileUid == profileArr[j].uid){
+				alramInfo.like_reply[i].profile =  profileArr[j].profile;
+				break;
+			}
+		}
+	}
+	
+	for(var i = 0 ; i <alramInfo.like_re_reply.length ; i++){
+		for(var j = 0 ; j < nameArr.length ; j++){
+			if(alramInfo.like_re_reply[i].alramProfileUid == nameArr[j].uid){
+				alramInfo.like_re_reply[i].alramName =  nameArr[j].name;
+				break;
+			}
+		}
+		for(var j = 0 ; j < profileArr.length ; j++){
+			if(alramInfo.like_re_reply[i].alramProfileUid == profileArr[j].uid){
+				alramInfo.like_re_reply[i].profile =  profileArr[j].profile;
+				break;
+			}
+		}
+	}
 	console.log(alramInfo);
 	return;
 } 
