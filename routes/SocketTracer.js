@@ -178,9 +178,13 @@ io.on('connection', function(socket) {
 				profileArr = args1;
 				userDAO.getUserNameByUID(tempUIDArr , callback);				
 			}] , function(err , results){
+				if(err){
+					console.log9(err);
+				}else{
 				console.log(results);
 				console.log(profileArr);
 				console.log(alramInfo);
+				}
 			});
 		}
 	});

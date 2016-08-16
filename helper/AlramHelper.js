@@ -72,3 +72,17 @@ exports.addProfileUID  = function(addTarget , contentsArr , callback){
 	
 	callback(null , addTarget , tempProfileUid);
 }
+
+exports.finalAlramInfo = function(nameArr , profileArr , alramInfo){
+	for(var i = 0 ; i <alramInfo.location.length ; i++){
+		for(var j = 0 ; j < nameArr.length){
+			if(alramInfo.location[i].alramProfileUid == nameArr[j].uid){
+				alramInfo.location[i].alramName =  nameArr[j].name;
+				break;
+			}
+			console.lod("몇번되냐");
+		}
+		
+	}
+	return;
+} 
