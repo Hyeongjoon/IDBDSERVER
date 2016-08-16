@@ -108,7 +108,9 @@ create table location
 create table like_location(
 	lid int unsigned NOT NULL,
     uid int unsigned,
+    aid int unsigned,
     foreign key (lid) references location(lid) ON DELETE CASCADE ON UPDATE CASCADE,
+    foreign key (aid) references alram(aid) ON DELETE SET NULL ON UPDATE CASCADE,
     foreign key (uid) references user(uid) ON DELETE SET NULL ON UPDATE CASCADE
 ) Engine =InnoDB DEFAULT CHARSET = utf8;
 
@@ -117,7 +119,9 @@ create table like_location(
 create table dislike_location(
 	lid int unsigned NOT NULL,
     uid int unsigned,
+    aid int unsigned,
     foreign key (lid) references location(lid) ON DELETE CASCADE ON UPDATE CASCADE,
+    foreign key (aid) references alram(aid) ON DELETE SET NULL ON UPDATE CASCADE,
     foreign key (uid) references user(uid) ON DELETE SET NULL ON UPDATE CASCADE
 ) Engine =InnoDB DEFAULT CHARSET = utf8;
 
@@ -155,6 +159,8 @@ create table re_reply(
 create table like_reply(
 	belong_rid int unsigned NOT NULL,
     belong_uid int unsigned,
+    aid int unsigned,
+    foreign key (aid) references alram(aid) ON DELETE SET NULL ON UPDATE CASCADE,
     foreign key(belong_rid) references reply(rid) ON DELETE CASCADE ON UPDATE CASCADE,
     foreign key(belong_uid) references user(uid) ON DELETE SET NULL ON UPDATE CASCADE
 ) Engine = InnoDB DEFAULT CHARSET = utf8;
@@ -163,6 +169,8 @@ create table like_reply(
 create table like_re_reply(
 	belong_rrid int unsigned NOT NULL,
     belong_uid int unsigned,
+    aid int unsigned,
+    foreign key (aid) references alram(aid) ON DELETE SET NULL ON UPDATE CASCADE,
     foreign key(belong_rrid) references re_reply(rrid) ON DELETE CASCADE ON UPDATE CASCADE,
     foreign key(belong_uid) references user(uid) ON DELETE SET NULL ON UPDATE CASCADE
 ) Engine = InnoDB DEFAULT CHARSET = utf8;

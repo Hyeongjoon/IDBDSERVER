@@ -137,15 +137,13 @@ io.on('connection', function(socket) {
 					if(classifiedAlram.re_reply.length==0){
 						subCallback(null , null);
 					} else{
-						console.log(5);
-						subCallback(null, true);
+						alramDAO.findReReplyUser(classifiedAlram.re_reply ,subCallback);
 					}
 				}, function(subCallback){
 					if(classifiedAlram.like_reply.length==0){
 						subCallback(null , null);
 					} else{
-						console.log(6);
-						subCallback(null, true);
+						alramDAO.findLikeReplyUser(classifiedAlram.like_reply , subCallback);
 					}
 				}, function(subCallback){
 					if(classifiedAlram.like_re_reply.length==0){
