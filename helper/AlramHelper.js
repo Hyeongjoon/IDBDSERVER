@@ -32,5 +32,15 @@ exports.addProfileUID  = function(addTarget , contentsArr , callback){
 	for(var i = 0 ; i < addTarget.location.length ; i++){
 		addTarget.location[i].alramProfileUid = contentsArr[0][i].writer;
 	}//location 정보처리
+	
+	for(var i = 0 ; i < addTarget.location.like ; i++){
+		addTarget.like[i].alramProfileUid = contentsArr[1][i].uid;
+	}//like 정보처리
+	
+	for(var i = 0 ; i < addTarget.location.dislike ; i++){
+		addTarget.dislike[i].alramProfileUid = contentsArr[1][i].uid;
+	}//dislike 정보처리
+	
 	console.log(addTarget);
+	
 }
