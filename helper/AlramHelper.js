@@ -33,11 +33,11 @@ exports.addProfileUID  = function(addTarget , contentsArr , callback){
 		addTarget.location[i].alramProfileUid = contentsArr[0][i].writer;
 	}//location 정보처리
 	
-	for(var i = 0 ; i < addTarget.location.like ; i++){
+	for(var i = 0 ; i < addTarget.like.length ; i++){
 		addTarget.like[i].alramProfileUid = contentsArr[1][i].uid;
 	}//like 정보처리
 	
-	for(var i = 0 ; i < addTarget.location.dislike ; i++){
+	for(var i = 0 ; i < addTarget.dislike.length ; i++){
 		addTarget.dislike[i].alramProfileUid = contentsArr[1][i].uid;
 	}//dislike 정보처리
 	
