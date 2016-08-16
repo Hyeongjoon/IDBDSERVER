@@ -153,10 +153,11 @@ io.on('connection', function(socket) {
 						subCallback(null, true);
 					}
 				}] , function(subErr , subResult){
-					
-					console.log(subResult);
-					console.log(subResult[0]);
-					console.log(classifiedAlram);
+					if(subErr){
+						//subErr처리할곳
+					} else{
+						alramHelper.addProfileUID(classifiedAlram , subResult , callback);
+					}
 				});
 			}] , function(err , results){
 				

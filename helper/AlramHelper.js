@@ -25,3 +25,8 @@ exports.classifyAlram = function(args){
 	}
 	return kind;
 };
+
+exports.addProfileUID  = function(addTarget , uid , callback){
+	console.log(addTarget);
+	console.log(uid);
+}
