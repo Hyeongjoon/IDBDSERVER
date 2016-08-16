@@ -29,4 +29,8 @@ exports.classifyAlram = function(args){
 exports.addProfileUID  = function(addTarget , uid , callback){
 	console.log(addTarget);
 	console.log(uid);
+	for(var i = 0 ; i < addTarget.location.length ; i++){
+		
+		console.log(i);
+	}
 }

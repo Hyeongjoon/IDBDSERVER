@@ -150,7 +150,6 @@ io.on('connection', function(socket) {
 						subCallback(null , null);
 					} else{
 						alramDAO.findLikeReReplyUser(classifiedAlram.like_reply , subCallback);
-						subCallback(null, true);
 					}
 				}] , function(subErr , subResult){
 					if(subErr){
