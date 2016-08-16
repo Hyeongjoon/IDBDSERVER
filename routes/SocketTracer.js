@@ -155,6 +155,7 @@ io.on('connection', function(socket) {
 				}] , function(subErr , subResult){
 					
 					console.log(subResult);
+					console.log(classifiedAlram);
 				});
 			}] , function(err , results){
 				
