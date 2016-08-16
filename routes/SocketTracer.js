@@ -149,7 +149,7 @@ io.on('connection', function(socket) {
 					if(classifiedAlram.like_re_reply.length==0){
 						subCallback(null , null);
 					} else{
-						console.log(7);
+						alramDAO.findLikeReReplyUser(classifiedAlram.like_reply , subCallback);
 						subCallback(null, true);
 					}
 				}] , function(subErr , subResult){

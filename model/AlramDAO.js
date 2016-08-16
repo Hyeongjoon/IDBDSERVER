@@ -24,16 +24,16 @@ exports.findLikeUser = function(AlramArr , callback){
 	}
 	
     sqlQuery = sqlQuery.substring(0 , sqlQuery.length-4) + ')';
-    console.log(sqlQuery);
 	base.select(sqlQuery , callback);
 }
 
 exports.findDislikeUser = function(AlramArr , callback){
-	sqlQuery = 'SELECT * from dislike_location WHERE lid = '
+	sqlQuery = 'SELECT * from dislike_location WHERE ( '
 		for(var i = 0 ; i <AlramArr.length ; i ++){
-			sqlQuery = sqlQuery + mysql.escape(AlramArr[i].target_lid) + ' AND lid = '
+			sqlQuery = sqlQuery +'aid = ' + mysql.escape(AlramArr[i].target_lid) + ' AND ';
 		}
-		sqlQuery = sqlQuery.substring(0 , sqlQuery.length-10);
+		
+	    sqlQuery = sqlQuery.substring(0 , sqlQuery.length-4) + ')';
 		base.select(sqlQuery , callback);
 	
 }
@@ -57,6 +57,19 @@ exports.findReReplyUser = function(AlramArr , callback){
 }
 
 exports.findLikeReplyUser = function(AlramArr , callback){
-	//sqlQuery = 'SELECT * from like_reply WHERE '
-	
+	sqlQuery = 'SELECT * from like_reply WHERE ( '
+		for(var i = 0 ; i <AlramArr.length ; i ++){
+			sqlQuery = sqlQuery +'aid = ' + mysql.escape(AlramArr[i].target_lid) + ' AND ';
+		}
+	    sqlQuery = sqlQuery.substring(0 , sqlQuery.length-4) + ')';
+		base.select(sqlQuery , callback);
+}
+
+exports.findLikeReReplyUser = function(AlramArr , callback){
+	sqlQuery = 'SELECT * from like_re_reply WHERE ( '
+		for(var i = 0 ; i <AlramArr.length ; i ++){
+			sqlQuery = sqlQuery +'aid = ' + mysql.escape(AlramArr[i].target_lid) + ' AND ';
+		}
+	    sqlQuery = sqlQuery.substring(0 , sqlQuery.length-4) + ')';
+		base.select(sqlQuery , callback);
 }
