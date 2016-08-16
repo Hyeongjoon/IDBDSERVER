@@ -101,6 +101,8 @@ io.on('connection', function(socket) {
 			//세션 만료됐을때
 		}else{
 			var alramInfo;
+			var tempUIDArr;
+			var profileArr;
 			async.waterfall([ function(callback){
 				alramDAO.findAlramByUid(socket.handshake.session.uid , callback)	
 			} , function(args , callback){
@@ -170,12 +172,13 @@ io.on('connection', function(socket) {
 						uidArr.push(temp[i]);
 					}
 				}
-				userDAO.getProfileByUid(uidArr , callback);
+				tempUIDArr = uidArr;
+				userDAO.getProfileByUid(tempUIDArr , callback);
 			} , function(args1 , callback){
-				console.log(args1);
-				
+				profileArr = args1;
+				userDAO.getUserNameByUID(tempUIDArr , callback);				
 			}] , function(err , results){
-				
+				console.log(results);
 			});
 		}
 	});
