@@ -189,9 +189,9 @@ io.on('connection', function(socket) {
 				if(err){
 					console.log9(err);
 				}else{
-				
-				alramInfo = alramHelper.finalAlramInfo(results , profileArr , alramInfo);
 				console.log(alramInfo);
+				alramInfo = alramHelper.finalAlramInfo(results , profileArr , alramInfo);
+				socket.emit("alramResult" , alramInfo);
 				}
 			});
 		}
