@@ -27,8 +27,6 @@ exports.classifyAlram = function(args){
 };
 
 exports.addProfileUID  = function(addTarget , contentsArr , callback){
-	console.log(addTarget);
-	console.log(contentsArr);
 	var MaxTextLength = 10;
 	var tempProfileUid = [];
 	for(var i = 0 ; i < addTarget.location.length ; i++){
@@ -78,6 +76,7 @@ exports.finalAlramInfo = function(nameArr , profileArr , alramInfo){
 		for(var j = 0 ; j < nameArr.length ; j++){
 			if(alramInfo.location[i].alramProfileUid == nameArr[j].uid){
 				alramInfo.location[i].alramName =  nameArr[j].name;
+				alramInfo.location[i].contents  = " 그룹에 새 사진을 추가하였습니다.";
 				break;
 			}
 		}
@@ -93,6 +92,7 @@ exports.finalAlramInfo = function(nameArr , profileArr , alramInfo){
 		for(var j = 0 ; j < nameArr.length ; j++){
 			if(alramInfo.like[i].alramProfileUid == nameArr[j].uid){
 				alramInfo.like[i].alramName =  nameArr[j].name;
+				alramInfo.like[i].contents = " 사진에 새 좋아요를 눌렀습니다.";
 				break;
 			}
 		}
@@ -108,6 +108,7 @@ exports.finalAlramInfo = function(nameArr , profileArr , alramInfo){
 		for(var j = 0 ; j < nameArr.length ; j++){
 			if(alramInfo.dislike[i].alramProfileUid == nameArr[j].uid){
 				alramInfo.dislike[i].alramName =  nameArr[j].name;
+				alramInfo.dislike[i].contents = " 사진에 새 싫어요를 눌렀습니다.";
 				break;
 			}
 		}
@@ -123,6 +124,7 @@ exports.finalAlramInfo = function(nameArr , profileArr , alramInfo){
 		for(var j = 0 ; j < nameArr.length ; j++){
 			if(alramInfo.reply[i].alramProfileUid == nameArr[j].uid){
 				alramInfo.reply[i].alramName =  nameArr[j].name;
+				alramInfo.reply[i].contents = " 사진에 새 댓글이 추가되었습니다.";
 				break;
 			}
 		}
@@ -138,6 +140,7 @@ exports.finalAlramInfo = function(nameArr , profileArr , alramInfo){
 		for(var j = 0 ; j < nameArr.length ; j++){
 			if(alramInfo.re_reply[i].alramProfileUid == nameArr[j].uid){
 				alramInfo.re_reply[i].alramName =  nameArr[j].name;
+				alramInfo.re_reply[i].contents = " 사진에 새 댓글이 추가되었습니다.";
 				break;
 			}
 		}
@@ -153,6 +156,7 @@ exports.finalAlramInfo = function(nameArr , profileArr , alramInfo){
 		for(var j = 0 ; j < nameArr.length ; j++){
 			if(alramInfo.like_reply[i].alramProfileUid == nameArr[j].uid){
 				alramInfo.like_reply[i].alramName =  nameArr[j].name;
+				alramInfo.like_reply[i].contents = " 댓글에 좋아요를 눌렀습니다."
 				break;
 			}
 		}
@@ -168,6 +172,7 @@ exports.finalAlramInfo = function(nameArr , profileArr , alramInfo){
 		for(var j = 0 ; j < nameArr.length ; j++){
 			if(alramInfo.like_re_reply[i].alramProfileUid == nameArr[j].uid){
 				alramInfo.like_re_reply[i].alramName =  nameArr[j].name;
+				alramInfo.like_re_reply[i].contents = " 댓글에 좋아요를 눌렀습니다."
 				break;
 			}
 		}

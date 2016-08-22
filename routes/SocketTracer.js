@@ -161,7 +161,7 @@ io.on('connection', function(socket) {
 					} else{
 						alramHelper.addProfileUID(classifiedAlram , subResult , callback);
 					}
-				});
+				});//시발 너무 쓰레기같다 접근이 한번하는데 디비에 몇번접근하는거야 슈발
 			}, function(args1 , args2 , callback){
 				alramInfo =args1;
 				var temp = args2.sort();
@@ -189,8 +189,8 @@ io.on('connection', function(socket) {
 				if(err){
 					console.log9(err);
 				}else{
-				console.log(alramInfo);
 				alramInfo = alramHelper.finalAlramInfo(results , profileArr , alramInfo);
+				console.log(alramInfo);
 				socket.emit("alramResult" , alramInfo);
 				}
 			});
