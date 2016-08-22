@@ -196,8 +196,7 @@ io.on('connection', function(socket) {
 				console.log(alramOrder);
 				alramInfo = alramHelper.finalAlramInfo(results , profileArr , alramInfo);
 				console.log(alramInfo);
-				var order = {alramOrder : alramOrder};
-				socket.emit("alramResult" , alramInfo , order);
+				socket.emit("alramResult" , alramInfo , alramOrder);
 				}
 			});
 		}
