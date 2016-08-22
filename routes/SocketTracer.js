@@ -103,15 +103,17 @@ io.on('connection', function(socket) {
 			var alramInfo;
 			var tempUIDArr;
 			var profileArr;
-			var alramOrder;
+			var alramOrder = [];
 			async.waterfall([ function(callback){
 				alramDAO.findAlramByUid(socket.handshake.session.uid , callback)	
 			} , function(args , callback){
-				console.log(args);
 				var classifiedAlram;
 				if(args[0] == ''){
 					callback('null alram' , false)
 				} else{
+					for(var i = 0 ; i < args.length; i++){
+						alramOrder.push(args[i].aid);
+					}
 					classifiedAlram = alramHelper.classifyAlram(args);
 				}
 				async.series([function(subCallback){
@@ -189,8 +191,9 @@ io.on('connection', function(socket) {
 				userDAO.getUserNameByUID(tempUIDArr , callback);
 			}] , function(err , results){
 				if(err){
-					console.log9(err);
+					socket.emit("alramResult" , null);
 				}else{
+				console.log(alramOrder);
 				alramInfo = alramHelper.finalAlramInfo(results , profileArr , alramInfo);
 				console.log(alramInfo);
 				socket.emit("alramResult" , alramInfo);
