@@ -73,6 +73,7 @@ exports.addProfileUID  = function(addTarget , contentsArr , callback){
 
 exports.finalAlramInfo = function(nameArr , profileArr , alramInfo){
 	for(var i = 0 ; i <alramInfo.location.length ; i++){
+		alramInfo.location[i].profile = "";
 		for(var j = 0 ; j < nameArr.length ; j++){
 			if(alramInfo.location[i].alramProfileUid == nameArr[j].uid){
 				alramInfo.location[i].alramName =  nameArr[j].name;
@@ -89,6 +90,7 @@ exports.finalAlramInfo = function(nameArr , profileArr , alramInfo){
 	}
 	
 	for(var i = 0 ; i <alramInfo.like.length ; i++){
+		alramInfo.like[i].profile ="";
 		for(var j = 0 ; j < nameArr.length ; j++){
 			if(alramInfo.like[i].alramProfileUid == nameArr[j].uid){
 				alramInfo.like[i].alramName =  nameArr[j].name;
@@ -105,6 +107,7 @@ exports.finalAlramInfo = function(nameArr , profileArr , alramInfo){
 	}
 	
 	for(var i = 0 ; i <alramInfo.dislike.length ; i++){
+		alramInfo.dislike[i].profile = "";
 		for(var j = 0 ; j < nameArr.length ; j++){
 			if(alramInfo.dislike[i].alramProfileUid == nameArr[j].uid){
 				alramInfo.dislike[i].alramName =  nameArr[j].name;
@@ -121,6 +124,7 @@ exports.finalAlramInfo = function(nameArr , profileArr , alramInfo){
 	}
 	
 	for(var i = 0 ; i <alramInfo.reply.length ; i++){
+			alramInfo.reply[i].profile= "";
 		for(var j = 0 ; j < nameArr.length ; j++){
 			if(alramInfo.reply[i].alramProfileUid == nameArr[j].uid){
 				alramInfo.reply[i].alramName =  nameArr[j].name;
@@ -137,6 +141,7 @@ exports.finalAlramInfo = function(nameArr , profileArr , alramInfo){
 	}
 	
 	for(var i = 0 ; i <alramInfo.re_reply.length ; i++){
+		 alramInfo.re_reply[i].profile = "";
 		for(var j = 0 ; j < nameArr.length ; j++){
 			if(alramInfo.re_reply[i].alramProfileUid == nameArr[j].uid){
 				alramInfo.re_reply[i].alramName =  nameArr[j].name;
@@ -153,6 +158,7 @@ exports.finalAlramInfo = function(nameArr , profileArr , alramInfo){
 	}
 	
 	for(var i = 0 ; i <alramInfo.like_reply.length ; i++){
+			alramInfo.like_reply[i].profile = "";
 		for(var j = 0 ; j < nameArr.length ; j++){
 			if(alramInfo.like_reply[i].alramProfileUid == nameArr[j].uid){
 				alramInfo.like_reply[i].alramName =  nameArr[j].name;
@@ -169,6 +175,7 @@ exports.finalAlramInfo = function(nameArr , profileArr , alramInfo){
 	}
 	
 	for(var i = 0 ; i <alramInfo.like_re_reply.length ; i++){
+			alramInfo.like_re_reply[i].profile  = "";
 		for(var j = 0 ; j < nameArr.length ; j++){
 			if(alramInfo.like_re_reply[i].alramProfileUid == nameArr[j].uid){
 				alramInfo.like_re_reply[i].alramName =  nameArr[j].name;
