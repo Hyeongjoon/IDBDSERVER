@@ -247,6 +247,7 @@ io.on('connection', function(socket) {
 			}
 		} , function(args1 , callback){
 			console.log(args1);
+			console.log(group);
 			/*if(args1[0] == ''){
 				callback('nullURL' , false);
 			} else{
