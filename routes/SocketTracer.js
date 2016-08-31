@@ -253,16 +253,24 @@ io.on('connection', function(socket) {
 				for (var j = 0 ; j < args1.length; j++){
 					if(group[i].gid == args1[j].belonged_gid){
 					group[i].file_location = args1[j].file_location;
+					break;
 					}
 				}
-			} //url 추가
-			console.log(group);
+				for(var j = 0 ; j < tempGroup.length ; j++){
+					if(group[i].gid == tempGroup[j].gid){
+						group[i].name = tempGroup[j].name;
+					}
+				}
+			}
+			belong_grDAO.getUidInGroupNotMe(group , socket.handshake.session.uid , callback);
 			
 		}] , function (err , results) {
 			if(err){
 				console.log(err);
 				//에러처리 나중에 꼭하기
 			} else {
+				console.log(results);
+			/*
 				for(var i = 0 ; i < groupInfo.length ; i++){
 					if(groupInfo[i].name==null){
 						for(var j = 0 ; j <group.length ; j++){
@@ -282,7 +290,7 @@ io.on('connection', function(socket) {
 						groupInfo[i].name = groupInfo[i].name +'...';
 					}
 				}
-				socket.emit('GroupImageResult' , groupProfile , group , groupNum , groupInfo);
+				socket.emit('GroupImageResult' , groupProfile , group , groupNum , groupInfo);*/
 			}
 		});
 	});

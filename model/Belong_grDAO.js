@@ -6,13 +6,13 @@ exports.getGidByUid = function(uid , callback){
 	base.select(sqlQuery, callback);
 };
 
-exports.getUidInGroupNotMe = function(gidArr , callback){
+exports.getUidInGroupNotMe = function(gidArr , uid, callback){
 	var sqlQuery = 'SELECT * from belong_gr WHERE ( ';
 	for (var i = 0 ; i < gidArr.length ; i ++){
 		sqlQuery = sqlQuery + ' gid = ' + gidArr[i].gid + ' OR '
 	}
 	sqlQuery = sqlQuery.substring(0,sqlQuery.length-4);
-	sqlQuery = sqlQuery + ') AND  (uid != ' + mysql.escape(gidArr[0].uid) + ') ORDER BY gid ASC';
+	sqlQuery = sqlQuery + ') AND  (uid != ' + mysql.escape(uid) + ') ORDER BY gid ASC';
 	
 	base.select(sqlQuery , callback);
 };
