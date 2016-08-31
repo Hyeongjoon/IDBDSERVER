@@ -319,29 +319,11 @@ io.on('connection', function(socket) {
 				
 				for (var i = 0 ; i <group.length ; i++){
 					group[i].memberName = group[i].memberName.substring(0 , group[i].memberName.length-1);
+					//글자수 제한 나중에 여기다가 넣을것
 				}
 				console.log(group);
-			/*
-				for(var i = 0 ; i < groupInfo.length ; i++){
-					if(groupInfo[i].name==null){
-						for(var j = 0 ; j <group.length ; j++){
-							if(groupInfo[i].gid == group[j].gid){
-							for(var k = 0 ; k<results.length ; k++){
-								if(group[j].uid == results[k].uid){
-									groupInfo[i].name = ''+ groupInfo[i].name + ',' + results[k].name;//붙일것 이름
-									}
-								}
-							} 
-						}
-					}
-				}
-				for(var i = 0 ; i <groupInfo.length ; i++){
-					groupInfo[i].name = groupInfo[i].name.slice(5);
-					if(groupInfo[i].number>4){
-						groupInfo[i].name = groupInfo[i].name +'...';
-					}
-				}
-				socket.emit('GroupImageResult' , groupProfile , group , groupNum , groupInfo);*/
+		
+				//socket.emit('GroupImageResult' , groupProfile , group , groupNum , groupInfo);
 			}
 		});
 	});
