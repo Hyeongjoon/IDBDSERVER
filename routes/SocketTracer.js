@@ -277,13 +277,13 @@ io.on('connection', function(socket) {
 							tempGid = args1[i].gid;
 							tempNum = 0;
 							tempArr.push(args1[i].uid);
-							arrNum.push(args[i]);
+							arrNum.push(args1[i]);
 						} else if(tempNum >=3){
 							++tempNum;
 						} else{
 							++tempNum;
 							tempArr.push(args1[i].uid);
-							arrNum.push(args[i]);
+							arrNum.push(args1[i]);
 						}
 					}
 					console.log(arrNum);
