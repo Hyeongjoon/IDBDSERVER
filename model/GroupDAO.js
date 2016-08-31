@@ -5,8 +5,10 @@ exports.getGroupBygid  = function(gidArr , callback){
 	var sqlQuery = 'SELECT * from gr WHERE gid = ';
 	
 	for (var i = 0 ; i < gidArr.length ; i++){
-		sqlQuery = sqlQuery + gidArr[i].gid + ' AND gid = '
+		sqlQuery = sqlQuery + gidArr[i].gid + ' or gid = '
 	}
+	console.log(sqlQuery);
 	sqlQuery = sqlQuery.substring(0 , sqlQuery.length-10);
-	base.select(sqlQuery , callback);
+	console.log(sqlQuery);
+	//base.select(sqlQuery , callback);
 }
