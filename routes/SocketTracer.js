@@ -211,7 +211,6 @@ io.on('connection', function(socket) {
 		var group;
 		var groupNum = {groupNum : 0}; // 이거 마지막으로 넘길것
 		var groupMember = [];
-		var groupInfo;
 		var tempGroup;
 		async.waterfall([ function(callback) {
 			userDAO.findUserByEmail(socket.handshake.session.email , callback);
@@ -302,7 +301,6 @@ io.on('connection', function(socket) {
 				console.log(err);
 				//에러처리 나중에 꼭하기
 			} else {
-				console.log(results);
 				for(var i = 0 ; i <groupMember.length ; i++){
 					for (var j = 0 ; j<results.length ; j++){
 						if(groupMember[i].uid == results[j].uid){
@@ -311,6 +309,8 @@ io.on('connection', function(socket) {
 					}
 				}
 				console.log(groupMember);
+				console.log(group);
+				console.log(tempGroup);
 			/*
 				for(var i = 0 ; i < groupInfo.length ; i++){
 					if(groupInfo[i].name==null){
