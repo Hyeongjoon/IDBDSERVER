@@ -269,6 +269,8 @@ io.on('connection', function(socket) {
 				} else {
 					var arrNum = [];
 					var tempArr = [];
+					console.log(args1);
+					arrNum.push(args1[0]);
 					tempArr.push(args1[0].uid);
 					var tempGid = args1[0].gid;
 					var tempNum =0;
@@ -286,7 +288,7 @@ io.on('connection', function(socket) {
 							arrNum.push(args1[i]);
 						}
 					}
-					console.log(arrNum);
+					
 
 					tempArr = tempArr.sort();
 					var resultArr = [];
