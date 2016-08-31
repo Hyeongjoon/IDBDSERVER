@@ -284,6 +284,7 @@ io.on('connection', function(socket) {
 							tempArr.push(args1[i].uid);
 						}
 					}
+					tempArr = tempArr.sort();
 					console.log(tempArr);
 				}
 		}] , function (err , results) {
