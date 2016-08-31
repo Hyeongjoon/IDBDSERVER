@@ -246,7 +246,12 @@ io.on('connection', function(socket) {
 				callback(null , args1);
 			}
 		} , function(args1 , callback){
-			console.log(args1);
+			for (var i = 0 ; i <group.length; i++){
+				group.file_location = null;
+				for (var j = 0 ; j < args1.length; j++){
+					group.file_location = args1.file_location;
+				}
+			}
 			console.log(group);
 			/*if(args1[0] == ''){
 				callback('nullURL' , false);
