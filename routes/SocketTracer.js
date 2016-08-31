@@ -308,9 +308,8 @@ io.on('connection', function(socket) {
 						}
 					}
 				}
-				console.log(groupMember);
 				for(var i = 0 ; i < group.length ; i++){
-					group[i].memberName = null;
+					group[i].memberName = '';
 					for (var j = 0 ; j <groupMember.length ; j++){
 						if(group[i].gid == groupMember[j].gid){
 							group[i].memberName = group[i].memberName + groupMember[j].name + ','; 
@@ -318,6 +317,9 @@ io.on('connection', function(socket) {
 					}
 				}
 				
+				for (var i = 0 ; i <group.length ; i++){
+					group[i].memberName = group[i].memberName.substring(0 , group[i].memberName.length-1);
+				}
 				console.log(group);
 			/*
 				for(var i = 0 ; i < groupInfo.length ; i++){
