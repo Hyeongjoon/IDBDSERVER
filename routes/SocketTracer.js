@@ -210,6 +210,7 @@ io.on('connection', function(socket) {
 	socket.on('getGroupImage', function(data){
 		var group;
 		var groupNum = {groupNum : 0}; // 이거 마지막으로 넘길것
+		var groupMember = [];
 		var groupInfo;
 		var tempGroup;
 		async.waterfall([ function(callback) {
@@ -267,10 +268,8 @@ io.on('connection', function(socket) {
 				if(args1[0] == ''){
 					callback('noMember' , null);
 				} else {
-					var arrNum = [];
 					var tempArr = [];
-					console.log(args1);
-					arrNum.push(args1[0]);
+					groupMember.push(args1[0]);
 					tempArr.push(args1[0].uid);
 					var tempGid = args1[0].gid;
 					var tempNum =0;
@@ -279,17 +278,15 @@ io.on('connection', function(socket) {
 							tempGid = args1[i].gid;
 							tempNum = 0;
 							tempArr.push(args1[i].uid);
-							arrNum.push(args1[i]);
+							groupMember.push(args1[i]);
 						} else if(tempNum >=3){
 							++tempNum;
 						} else{
 							++tempNum;
 							tempArr.push(args1[i].uid);
-							arrNum.push(args1[i]);
+							groupMember.push(args1[i]);
 						}
 					}
-					console.log(arrNum);
-
 					tempArr = tempArr.sort();
 					var resultArr = [];
 					resultArr.push(tempArr[0]);
@@ -306,6 +303,11 @@ io.on('connection', function(socket) {
 				//에러처리 나중에 꼭하기
 			} else {
 				console.log(results);
+				for(var i = 0 ; i <groupMember.length ; i++){
+					for (var j = 0 ; j<results.length ; j++){
+						
+					}
+				}
 			/*
 				for(var i = 0 ; i < groupInfo.length ; i++){
 					if(groupInfo[i].name==null){
