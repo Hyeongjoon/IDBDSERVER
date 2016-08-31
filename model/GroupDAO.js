@@ -8,6 +8,5 @@ exports.getGroupBygid  = function(gidArr , callback){
 		sqlQuery = sqlQuery + gidArr[i].gid + ' AND gid = '
 	}
 	
-	sqlQuery = sqlQuery.substrion(0 , sqlQuery.length-8);
-	console.log(sqlQuery);
+	sqlQuery = sqlQuery.substring(0 , sqlQuery.length-8);
 }
