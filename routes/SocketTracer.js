@@ -309,8 +309,16 @@ io.on('connection', function(socket) {
 					}
 				}
 				console.log(groupMember);
+				for(var i = 0 ; i < group.length ; i++){
+					group[i].memberName = null;
+					for (var j = 0 ; j <groupMember.length ; j++){
+						if(group[i].gid == group[j].gid){
+							group[i].memberName = group[i].memberName + groupMember[j].name + ','; 
+						}
+					}
+				}
+				
 				console.log(group);
-				console.log(tempGroup);
 			/*
 				for(var i = 0 ; i < groupInfo.length ; i++){
 					if(groupInfo[i].name==null){
