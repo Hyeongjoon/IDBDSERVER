@@ -7,7 +7,7 @@ exports.findRecentLocationByGid = function(gidArr , callback){
 	for (var i = 0 ; i < gidArr.length ; i++){
 		sqlQuery = sqlQuery + gidArr[i].gid + ' OR belonged_giod = ';
 	}
-	sqlQuery = sqlQuery.substriong(0 , sqlQuery.length-16);
+	sqlQuery = sqlQuery.substring(0 , sqlQuery.length-16);
 	console.log(sqlQuery);
 };
 
