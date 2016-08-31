@@ -269,8 +269,8 @@ io.on('connection', function(socket) {
 				} else {
 					console.log(args1);
 					var tempArr = [];
-					tempArr.push(args[0].uid);
-					var tempGid = args[0].gid;
+					tempArr.push(args1[0].uid);
+					var tempGid = args1[0].gid;
 					var tempNum =0;
 					for(var i = 1 ; i < args1.length ; i++){
 						if(tempGid!==args1[i].gid){
