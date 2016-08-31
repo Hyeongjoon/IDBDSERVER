@@ -233,9 +233,11 @@ io.on('connection', function(socket) {
 			locationDAO.findRecentLocationByGid(args1 , callback);
 		}, function(args1 , callback){
 			if(args1[0] == '') {
-				callback('nullURL' , false);
+				callback('nullPhoto' , false);
 			} else {
-				var params = config.awsS3GetConfig;
+				console.log("여기까진오냐?");
+				console.log(args1);
+				/*var params = config.awsS3GetConfig;
 				for(var i = 0 ; i <args1.length ; i++){
 				params.Key = args1[i].profile;
 				s3.getSignedUrl('getObject', params, function (err, url) {
@@ -243,7 +245,7 @@ io.on('connection', function(socket) {
 					args1[i].profile = url;
 				}); //https -> http로 바꾸기
 				}
-				callback(null , args1);
+				callback(null , args1);*/
 			}
 		} , function(args1 , callback){
 			if(args1[0] == ''){
