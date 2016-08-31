@@ -267,7 +267,6 @@ io.on('connection', function(socket) {
 				if(args1[0] == ''){
 					callback('noMember' , null);
 				} else {
-					console.log(args1);
 					var arrNum = [];
 					var tempArr = [];
 					tempArr.push(args1[0].uid);
@@ -287,8 +286,8 @@ io.on('connection', function(socket) {
 						}
 					}
 					console.log(args1);
-					for(var i = 0 ; i <tempArr.length ; i++){
-						args1.slice(tempArr[i]+i);
+					for(var i = 0 ; i <arrNum.length ; i++){
+						args1.slice(arrNum[i]+i);
 					}
 					
 					console.log(args1);
