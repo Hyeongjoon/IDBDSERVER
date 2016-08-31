@@ -288,7 +288,7 @@ io.on('connection', function(socket) {
 							arrNum.push(args1[i]);
 						}
 					}
-					
+					console.log(arrNum);
 
 					tempArr = tempArr.sort();
 					var resultArr = [];
