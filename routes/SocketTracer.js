@@ -293,14 +293,14 @@ io.on('connection', function(socket) {
 							resultArr.push(tempArr[i]);
 						}
 					}
-					console.log(resultArr);
+					userDAO.getUserNameByUID(resultArr , callback);
 				}
 		}] , function (err , results) {
 			if(err){
 				console.log(err);
 				//에러처리 나중에 꼭하기
 			} else {
-			
+			console.log(results);
 			/*
 				for(var i = 0 ; i < groupInfo.length ; i++){
 					if(groupInfo[i].name==null){
