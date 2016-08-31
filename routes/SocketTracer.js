@@ -211,7 +211,6 @@ io.on('connection', function(socket) {
 		var group;
 		var groupNum = {groupNum : 0}; // 이거 마지막으로 넘길것
 		var groupInfo;
-		var groupProfile;
 		async.waterfall([ function(callback) {
 			userDAO.findUserByEmail(socket.handshake.session.email , callback);
 		}, function(args1, callback){ 
@@ -221,7 +220,7 @@ io.on('connection', function(socket) {
 				socket.handshake.session.uid = args1[0].uid;
 				socket.handshake.session.save();
 				// 세션에다가 uid 저장
-			belong_grDAO.getGidByUid(args1[0].uid , callback);}
+				belong_grDAO.getGidByUid(args1[0].uid , callback);}
 		}, function(args1, callback){
 			if(args1[0]==''){
 				callback('nullGroup' , false);
@@ -230,28 +229,27 @@ io.on('connection', function(socket) {
 				groupDAO.getGroupBygid(args1 , callback);
 			}
 		}, function (args1 , callback) {
+			group = args1;
 			locationDAO.findRecentLocationByGid(args1 , callback);
 		}, function(args1 , callback){
 			if(args1[0] == '') {
 				callback('nullPhoto' , false);
 			} else {
-				console.log("여기까진오냐?");
-				console.log(args1);
-				/*var params = config.awsS3GetConfig;
+				var params = config.awsS3GetConfig;
 				for(var i = 0 ; i <args1.length ; i++){
-				params.Key = args1[i].profile;
+				params.Key = args1[i].file_location;
 				s3.getSignedUrl('getObject', params, function (err, url) {
 					url = url.replace("https://" , "http://")
-					args1[i].profile = url;
+					args1[i].file_location = url;
 				}); //https -> http로 바꾸기
 				}
-				callback(null , args1);*/
+				callback(null , args1);
 			}
 		} , function(args1 , callback){
-			if(args1[0] == ''){
+			console.log(args1);
+			/*if(args1[0] == ''){
 				callback('nullURL' , false);
 			} else{
-			    groupProfile = args1;
 			    var groupUID = [];
 			    for(var i = 0 ; i < groupInfo.length ; i++ ){
 			    	if(groupInfo[i].name == null){
@@ -274,7 +272,7 @@ io.on('connection', function(socket) {
 			    		}
 			    	}
 			    	userDAO.getUserNameByUID(temp , callback);
-			    }
+			    }*/
 			}//이 이후에 그룹거기에 이름 넣는 알고리즘 고안해낼것
 		}] , function (err , results) {
 			if(err){
