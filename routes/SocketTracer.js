@@ -233,57 +233,7 @@ io.on('connection', function(socket) {
 				belong_grDAO.getUidInGroupNotMe(args1 , callback);
 			}
 		}, function (args1 , callback) {
-			if (args1[0]== '') {
-				callback('nullMemberNotMe' , false);
-			} else {
-			var temp = args1[0].gid;
-			var tempArr = [];
-			var count = 0;
-			var deleteNum = [];
-			var tempCount = 0;
-			for(var i = 0 ; i <groupInfo.length ; i++){
-				for(var j = tempCount ; j < args1.length ; j++){
-					if(groupInfo[i].gid==args1[j].gid){
-						++groupInfo[i].number;
-					} else{
-						tempCount = j;
-						break;
-					}
-				}
-			}
-			
-			for (var i = 0 ; i < args1.length ; i++){
-				var tmp;
-				tmp = args1[i].gid;
-					if(temp != tmp){
-						temp = tmp;
-						tempArr.push(args1[i].uid);
-						count = 1;
-					} else if(count >= 4){
-						++count;
-						deleteNum.push(i);
-						continue;
-					} else {
-						++count;
-						tempArr.push(args1[i].uid);
-					}
-			} //그거임 그거 그룹내 중복 UID 없에서 요청보내는거 최소화
-			tempArr.sort();
-			var tmpCount = 0;
-			for(var i = 0 ; i < deleteNum.length ; i++){
-				 args1.splice(deleteNum[i] - tmpCount , 1);
-				 ++tmpCount;
-			} //그룹별 4개 이상인거 다지울꺼
-			group = args1;
-			var result = [];
-			result.push(tempArr[0]);
-			for (var i = 1 ; i < tempArr.length ; i++){
-				if(tempArr[i-1]!=tempArr[i]){
-					result.push(tempArr[i]);
-				}
-			}
-			userDAO.getProfileByUid(result , callback);
-			}
+			console.log(args1);
 		}, function(args1 , callback){
 			if(args1[0] == '') {
 				callback('nullURL' , false);
