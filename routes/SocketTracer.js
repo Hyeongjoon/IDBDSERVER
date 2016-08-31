@@ -211,6 +211,7 @@ io.on('connection', function(socket) {
 		var group;
 		var groupNum = {groupNum : 0}; // 이거 마지막으로 넘길것
 		var groupInfo;
+		var tempGroup;
 		async.waterfall([ function(callback) {
 			userDAO.findUserByEmail(socket.handshake.session.email , callback);
 		}, function(args1, callback){ 
@@ -225,6 +226,7 @@ io.on('connection', function(socket) {
 			if(args1[0]==''){
 				callback('nullGroup' , false);
 			} else{
+				tempGroup = args1;
 				groupNum.groupNum = args1.length;       //이거 마지막으로 넘길것
 				groupDAO.getGroupBygid(args1 , callback);
 			}
@@ -252,34 +254,8 @@ io.on('connection', function(socket) {
 					group[i].file_location = args1[j].file_location;
 				}
 			}
-			console.log(group);
-			/*if(args1[0] == ''){
-				callback('nullURL' , false);
-			} else{
-			    var groupUID = [];
-			    for(var i = 0 ; i < groupInfo.length ; i++ ){
-			    	if(groupInfo[i].name == null){
-			    		for(var j = 0 ; j < group.length ; j++){
-			    			if(groupInfo[i].gid == group[j].gid ){
-			    				groupUID.push(group[j].uid);
-			    			}
-			    		}
-			    	}
-			    } //그룹명 null일때 uid로 유저네임 불러올라고
-			    if(groupUID.length == 0){
-			    	callback(null , false);
-			    } else {
-			    groupUID.sort();
-			    var temp = [];
-			    temp.push(groupUID[0]);
-			    for (var i = 1 ; i < group.length ; i++){
-			    	if(groupUID[i-1]!=groupUID[i]){
-			    		temp.push(groupUID[i]);
-			    		}
-			    	}
-			    	userDAO.getUserNameByUID(temp , callback);
-			    }
-			}*///이 이후에 그룹거기에 이름 넣는 알고리즘 고안해낼것
+			console.log(tempGroup);
+			
 		}] , function (err , results) {
 			if(err){
 				console.log(err);
@@ -304,10 +280,6 @@ io.on('connection', function(socket) {
 						groupInfo[i].name = groupInfo[i].name +'...';
 					}
 				}
-				//console.log(results);
-				//console.log(groupProfile);
-				//console.log(group);
-				//console.log(groupInfo);
 				socket.emit('GroupImageResult' , groupProfile , group , groupNum , groupInfo);
 			}
 		});
