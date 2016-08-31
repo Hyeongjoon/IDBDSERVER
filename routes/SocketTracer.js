@@ -251,10 +251,12 @@ io.on('connection', function(socket) {
 			for (var i = 0 ; i <group.length; i++){
 				group[i].file_location = null;
 				for (var j = 0 ; j < args1.length; j++){
+					if(group[i].gid == args1[j].belonged_gid){
 					group[i].file_location = args1[j].file_location;
+					}
 				}
-			}
-			console.log(tempGroup);
+			} //url 추가
+			console.log(group);
 			
 		}] , function (err , results) {
 			if(err){
