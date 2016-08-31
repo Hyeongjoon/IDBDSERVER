@@ -305,9 +305,12 @@ io.on('connection', function(socket) {
 				console.log(results);
 				for(var i = 0 ; i <groupMember.length ; i++){
 					for (var j = 0 ; j<results.length ; j++){
-						
+						if(groupMember[i].uid == results[j].uid){
+							groupMember[i].name = results[j].name;
+						}
 					}
 				}
+				console.log(groupMember[i]);
 			/*
 				for(var i = 0 ; i < groupInfo.length ; i++){
 					if(groupInfo[i].name==null){
