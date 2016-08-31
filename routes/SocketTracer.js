@@ -286,6 +286,14 @@ io.on('connection', function(socket) {
 					}
 					tempArr = tempArr.sort();
 					console.log(tempArr);
+					var resultArr = [];
+					resultArr.push(tempArr[0]);
+					for (var i = 1 ; i < tempArr.length ; i++){
+						if(tempArr[i-1]!=tempArr[i]){
+							resultArr.push(tempArr[i]);
+						}
+					}
+					console.log(resultArr);
 				}
 		}] , function (err , results) {
 			if(err){
