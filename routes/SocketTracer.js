@@ -310,7 +310,7 @@ io.on('connection', function(socket) {
 						}
 					}
 				}
-				console.log(groupMember[i]);
+				console.log(groupMember);
 			/*
 				for(var i = 0 ; i < groupInfo.length ; i++){
 					if(groupInfo[i].name==null){
