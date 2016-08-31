@@ -7,6 +7,7 @@ var userDAO = require('../model/UserDAO');
 var belong_grDAO = require('../model/Belong_grDAO');
 var alramDAO = require('../model/AlramDAO');
 var groupDAO = require('../model/GroupDAO');
+var locationDAO = require('../model/LocationDAO');
 var decryptHelper = require('../helper/DecryptHelper');
 var encryptHelper = require('../helper/EncryptHelper');
 var EmailHelper = require('../helper/EmailMake');
@@ -208,7 +209,7 @@ io.on('connection', function(socket) {
 	//이거 시발 날잡고 갈아엎자
 	socket.on('getGroupImage', function(data){
 		var group;
-		var groupNum = {groupNum : 0};
+		var groupNum = {groupNum : 0}; // 이거 마지막으로 넘길것
 		var groupInfo;
 		var groupProfile;
 		async.waterfall([ function(callback) {
@@ -225,12 +226,11 @@ io.on('connection', function(socket) {
 			if(args1[0]==''){
 				callback('nullGroup' , false);
 			} else{
-				groupNum.groupNum = args1.length;
-				groupInfo = args1;
-				groupDAO.getGroupBygid(groupInfo , callback);
+				groupNum.groupNum = args1.length;       //이거 마지막으로 넘길것
+				groupDAO.getGroupBygid(args1 , callback);
 			}
 		}, function (args1 , callback) {
-			console.log(args1);
+			locationDAO.findRecentLocationByGid(args1 , callback);
 		}, function(args1 , callback){
 			if(args1[0] == '') {
 				callback('nullURL' , false);
