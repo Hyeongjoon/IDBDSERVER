@@ -277,20 +277,17 @@ io.on('connection', function(socket) {
 							tempGid = args1[i].gid;
 							tempNum = 0;
 							tempArr.push(args1[i].uid);
+							arrNum.push(args[i]);
 						} else if(tempNum >=3){
 							++tempNum;
-							arrNum.push(i);
 						} else{
 							++tempNum;
 							tempArr.push(args1[i].uid);
+							arrNum.push(args[i]);
 						}
 					}
-					console.log(args1);
-					for(var i = 0 ; i <arrNum.length ; i++){
-						args1 = args1.splice(arrNum[i]+i , 1);
-					}
-					
-					console.log(args1);
+					console.log(arrNum);
+
 					tempArr = tempArr.sort();
 					var resultArr = [];
 					resultArr.push(tempArr[0]);
