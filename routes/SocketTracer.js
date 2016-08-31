@@ -312,7 +312,7 @@ io.on('connection', function(socket) {
 				for(var i = 0 ; i < group.length ; i++){
 					group[i].memberName = null;
 					for (var j = 0 ; j <groupMember.length ; j++){
-						if(group[i].gid == group[j].gid){
+						if(group[i].gid == groupMember[j].gid){
 							group[i].memberName = group[i].memberName + groupMember[j].name + ','; 
 						}
 					}
