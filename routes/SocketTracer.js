@@ -6,6 +6,7 @@ var author = require('../helper/authorize');
 var userDAO = require('../model/UserDAO');
 var belong_grDAO = require('../model/Belong_grDAO');
 var alramDAO = require('../model/AlramDAO');
+var groupDAO = require('../model/GroupDAO');
 var decryptHelper = require('../helper/DecryptHelper');
 var encryptHelper = require('../helper/EncryptHelper');
 var EmailHelper = require('../helper/EmailMake');
@@ -225,15 +226,11 @@ io.on('connection', function(socket) {
 				callback('nullGroup' , false);
 			} else{
 				groupNum.groupNum = args1.length;
-				
 				groupInfo = args1;
-				for(var i = 0 ; i < groupInfo.length ; i++){
-					groupInfo[i].number = 1;
-				}
-				belong_grDAO.getUidInGroupNotMe(args1 , callback);
+				groupDAO.getGroupBygid(groupInfo , callback);
 			}
 		}, function (args1 , callback) {
-			console.log(args1);
+			
 		}, function(args1 , callback){
 			if(args1[0] == '') {
 				callback('nullURL' , false);
