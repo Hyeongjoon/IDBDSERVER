@@ -275,12 +275,12 @@ io.on('connection', function(socket) {
 					for(var i = 1 ; i < args1.length ; i++){
 						if(tempGid!==args1[i].gid){
 							tempNum = 1;
-							tempArr.push(args[i].uid);
+							tempArr.push(args1[i].uid);
 						} else if(tempNum >=4){
 							++tempNum;
 						} else{
 							++tempNum;
-							tempArr.push(args[i].uid);
+							tempArr.push(args1[i].uid);
 						}
 					}
 					console.log(tempArr);
