@@ -287,7 +287,7 @@ io.on('connection', function(socket) {
 					}
 					console.log(args1);
 					for(var i = 0 ; i <arrNum.length ; i++){
-						args1.slice(arrNum[i]+i);
+						args1 = args1.splice(arrNum[i]+i , 1);
 					}
 					
 					console.log(args1);
