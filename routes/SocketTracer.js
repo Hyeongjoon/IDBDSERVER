@@ -268,6 +268,7 @@ io.on('connection', function(socket) {
 					callback('noMember' , null);
 				} else {
 					console.log(args1);
+					var arrNum = [];
 					var tempArr = [];
 					tempArr.push(args1[0].uid);
 					var tempGid = args1[0].gid;
@@ -279,16 +280,22 @@ io.on('connection', function(socket) {
 							tempArr.push(args1[i].uid);
 						} else if(tempNum >=3){
 							++tempNum;
+							arrNum.push(i);
 						} else{
 							++tempNum;
 							tempArr.push(args1[i].uid);
 						}
 					}
+					console.log(args1);
+					for(var i = 0 ; i <tempArr.length ; i++){
+						args1.slice(tempArr[i]+i);
+					}
+					
+					console.log(args1);
 					tempArr = tempArr.sort();
-					console.log(tempArr);
 					var resultArr = [];
 					resultArr.push(tempArr[0]);
-					for (var i = 1 ; i < tempArr.length ; i++){
+					for ( var i = 1 ; i < tempArr.length ; i++ ){
 						if(tempArr[i-1]!=tempArr[i]){
 							resultArr.push(tempArr[i]);
 						}
@@ -300,7 +307,7 @@ io.on('connection', function(socket) {
 				console.log(err);
 				//에러처리 나중에 꼭하기
 			} else {
-			console.log(results);
+				console.log(results);
 			/*
 				for(var i = 0 ; i < groupInfo.length ; i++){
 					if(groupInfo[i].name==null){
