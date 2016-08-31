@@ -230,7 +230,7 @@ io.on('connection', function(socket) {
 				groupDAO.getGroupBygid(groupInfo , callback);
 			}
 		}, function (args1 , callback) {
-			
+			console.log(args1);
 		}, function(args1 , callback){
 			if(args1[0] == '') {
 				callback('nullURL' , false);
