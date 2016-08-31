@@ -9,5 +9,6 @@ exports.getGroupBygid  = function(gidArr , callback){
 	}
 	sqlQuery = sqlQuery.substring(0 , sqlQuery.length-10);
 	   slqQuery = sqlQuery + ' ORDER BY updated_time DESC';
-	base.select(sqlQuery , callback);
+	   console.log(sqlQuery);
+	//base.select(sqlQuery , callback);
 }
