@@ -275,7 +275,7 @@ io.on('connection', function(socket) {
 					for(var i = 1 ; i < args1.length ; i++){
 						if(tempGid!==args1[i].gid){
 							tempGid = args1[i].gid;
-							tempNum = 1;
+							tempNum = 0;
 							tempArr.push(args1[i].uid);
 						} else if(tempNum >=3){
 							++tempNum;
