@@ -272,8 +272,8 @@ io.on('connection', function(socket) {
 			    		}
 			    	}
 			    	userDAO.getUserNameByUID(temp , callback);
-			    }*/
-			}//이 이후에 그룹거기에 이름 넣는 알고리즘 고안해낼것
+			    }
+			}*///이 이후에 그룹거기에 이름 넣는 알고리즘 고안해낼것
 		}] , function (err , results) {
 			if(err){
 				console.log(err);
