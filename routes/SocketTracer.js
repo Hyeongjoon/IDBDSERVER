@@ -263,13 +263,34 @@ io.on('connection', function(socket) {
 				}
 			}
 			belong_grDAO.getUidInGroupNotMe(group , socket.handshake.session.uid , callback);
-			
+		} , function(args1 , callback){
+				if(args1[0] == ''){
+					callback('noMember' , null);
+				} else {
+					console.log(args1);
+					var tempArr = [];
+					tempArr.push(args[0].uid);
+					var tempGid = args[0].gid;
+					var tempNum =0;
+					for(var i = 1 ; i < args1.length ; i++){
+						if(tempGid!==args1[i].gid){
+							tempNum = 1;
+							tempArr.push(args[i].uid);
+						} else if(tempNum >=4){
+							++tempNum;
+						} else{
+							++tempNum;
+							tempArr.push(args[i].uid);
+						}
+					}
+					console.log(tempArr);
+				}
 		}] , function (err , results) {
 			if(err){
 				console.log(err);
 				//에러처리 나중에 꼭하기
 			} else {
-				console.log(results);
+			
 			/*
 				for(var i = 0 ; i < groupInfo.length ; i++){
 					if(groupInfo[i].name==null){
@@ -295,40 +316,6 @@ io.on('connection', function(socket) {
 		});
 	});
 });
-
-
-/*
-router.get('/', function(req, res, next) {
-	res.render('login', {
-		
-	});
-});
-router.get('/login',
-	   // passport.authenticate('local', { failureRedirect: '/login_fail', failureFlash: true }),
-	    function(req, res) {
-	console.log(req.body);
-	console.log("여기2번");
-	        res.redirect('/login_success');
-	    });
-
-router.post('/login_chk' , function(req, res, next){
-			req.body.email = "wkdwns00@gmail.com";
-			req.body.password = "7557523m";
-			console.log(req.body);
-			console.log("여기1번");
-			res.redirect('/login');
-});
-
-
-router.get('/login_success', author.ensureAuthenticated, function(req, res, next){
-	console.log(req.session);
-	res.send(req.session.passport);
-});
-
-
-router.get('/login_fail' , function(req, res, next){
-	res.send("로긴실패");
-});*/
 
 
 
