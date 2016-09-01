@@ -27,6 +27,7 @@ create table gr(
 	gid int unsigned NOT NULL  AUTO_INCREMENT,
     updated_time datetime default now() NOT NULL,
     member_number tinyint unsigned NOT NULL default 1 ,
+    updated boolean NOT NULL default false,
     primary key(gid)
     )Engine = InnoDB DEFAULT CHARSET = utf8;
 
