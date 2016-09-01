@@ -9,7 +9,7 @@ exports.findRecentLocationByGid = function(gidArr , callback){
 	}
 	
 	sqlQuery = sqlQuery.substring(0 , sqlQuery.length-19);
-	sqlQuery = sqlQuery + ' GROUP by belonged_gid)';
+	sqlQuery = sqlQuery + ' GROUP BY belonged_gid)';
 	base.select(sqlQuery , callback);
 };
 

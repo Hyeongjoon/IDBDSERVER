@@ -321,9 +321,7 @@ io.on('connection', function(socket) {
 					group[i].memberName = group[i].memberName.substring(0 , group[i].memberName.length-1);
 					//글자수 제한 나중에 여기다가 넣을것
 				}
-				console.log(group);
-		
-				//socket.emit('GroupImageResult' , groupProfile , group , groupNum , groupInfo);
+				socket.emit('GroupImageResult' , group , group.length );
 			}
 		});
 	});
