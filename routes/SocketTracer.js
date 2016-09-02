@@ -259,6 +259,9 @@ io.on('connection', function(socket) {
 				for(var j = 0 ; j < tempGroup.length ; j++){
 					if(group[i].gid == tempGroup[j].gid){
 						group[i].name = tempGroup[j].name;
+						var temp = group[i];
+						group[i] = group[j];
+						group[j] = temp;
 					}
 				}
 			}
