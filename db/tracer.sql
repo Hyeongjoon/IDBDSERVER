@@ -27,7 +27,6 @@ create table gr(
 	gid int unsigned NOT NULL  AUTO_INCREMENT,
     updated_time datetime default now() NOT NULL,
     member_number tinyint unsigned NOT NULL default 1 ,
-    updated boolean NOT NULL default false,
     primary key(gid)
     )Engine = InnoDB DEFAULT CHARSET = utf8;
 
@@ -39,6 +38,8 @@ create table belong_gr
      name VARCHAR(20) default NULL,
      favorite boolean default false,
      filter boolean default false,
+     view_order tinyint NOT NULL,
+     updated boolean NOT NULL default false,
      primary key(uid , gid),
      foreign key (uid) references user(uid) ON DELETE CASCADE ON UPDATE CASCADE,
      foreign key (gid) references gr(gid) ON DELETE CASCADE ON UPDATE CASCADE
