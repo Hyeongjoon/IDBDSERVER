@@ -3,6 +3,7 @@ var mysql = require('mysql');
 
 exports.getGidByUid = function(uid , callback){
 	var sqlQuery = 'SELECT * from belong_gr WHERE uid = ' + mysql.escape(uid);
+	sqlQuery = sqlQuery +  ' ORDER BY view_order ASC';
 	base.select(sqlQuery, callback);
 };
 

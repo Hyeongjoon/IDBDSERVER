@@ -8,6 +8,5 @@ exports.getGroupBygid  = function(gidArr , callback){
 		sqlQuery = sqlQuery + gidArr[i].gid + ' or gid = '
 	}
 	sqlQuery = sqlQuery.substring(0 , sqlQuery.length-10);
-	sqlQuery = sqlQuery + ' ORDER BY view_order ASC';
 	base.select(sqlQuery , callback);
 }
