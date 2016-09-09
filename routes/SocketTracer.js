@@ -319,12 +319,11 @@ io.on('connection', function(socket) {
 						}
 					}
 				}
-				
 				for (var i = 0 ; i <group.length ; i++){
 					group[i].memberName = group[i].memberName.substring(0 , group[i].memberName.length-1);
 					//글자수 제한 나중에 여기다가 넣을것
 				}
-				//console.log(group);
+				console.log(group);
 				socket.emit('GroupImageResult' , group );
 			}
 		});
