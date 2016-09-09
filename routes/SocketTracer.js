@@ -250,7 +250,6 @@ io.on('connection', function(socket) {
 		} , function(args1 , callback){
 			for (var i = 0 ; i <group.length; i++){
 				for (var j = 0 ; j < args1.length; j++){
-					group[i].file_location = null;
 					if(group[i].gid == args1[j].belonged_gid){
 					group[i].file_location = args1[j].file_location;
 					break;
@@ -321,7 +320,9 @@ io.on('connection', function(socket) {
 				}
 				for (var i = 0 ; i <group.length ; i++){
 					group[i].memberName = group[i].memberName.substring(0 , group[i].memberName.length-1);
-					//글자수 제한 나중에 여기다가 넣을것
+					if(group[i].file_location == undefined){
+						group[i].file_location = null;
+					}
 				}
 				console.log(group);
 				socket.emit('GroupImageResult' , group );
