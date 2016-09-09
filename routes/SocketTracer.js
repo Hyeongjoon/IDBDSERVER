@@ -250,7 +250,7 @@ io.on('connection', function(socket) {
 		} , function(args1 , callback){
 			for (var i = 0 ; i <group.length; i++){
 				for (var j = 0 ; j < args1.length; j++){
-					group[ㅓ].file_location = null;
+					group[j].file_location = null;
 					if(group[i].gid == args1[j].belonged_gid){
 					group[i].file_location = args1[j].file_location;
 					break;
