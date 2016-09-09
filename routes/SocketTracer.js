@@ -249,7 +249,7 @@ io.on('connection', function(socket) {
 			}
 		} , function(args1 , callback){
 			for (var i = 0 ; i <group.length; i++){
-				group[i].file_location = null;
+				group[i].file_location = "null";
 				for (var j = 0 ; j < args1.length; j++){
 					if(group[i].gid == args1[j].belonged_gid){
 					group[i].file_location = args1[j].file_location;
