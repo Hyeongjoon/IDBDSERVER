@@ -329,6 +329,11 @@ io.on('connection', function(socket) {
 			}
 		});
 	});
+	
+	socket.on('changedList' , function(data){
+		console.log(data);
+		
+	});
 });
 
 
