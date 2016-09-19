@@ -331,8 +331,15 @@ io.on('connection', function(socket) {
 	});
 	
 	socket.on('changedList' , function(data){
-		console.log(data);
-		
+		if(socket.handshake.session.uid==null){
+			//세션 만료됐을때
+		} else{
+			async.waterfall([function(callback){
+				belong_grDAO.switchGrOrderByGidsocket(data , handshake.session.uid , callback);
+			}] , function(err , results){
+				
+			});
+		}
 	});
 });
 
