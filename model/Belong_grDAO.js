@@ -18,7 +18,7 @@ exports.getUidInGroupNotMe = function(gidArr , uid, callback){
 	base.select(sqlQuery , callback);
 };
 
-expots.switchGrOrderByGid = function(gidArr , uid , callback){
+exports.switchGrOrderByGid = function(gidArr , uid , callback){
 	
 	console.log("여기까진오냐 슈발");
 }
