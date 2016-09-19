@@ -335,7 +335,7 @@ io.on('connection', function(socket) {
 			//세션 만료됐을때
 		} else{
 			async.waterfall([function(callback){
-				belong_grDAO.switchGrOrderByGidsocket(data , socket.handshake.session.uid , callback);
+				belong_grDAO.switchGrOrderByGid(data , socket.handshake.session.uid , callback);
 			}] , function(err , results){
 				
 			});
