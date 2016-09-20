@@ -264,6 +264,8 @@ io.on('connection', function(socket) {
 					}
 				}
 			}
+			console.log("여기가 로그다 시방새야---------------------------------------------------------");
+			console.log(group);
 			belong_grDAO.getUidInGroupNotMe(group , socket.handshake.session.uid , callback);
 		} , function(args1 , callback){
 				if(args1[0] == ''){
@@ -324,7 +326,7 @@ io.on('connection', function(socket) {
 						group[i].file_location = null;
 					}
 				}
-				console.log(group);
+				//console.log(group);
 				socket.emit('GroupImageResult' , group );
 			}
 		});
