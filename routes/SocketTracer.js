@@ -262,21 +262,17 @@ io.on('connection', function(socket) {
 					}
 				}
 			}
-			var realTemp = group;
-			console.log(group);
-			console.log("아이씐나==========================");
-			console.log(tempGroup);
+
+
 			for(var i = 0 ; i < tempGroup.length ; i++){
 				for(var j = 0 ; j <group.length;j++){
 					if(group[j].gid == tempGroup[i].gid){
-						realTemp[i] = group[j];
-						console.log(group[j].gid + "," + tempGroup[i].gid);
 						console.log(i);
+						console.log(j);
 					}
 				}
 			}
-			console.log(realTemp);
-			console.log(group);
+
 			belong_grDAO.getUidInGroupNotMe(group , socket.handshake.session.uid , callback);
 		} , function(args1 , callback){
 				if(args1[0] == ''){
