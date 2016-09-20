@@ -265,9 +265,7 @@ io.on('connection', function(socket) {
 			console.log(group);
 			for(var i = 0 ; i < group.length ; i++){
 				for(var j = 0 ; j <tempGroup.length;j++){
-					if(realTemp[i].gid == tempGroup[j].gid){
-						
-					}
+					
 				}
 			}
 			belong_grDAO.getUidInGroupNotMe(group , socket.handshake.session.uid , callback);
