@@ -255,6 +255,8 @@ io.on('connection', function(socket) {
 					break;
 					}
 				}
+				console.log("시발 이거 방탄유리야--------------------")
+				console.log(tempGroup)
 				for(var j = 0 ; j < tempGroup.length ; j++){
 					if(group[i].gid == tempGroup[j].gid){
 						group[i].name = tempGroup[j].name;
@@ -264,8 +266,6 @@ io.on('connection', function(socket) {
 					}
 				}
 			}
-			console.log("여기가 로그다 시방새야---------------------------------------------------------");
-			console.log(group);
 			belong_grDAO.getUidInGroupNotMe(group , socket.handshake.session.uid , callback);
 		} , function(args1 , callback){
 				if(args1[0] == ''){
