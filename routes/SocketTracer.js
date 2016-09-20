@@ -263,16 +263,16 @@ io.on('connection', function(socket) {
 				}
 			}
 
-
+			var realTemp =[];
 			for(var i = 0 ; i < tempGroup.length ; i++){
 				for(var j = 0 ; j <group.length;j++){
-					if(group[j].gid == tempGroup[i].gid){
-						console.log(i);
-						console.log(j);
+					if(tempGroup[i].gid == group[j].gid){
+						realTemp.push(group[j]);
+						break;
 					}
 				}
 			}
-
+			console.log(realTemp);
 			belong_grDAO.getUidInGroupNotMe(group , socket.handshake.session.uid , callback);
 		} , function(args1 , callback){
 				if(args1[0] == ''){
