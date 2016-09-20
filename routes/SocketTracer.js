@@ -255,7 +255,6 @@ io.on('connection', function(socket) {
 					break;
 					}
 				}
-				//이게잘못됐네 시발
 				for(var j = 0 ; j < tempGroup.length ; j++){
 					if(group[i].gid == tempGroup[j].gid){
 						group[i].name = tempGroup[j].name;
@@ -263,11 +262,14 @@ io.on('connection', function(socket) {
 					}
 				}
 			}
-			/*var realTemp = group;
+			console.log(group);
 			for(var i = 0 ; i < group.length ; i++){
-				if(gr)
-				
-			}*/
+				for(var j = 0 ; j <tempGroup.length;j++){
+					if(realTemp[i].gid == tempGroup[j].gid){
+						
+					}
+				}
+			}
 			belong_grDAO.getUidInGroupNotMe(group , socket.handshake.session.uid , callback);
 		} , function(args1 , callback){
 				if(args1[0] == ''){
