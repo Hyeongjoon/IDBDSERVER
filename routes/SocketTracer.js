@@ -262,12 +262,15 @@ io.on('connection', function(socket) {
 					}
 				}
 			}
-			console.log(group);
-			for(var i = 0 ; i < group.length ; i++){
-				for(var j = 0 ; j <tempGroup.length;j++){
-					
+			var realTemp = group;
+			for(var i = 0 ; i < tempGroup.length ; i++){
+				for(var j = 0 ; j <group.length;j++){
+					if(group[j].gid == tempGroup[i].gid){
+						realTemp[i] = group[j];
+					}
 				}
 			}
+			group = realTemp;
 			belong_grDAO.getUidInGroupNotMe(group , socket.handshake.session.uid , callback);
 		} , function(args1 , callback){
 				if(args1[0] == ''){
