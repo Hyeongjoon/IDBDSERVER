@@ -22,8 +22,8 @@ exports.switchGrOrderByGid = function(gidArr , uid , callback){
 	var sqlQuery = 'UPDATE belong_gr SET view_order = case '
 		console.log(gidArr);
 	for(var i = 0 ; i < gidArr.length ; i++){
-		
-		
+		sqlQuery = sqlQuery + ' gid WHEN ' + gidArr[i] + ' THEN ' + i
 	}
+	console.log(sqlQuery);
 }
 
