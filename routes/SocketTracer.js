@@ -346,7 +346,11 @@ io.on('connection', function(socket) {
 			async.waterfall([function(callback){
 				belong_grDAO.switchGrOrderByGid(data , socket.handshake.session.uid , callback);
 			}] , function(err , results){
-				
+				if(err){
+					console.log("오류있음");	
+				} else{
+				console.log("오류없음");
+				}
 			});
 		}
 	});

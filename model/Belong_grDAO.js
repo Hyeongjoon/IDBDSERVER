@@ -25,6 +25,6 @@ exports.switchGrOrderByGid = function(gidArr , uid , callback){
 		sqlQuery = sqlQuery + ' gid WHEN ' + gidArr[i] + ' THEN ' + i
 	}
 	sqlQuery = sqlQuery + ' ELSE view_order END WHERE uid = ' + mysql.escape(uid);
-	console.log(sqlQuery);
+	base.update(sqlQuery , callback);
 }
 
