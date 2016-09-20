@@ -255,17 +255,19 @@ io.on('connection', function(socket) {
 					break;
 					}
 				}
-				console.log("시발 이거 방탄유리야--------------------")
-				console.log(tempGroup)
+				//이게잘못됐네 시발
 				for(var j = 0 ; j < tempGroup.length ; j++){
 					if(group[i].gid == tempGroup[j].gid){
 						group[i].name = tempGroup[j].name;
-						var temp = group[i];
-						group[i] = group[j];
-						group[j] = temp;
+						group[i].updated = tempGroup[j].updated;
 					}
 				}
 			}
+			/*var realTemp = group;
+			for(var i = 0 ; i < group.length ; i++){
+				if(gr)
+				
+			}*/
 			belong_grDAO.getUidInGroupNotMe(group , socket.handshake.session.uid , callback);
 		} , function(args1 , callback){
 				if(args1[0] == ''){
