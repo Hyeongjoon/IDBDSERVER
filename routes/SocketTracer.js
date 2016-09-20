@@ -272,7 +272,7 @@ io.on('connection', function(socket) {
 					}
 				}
 			}
-			group = realTemp;
+			console.log(realTemp);
 			console.log(group);
 			belong_grDAO.getUidInGroupNotMe(group , socket.handshake.session.uid , callback);
 		} , function(args1 , callback){
