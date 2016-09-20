@@ -19,7 +19,7 @@ exports.getUidInGroupNotMe = function(gidArr , uid, callback){
 };
 
 exports.switchGrOrderByGid = function(gidArr , uid , callback){
-	
-	console.log("여기까진오냐 슈발");
+	var sqlQuery = 'UPDATE'
+	console.log(gidArr);
 }
 
