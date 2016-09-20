@@ -271,7 +271,7 @@ io.on('connection', function(socket) {
 					if(group[j].gid == tempGroup[i].gid){
 						realTemp[i] = group[j];
 						console.log(group[j].gid + "," + tempGroup[i].gid);
-						break;
+						console.log(i);
 					}
 				}
 			}
