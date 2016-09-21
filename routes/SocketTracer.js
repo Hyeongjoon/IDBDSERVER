@@ -364,8 +364,7 @@ io.on('connection', function(socket) {
 			} , function(args1 , callback){
 				groupDAO.addGroupReturnID(callback);
 			} , function(args1 , callback){
-				console.log(args1);
-				//belong_grDAO.addBelong_gr(socket.handshake.session.uid , args1 , data , callback);
+				belong_grDAO.addBelong_gr(socket.handshake.session.uid , args1 , data , callback);
 			}] , function(err , results){
 				console.log(results);
 			});
