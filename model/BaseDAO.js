@@ -57,7 +57,7 @@ exports.deletion = function(params , callback){
 exports.lastInsertId = function(params , callback){
 	connection.query(params, function(err, rows, fields) {
 		if (!err) {
-			callback(rows , true);
+			callback(null, rows);
 		} else {
 			console.log("err" + err);
 			callback(err, false);
