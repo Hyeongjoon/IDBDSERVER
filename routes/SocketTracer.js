@@ -262,7 +262,6 @@ io.on('connection', function(socket) {
 					}
 				}
 			}
-
 			var realTemp =[];
 			for(var i = 0 ; i < tempGroup.length ; i++){
 				for(var j = 0 ; j <group.length;j++){
@@ -347,12 +346,17 @@ io.on('connection', function(socket) {
 				belong_grDAO.switchGrOrderByGid(data , socket.handshake.session.uid , callback);
 			}] , function(err , results){
 				if(err){
-					console.log("오류있음");	
+					console.log(err);
+					console.log("순서 변경 오류생김");	
 				} else{
-				console.log("오류없음");
+					console.log("순서변경 완료");
 				}
 			});
 		}
+	});
+	
+	socket.on('addGroup' , function(data){
+		console.log(data);
 	});
 });
 
