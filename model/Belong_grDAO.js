@@ -19,14 +19,12 @@ exports.getUidInGroupNotMe = function(gidArr , uid, callback){
 };
 
 exports.switchGrOrderByGid = function(gidArr , uid , callback){
-	var sqlQuery = 'UPDATE belong_gr SET view_order = case '
+	var sqlQuery = 'UPDATE belong_gr SET view_order = case gid'
 		console.log(gidArr);
 	for(var i = 0 ; i < gidArr.length ; i++){
-		sqlQuery = sqlQuery + ' gid WHEN ' + gidArr[i] + ' THEN ' + i
+		sqlQuery = sqlQuery + ' WHEN ' + gidArr[i] + ' THEN ' + i
 	}
 	sqlQuery = sqlQuery + ' ELSE view_order END WHERE uid = ' + mysql.escape(uid);
-	
-	console.log(sqlQuery);
-	//base.update(sqlQuery , callback);
+	base.update(sqlQuery , callback);
 }
 
