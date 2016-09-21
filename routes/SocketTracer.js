@@ -359,14 +359,20 @@ io.on('connection', function(socket) {
 		if(socket.handshake.session.uid==null){
 			//세션 만료됐을때
 		} else{
+			var gid;
 			async.waterfall([function(callback){
 				belong_grDAO.addViewOrder(socket.handshake.session.uid , callback);
 			} , function(args1 , callback){
 				groupDAO.addGroupReturnID(callback);
 			} , function(args1 , callback){
+				gid = args1.insertId;
 				belong_grDAO.addBelong_gr(socket.handshake.session.uid , args1 , data , callback);
 			}] , function(err , results){
-				console.log(results);
+				if(err){
+					//에러처리
+				}else{
+					socket.emit('addGroupResult' , gid);
+				}
 			});
 		}
 	});
