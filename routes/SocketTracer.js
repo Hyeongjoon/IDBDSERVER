@@ -359,8 +359,12 @@ io.on('connection', function(socket) {
 		if(socket.handshake.session.uid==null){
 			//세션 만료됐을때
 		} else{
-			async.parallel([function(callback){
-				belong_grDAO.addGroup(socket.handshake.session.uid , data , callback);
+			async.waterfall([function(callback){
+				belong_grDAO.addViewOrder(socket.handshake.session.uid , data , callback);
+			} , function(args1 , callback){
+				groupDAO.addGroupReturnID(callback);
+			} , function(args1 , callback){
+				console.log(args1);
 			}] , function(err , results){
 				console.log(results);
 			});

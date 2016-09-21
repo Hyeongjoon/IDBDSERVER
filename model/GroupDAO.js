@@ -10,3 +10,9 @@ exports.getGroupBygid  = function(gidArr , callback){
 	sqlQuery = sqlQuery.substring(0 , sqlQuery.length-10);
 	base.select(sqlQuery , callback);
 }
+
+exports.addGroupReturnID = function(callback){
+	//var sqlQuery = ' INSERT INTO gr() VALUES();';
+	var sqlQuery = 'INSERT INTO belong_gr(uid , gid , name , view_order) values(1 , last_insert_id() , "쮸뿌쮸뿌" , 0);'
+	base.insert(sqlQuery , callback);
+}

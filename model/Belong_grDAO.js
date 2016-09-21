@@ -28,10 +28,10 @@ exports.switchGrOrderByGid = function(gidArr , uid , callback){
 	base.update(sqlQuery , callback);
 }
 
-exports.addGroup = function(uid , title , callback){
-	//var sqlQuery = 'UPDATE belong_gr SET view_order = view_order + 1 WHERE uid = ' + mysql.escape(uid) +';';
-	var sqlQuery = ' INSERT INTO gr() VALUES();';
-	console.log(sqlQuery);
-	base.lastInsertId(sqlQuery , callback);
+exports.addViewOrder = function(uid , title , callback){
+	var sqlQuery = 'UPDATE belong_gr SET view_order = view_order + 1 WHERE uid = ' + mysql.escape(uid) +';';
+	base.update(sqlQuery , callback);
 }
+
+
 
