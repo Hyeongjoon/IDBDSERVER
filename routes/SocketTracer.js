@@ -356,7 +356,17 @@ io.on('connection', function(socket) {
 	});
 	
 	socket.on('addGroup' , function(data){
-		console.log(data);
+		if(socket.handshake.session.uid==null){
+			//세션 만료됐을때
+		} else{
+			async.waterfall([function(callback){
+				belong_grDAO.addGroup(socket.handshake.session.uid , data , callback);
+			} , function(args1 , callback){
+				
+			}] , function(err , results){
+				
+			});
+		}
 	});
 });
 

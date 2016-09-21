@@ -54,5 +54,17 @@ exports.deletion = function(params , callback){
 	});
 }
 
+exports.multi = function(params , callback){
+	connection.query(params, function(err, rows, fields) {
+		if (!err) {
+			callback(null, true);
+		} else {
+			console.log("err" + err);
+			callback(err, false);
+		}
+	});
+}
+
+
 
 
