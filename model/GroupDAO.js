@@ -12,7 +12,6 @@ exports.getGroupBygid  = function(gidArr , callback){
 }
 
 exports.addGroupReturnID = function(callback){
-	//var sqlQuery = ' INSERT INTO gr() VALUES();';
-	var sqlQuery = 'INSERT INTO belong_gr(uid , gid , name , view_order) values(1 , last_insert_id() , "쮸뿌쮸뿌" , 0);'
-	base.update(sqlQuery , callback);
+	var sqlQuery = ' INSERT INTO gr() VALUES();';
+	base.lastInsertId(sqlQuery , callback);
 }

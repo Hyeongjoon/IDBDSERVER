@@ -360,11 +360,11 @@ io.on('connection', function(socket) {
 			//세션 만료됐을때
 		} else{
 			async.waterfall([function(callback){
-				belong_grDAO.addViewOrder(socket.handshake.session.uid , data , callback);
+				belong_grDAO.addViewOrder(socket.handshake.session.uid , callback);
 			} , function(args1 , callback){
 				groupDAO.addGroupReturnID(callback);
 			} , function(args1 , callback){
-				console.log(args1);
+				belong_grDAO.addBelong_gr(socket.handshake.session.uid , args1 , data , callback);
 			}] , function(err , results){
 				console.log(results);
 			});
