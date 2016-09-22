@@ -332,7 +332,7 @@ io.on('connection', function(socket) {
 						group[i].file_location = null;
 					}
 				}
-				//console.log(group);
+				console.log(group);
 				socket.emit('GroupImageResult' , group );
 			}
 		});
