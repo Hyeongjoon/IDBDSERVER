@@ -332,7 +332,6 @@ io.on('connection', function(socket) {
 						group[i].file_location = null;
 					}
 				}
-				console.log(group);
 				socket.emit('GroupImageResult' , group );
 			}
 		});
@@ -383,6 +382,10 @@ io.on('connection', function(socket) {
 				}
 			});
 		}
+	});
+	
+	socket.on('deleteGroup' , function(data){
+		console.log(data)
 	});
 });
 
