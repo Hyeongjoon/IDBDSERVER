@@ -371,6 +371,14 @@ io.on('connection', function(socket) {
 				if(err){
 					//에러처리
 				}else{
+					var inform = {
+							gid :gid,
+							member_number : 1,
+							name : data,
+							updated : 0,
+							memberName : '',
+							file_location : null
+					}
 					socket.emit('addGroupResult' , gid);
 				}
 			});
