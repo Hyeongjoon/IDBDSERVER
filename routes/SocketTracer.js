@@ -379,7 +379,7 @@ io.on('connection', function(socket) {
 							memberName : '',
 							file_location : null
 					}
-					socket.emit('addGroupResult' , gid);
+					socket.emit('addGroupResult' , inform);
 				}
 			});
 		}
