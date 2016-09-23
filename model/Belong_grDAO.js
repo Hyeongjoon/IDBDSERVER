@@ -47,5 +47,3 @@ exports.deleteBelong_gr = function(uid , gid , callback){
 	var sqlQuery = 'DELETE FROM belong_gr WHERE uid = ' + mysql.escape(uid) + ' AND gid = ' + mysql.escape(gid);
 	base.deletion(sqlQuery , callback);
 }
-
-exports.changeViewOrder = function()
