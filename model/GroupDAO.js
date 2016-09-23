@@ -15,3 +15,13 @@ exports.addGroupReturnID = function(callback){
 	var sqlQuery = ' INSERT INTO gr() VALUES();';
 	base.lastInsertId(sqlQuery , callback);
 }
+
+exports.findGrInfrom = function(gid , callback){
+	var sqlQuery = ' SELECT gid , member_number FROM gr WHERE = ' + mysql.escape(gid);
+	base.select(sqlQuery , callback);
+}
+
+exports.subtractGroupNum = function(gid , callback){
+	var sqlQuery = 'UPDATE member_number SET member_number = member_number - 1 WHERE gid = ' + mysql.escape(gid);
+	base.update(sqlQuery , callback);
+}
