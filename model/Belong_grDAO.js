@@ -14,7 +14,6 @@ exports.getUidInGroupNotMe = function(gidArr , uid, callback){
 	}
 	sqlQuery = sqlQuery.substring(0,sqlQuery.length-4);
 	sqlQuery = sqlQuery + ') AND  (uid != ' + mysql.escape(uid) + ') ORDER BY gid ASC';
-	
 	base.select(sqlQuery , callback);
 };
 
@@ -49,5 +48,4 @@ exports.deleteBelong_gr = function(uid , gid , callback){
 	base.deletion(sqlQuery , callback);
 }
 
-
-
+exports.changeViewOrder = function()
