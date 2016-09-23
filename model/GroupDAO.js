@@ -17,7 +17,7 @@ exports.addGroupReturnID = function(callback){
 }
 
 exports.findGrInfrom = function(gid , callback){
-	var sqlQuery = ' SELECT gid , member_number FROM gr WHERE = ' + mysql.escape(gid);
+	var sqlQuery = ' SELECT gid , member_number FROM gr WHERE = gid' + mysql.escape(gid);
 	base.select(sqlQuery , callback);
 }
 
