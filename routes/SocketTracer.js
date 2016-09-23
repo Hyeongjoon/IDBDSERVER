@@ -394,7 +394,7 @@ io.on('connection', function(socket) {
 			if(args1.length==0){
 				console.log("델레트할 그룹이 없다는데 없으면 안되는데...");
 			} else if(args1[0].member_number==1){
-				groupDAO.deleteGroup(data[0]);
+				groupDAO.deleteGroup(data[0] , callback);
 			} else{
 				groupDAO.subtractGroupNum(data[0] , callback);
 			}
