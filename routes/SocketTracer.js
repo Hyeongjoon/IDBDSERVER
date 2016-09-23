@@ -386,7 +386,7 @@ io.on('connection', function(socket) {
 	
 	socket.on('deleteGroup' , function(data){
 		async.waterfall([function(callback){
-			console.log(data[1]);
+			console.log(data);
 			belong_grDAO.deleteBelong_gr(socket.handshake.session.uid , data[0] , callback);
 		} , function(args1 , callback){
 			groupDAO.findGrInfrom(data[0] , callback);
