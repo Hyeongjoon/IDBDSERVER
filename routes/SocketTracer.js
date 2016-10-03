@@ -386,20 +386,19 @@ io.on('connection', function(socket) {
 	
 	socket.on('deleteGroup' , function(data1 , data2){
 		async.waterfall([function(callback) {
-			console.log(data2);
-			belong_grDAO.deleteBelong_gr(socket.handshake.session.uid , data[0] , callback);
+			belong_grDAO.deleteBelong_gr(socket.handshake.session.uid , data1[0] , callback);
 		} , function(args1 , callback) {
-			groupDAO.findGrInfrom(data[0] , callback);
+			groupDAO.findGrInfrom(data1[0] , callback);
 		} , function(args1 , callback) {
 			if (args1.length==0) {
 				console.log("델레트할 그룹이 없다는데 없으면 안되는데...");
 			} else if (args1[0].member_number==1) {
-				groupDAO.deleteGroup(data[0] , callback);
+				groupDAO.deleteGroup(data1[0] , callback);
 			} else {
-				groupDAO.subtractGroupNum(data[0] , callback);
+				groupDAO.subtractGroupNum(data1[0] , callback);
 			}
 		} , function(args1 , callback) {
-			
+			console.log("여기까진 와야해");
 		}] , function(err , results){
 			
 		});

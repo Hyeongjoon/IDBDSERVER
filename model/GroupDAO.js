@@ -22,7 +22,7 @@ exports.findGrInfrom = function(gid , callback){
 }
 
 exports.subtractGroupNum = function(gid , callback){
-	var sqlQuery = 'UPDATE member_number SET member_number = member_number - 1 WHERE gid = ' + mysql.escape(gid);
+	var sqlQuery = 'UPDATE gr SET member_number = member_number - 1 WHERE gid = ' + mysql.escape(gid);
 	base.update(sqlQuery , callback);
 }
 

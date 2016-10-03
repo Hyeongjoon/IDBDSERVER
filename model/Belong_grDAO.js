@@ -18,8 +18,7 @@ exports.getUidInGroupNotMe = function(gidArr , uid, callback){
 };
 
 exports.switchGrOrderByGid = function(gidArr , uid , callback){
-	var sqlQuery = 'UPDATE belong_gr SET view_order = case gid'
-		console.log(gidArr);
+	var sqlQuery = 'UPDATE belong_gr SET view_order = case gid';
 	for(var i = 0 ; i < gidArr.length ; i++){
 		sqlQuery = sqlQuery + ' WHEN ' + gidArr[i] + ' THEN ' + i
 	}
@@ -28,7 +27,7 @@ exports.switchGrOrderByGid = function(gidArr , uid , callback){
 }
 
 exports.addViewOrder = function(uid , callback){
-	var sqlQuery = 'UPDATE belong_gr SET view_order = view_order + 1 WHERE uid = ' + mysql.escape(uid) +';';
+	var sqlQuery = 'UPDATE belong_gr SET view_order = view_order + 1 WHERE uid = ' + mysql.escape(uid);
 	base.update(sqlQuery , callback);
 }
 
@@ -46,4 +45,10 @@ exports.addBelong_gr = function(uid , grInform , title ,callback){
 exports.deleteBelong_gr = function(uid , gid , callback){
 	var sqlQuery = 'DELETE FROM belong_gr WHERE uid = ' + mysql.escape(uid) + ' AND gid = ' + mysql.escape(gid);
 	base.deletion(sqlQuery , callback);
+}
+
+exports.subtractViewOrder = function(uid , gidArr , viewOrder , callback){
+	var sqlQuery = 'UPDATE belong_gr SET view_order = case gid ';
+	for(var i = viewOrder ; i < viewOder + gidArr.length)
+	
 }
