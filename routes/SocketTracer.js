@@ -409,7 +409,7 @@ io.on('connection', function(socket) {
 		});
 	});
 	
-	socket.on('changeGroupName' , function(data1 , data2){
+	socket.on('changeGroupName' , function(data1 , data2) {
 		console.log(data1);
 		console.log(data2);
 	});
