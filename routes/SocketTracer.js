@@ -401,9 +401,12 @@ io.on('connection', function(socket) {
 			console.log(data1);//여기부터 하면되고 view_order 바꾸는것만 하면 delete 끝납니다.
 			belong_grDAO.subtractViewOrder(socket.handshake.session.uid ,data1 ,data2 , callback);
 		}] , function(err , results) {
-			console.log(results);
+			if(err){
+				console.log("그룹삭제 실패");
+			} else{
+				console.log("그룹삭제 성공");
+			}
 		});
-		//여기에 gid 넘어오는거 확인함
 	});
 });
 
