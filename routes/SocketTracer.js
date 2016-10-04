@@ -398,7 +398,7 @@ io.on('connection', function(socket) {
 				groupDAO.subtractGroupNum(data1[0] , callback);
 			}
 		} , function(args1 , callback) {
-			console.log(data2);//여기부터 하면되고 view_order 바꾸는것만 하면 delete 끝납니다.
+			console.log(data1);//여기부터 하면되고 view_order 바꾸는것만 하면 delete 끝납니다.
 		}] , function(err , results) {
 			
 		});
