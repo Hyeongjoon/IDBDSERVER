@@ -49,7 +49,7 @@ exports.deleteBelong_gr = function(uid , gid , callback){
 
 exports.subtractViewOrder = function(uid , gidArr , viewOrder , callback){
 	var sqlQuery = 'UPDATE belong_gr SET view_order = case gid ';
-	for(var i = 0 ; i < gidArr.length-1){
+	for(var i = 0 ; i < gidArr.length-1 ; i++){
 		sqlQuery = sqlQuery + ' WHEN ' + gidArr[i+1] + ' THEN ' + (viewOrder+i);
 	}
 	sqlQuery = sqlQuery + ' ELSE view_order END WHERE uid = ' + mysql.escape(uid);
