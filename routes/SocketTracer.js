@@ -414,10 +414,11 @@ io.on('connection', function(socket) {
 		} , function(callback){
 			belong_grDAO.findViewOrder(socket.handshake.session.uid , data2 , callback);
 		}], function(err , results){
-			var inform = results[2][0];
+			
 			if(err){
 				console.log("그룹 이름 변경에 오류가 생겨부렀어");
 			} else{
+				var inform = results[1][0];
 				socket.emit('changeGroup' , inform );
 			}
 		});
