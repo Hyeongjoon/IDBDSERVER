@@ -412,7 +412,7 @@ io.on('connection', function(socket) {
 		async.series([function(callback){
 			belong_grDAO.changeGrName(socket.handshake.session.uid , data2 , data1 , callback);//이름바꾸는것부터 하면됨
 		}], function(err , results){
-			
+			console.log(results);
 		});
 	});
 });

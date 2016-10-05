@@ -58,6 +58,5 @@ exports.subtractViewOrder = function(uid , gidArr , viewOrder , callback){
 
 exports.changeGrName = function(uid , gid , name , callback){
 	var sqlQuery = 'UPDATE belong_gr SET name = ' + mysql.escape(name) + ' WHERE uid = ' + mysql.escape(uid) + ' AND gid = ' + mysql.escape(gid);
-		console.log(sqlQuery);
-		//여기부터하면됨
+	base.update(sqlQuery , callback);
 }
