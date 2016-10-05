@@ -411,6 +411,8 @@ io.on('connection', function(socket) {
 	socket.on('changeGroupName' , function(data1 , data2) {
 		async.series([function(callback){
 			belong_grDAO.changeGrName(socket.handshake.session.uid , data2 , data1 , callback);//이름바꾸는것부터 하면됨
+		} , function(callback){
+			belong_grDAO.findViewOrder(socket.handshake.session.uid , data2 , callback);
 		}], function(err , results){
 			console.log(results);
 		});
