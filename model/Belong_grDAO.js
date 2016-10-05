@@ -62,6 +62,6 @@ exports.changeGrName = function(uid , gid , name , callback){
 }
 
 exports.findViewOrder = function(uid , gid , callback){
-	var sqlQuery = 'SELECT gid , view_order FROM belong_gr WHERE uid = ' + mysql.escape(uid) + ' AND gid = ' + mysql.escape(gid);
+	var sqlQuery = 'SELECT gid , name , view_order FROM belong_gr WHERE uid = ' + mysql.escape(uid) + ' AND gid = ' + mysql.escape(gid);
 	base.select(sqlQuery, callback);
 }
