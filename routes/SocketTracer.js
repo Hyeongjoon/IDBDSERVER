@@ -58,7 +58,6 @@ io.on('connection', function(socket) {
 	});
 	
 	socket.on('signUp',function(data){
-		console.log(data);
 		var result = {result : ""};
 		if(data==undefined||data.password!==data.password_confirm||data.email==''||data.password==''||data.name==''||data.password_confirm==''){
 			console.log("이상하게 안걸러지네?");
@@ -410,8 +409,11 @@ io.on('connection', function(socket) {
 	});
 	
 	socket.on('changeGroupName' , function(data1 , data2) {
-		console.log(data1);
-		console.log(data2);
+		async.series([function(callback){
+			belong_grDAO.changeGrName(socket.handshake.session.uid , data2 , data1 , callback);//이름바꾸는것부터 하면됨
+		}], function(err , results){
+			
+		});
 	});
 });
 
