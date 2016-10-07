@@ -97,7 +97,7 @@ io.on('connection', function(socket) {
 		EmailHelper.makeEmail(data.email);
 	});
 	
-	socket.on('getAlram' , function(data){
+/*	socket.on('getAlram' , function(data){
 		if(socket.handshake.session.uid==null){
 			//세션 만료됐을때
 		}else{
@@ -202,7 +202,7 @@ io.on('connection', function(socket) {
 				}
 			});
 		}
-	});
+	});*/
 	
 	
 	//이거 시발 날잡고 갈아엎자
@@ -365,6 +365,8 @@ io.on('connection', function(socket) {
 			} , function(args1 , callback){
 				gid = args1.insertId;
 				belong_grDAO.addBelong_gr(socket.handshake.session.uid , args1 , data , callback);
+			} , function(args1 , callback){
+				encryptHelper.codeGen();
 			}] , function(err , results){
 				if(err){
 					//에러처리
@@ -414,7 +416,6 @@ io.on('connection', function(socket) {
 		} , function(callback){
 			belong_grDAO.findViewOrder(socket.handshake.session.uid , data2 , callback);
 		}], function(err , results){
-			
 			if(err){
 				console.log("그룹 이름 변경에 오류가 생겨부렀어");
 			} else{

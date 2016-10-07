@@ -27,6 +27,7 @@ create table gr(
 	gid int unsigned NOT NULL  AUTO_INCREMENT,
     updated_time datetime default now() NOT NULL,
     member_number tinyint unsigned NOT NULL default 1 ,
+    password VARCHAR(255) default NULL,
     primary key(gid)
     )Engine = InnoDB DEFAULT CHARSET = utf8;
 
@@ -192,5 +193,13 @@ create table alram(
     foreign key(target_lid) references location(lid) ON DELETE CASCADE ON UPDATE CASCADE
 ) Engine =InnoDB DEFAULT CHARSET = utf8;
 
- 
+DROP TABLE IF exists code_table;
+create table code_table(
+	code CHAR(5) NOT NULL,
+	gid int unsigned NOT NULL,
+    primary key(code),
+    unique key(gid),
+    foreign key(gid) references gr(gid) ON DELETE CASCADE ON UPDATE CASCADE
+) Engine =InnoDB DEFAULT CHARSET = utf8;  /**사실 이거 그룹에 걍 넣어 놓는게 좋은데 몰것다 일단 이렇게 해놓음 **/
+
  SET foreign_key_checks = 1;
