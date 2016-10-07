@@ -13,7 +13,7 @@ exports.encryptEmail = function(input){
 	return result;
 }
 
-eports.codeGen = function(){
+exports.codeGen = function(){
 	var result;
 	var stringLength = 5;
 	for( var i = 0 ; i < stringLength ; i++ ) {
