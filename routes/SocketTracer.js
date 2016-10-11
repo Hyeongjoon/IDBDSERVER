@@ -368,7 +368,21 @@ io.on('connection', function(socket) {
 				gid = args1.insertId;
 				belong_grDAO.addBelong_gr(socket.handshake.session.uid , args1 , data , callback);
 			} , function(args1 , callback){
-				codeDAO.insertCode( gid , callback);
+				var check = true;
+				async.whilst(
+						function(){return check==true},
+						function(subCallback){
+							codeDAO.insertCode(gid ,check, subCallback);
+							setTimeout(function() {
+								subCallback(null, check);
+					        }, 1000);
+						},
+						function(err , n){
+							console.log(n);
+						}
+				);
+				
+				
 					/*async.parallel([function(subCallback){
 						codeDAO.insertCode(key , gid , subCallback);
 					}] , function(err ,results){
