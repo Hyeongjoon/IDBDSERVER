@@ -383,9 +383,8 @@ io.on('connection', function(socket) {
 									check=false;
 									console.log("여기는?");
 								} else{
-									console.log('여긴언제오냐?');
+									console.log('삽입 완료');
 									check=false;
-									errCheck = true;
 								}
 							});
 							setTimeout(function() {
@@ -393,7 +392,7 @@ io.on('connection', function(socket) {
 					        }, 1000);
 						},
 						function(err , check){
-							console.log("여긴언제오냐 시발");
+							callback(null , true);
 						}
 				);
 			}] , function(err , results){
