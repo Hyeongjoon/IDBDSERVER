@@ -372,7 +372,7 @@ io.on('connection', function(socket) {
 					async.parallel([function( subCallback ){
 						codeDAO.insertCode(key , gid , subCallback);
 					}] , function(err ,results){
-						if((err)&&(results[0]==false)){
+						if(err.indexOf('PRIMARY')!=-1){
 							console.log("실패했을때");
 						} else{
 							console.log("성공했을때");
