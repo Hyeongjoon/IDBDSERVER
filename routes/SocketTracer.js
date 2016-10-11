@@ -370,12 +370,11 @@ io.on('connection', function(socket) {
 			} , function(args1 , callback){
 				var key = encryptHelper.codeGen();
 				while(true){
-					async.parallel([function( subCallback ){
+					async.parallel([function(subCallback){
 						codeDAO.insertCode(key , gid , subCallback);
 					}] , function(err ,results){
 						if((err+"").indexOf('PRIMARY')!=-1){
 							console.log('코드가 중복');
-							continue;
 						} else if(err){
 							//이거 에러처리해야됨 코드 삽입 안됐을때(중복빼고) 어캐할껀지....슈벌탱 
 							callback(true , false);
