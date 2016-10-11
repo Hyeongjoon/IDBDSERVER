@@ -64,7 +64,7 @@ exports.lastInsertId = function(params, callback) {
 		}
 	});
 };
-
+/*
 exports.whileInsert = function(params, inform,  callback) {
 	var key = encryptHelper.codeGen();
 	inform.code = key;
@@ -81,4 +81,4 @@ exports.whileInsert = function(params, inform,  callback) {
 			return true;
 		}
 	});
-};
+};*/

@@ -1,11 +1,11 @@
 var base = require('./BaseDAO.js');
 var mysql = require('mysql');
 
-exports.insertCode = function( gid , callback){
+exports.insertCode = function( gid ,code ,callback){
 	var sqlQuery = 'INSERT INTO code_table SET ?'
 	var inform = {
-			'code' : '',
+			'code' : code,
 			'gid' : gid
 	}
-	return base.whileInsert(sqlQuery , inform ,  callback);
+	base.insert(sqlQuery , inform ,  callback);
 }

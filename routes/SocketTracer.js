@@ -372,9 +372,22 @@ io.on('connection', function(socket) {
 				async.whilst(
 						function(){return check==true},
 						function(subCallback){
-							
-							check = false;
-							
+							async.parallel([function(sub2Callback){
+								var key = encryptHelper.codeGen();
+								codeDAO.insertCode( gid  , key , sub2Callback);
+							}] , function(err ,results){
+								if((err+"").indexOf('PRIMARY')!=-1){
+									console.log('코드가 중복');
+								} else if(err){
+									//이거 에러처리해야됨 코드 삽입 안됐을때(중복빼고) 어캐할껀지....슈벌탱H
+									check=false;
+									console.log("여기는?");
+								} else{
+									console.log('여긴언제오냐?');
+									check=false;
+									errCheck = true;
+								}
+							});
 							setTimeout(function() {
 								subCallback(null, check);
 					        }, 1000);
@@ -383,26 +396,6 @@ io.on('connection', function(socket) {
 							console.log("여긴언제오냐 시발");
 						}
 				);
-				
-				
-					/*async.parallel([function(subCallback){
-						codeDAO.insertCode(key , gid , subCallback);
-					}] , function(err ,results){
-						if((err+"").indexOf('PRIMARY')!=-1){
-							console.log('코드가 중복');
-						} else if(err){
-							//이거 에러처리해야됨 코드 삽입 안됐을때(중복빼고) 어캐할껀지....슈벌탱H
-							check=false;
-							callback(true , false);
-							console.log("여기는?/");
-							//break , continue astnc안에서 안먹나바 시벌탱
-						} else{
-							console.log('여긴언제오냐?');
-							check=false;
-							errCheck = true;
-							callback(null , true);
-						}
-					});*/
 			}] , function(err , results){
 				if(err){
 					//에러처리
