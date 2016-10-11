@@ -370,7 +370,7 @@ io.on('connection', function(socket) {
 			} , function(args1 , callback){
 				var key = encryptHelper.codeGen();
 				var check = true;
-				while(check){
+				//while(check){
 					async.parallel([function(subCallback){
 						codeDAO.insertCode(key , gid , subCallback);
 					}] , function(err ,results){
@@ -380,15 +380,17 @@ io.on('connection', function(socket) {
 							//이거 에러처리해야됨 코드 삽입 안됐을때(중복빼고) 어캐할껀지....슈벌탱
 							check=false;
 							callback(true , false);
+							console.log("여기는?/");
 							//break , continue astnc안에서 안먹나바 시벌탱
 						} else{
+							console.log('여긴언제오냐?');
 							check=false;
 							errCheck = true;
 							callback(null , true);
 							
 						}
 					});
-				}
+				//}
 			}] , function(err , results){
 				if(err || errCheck == false){
 					//에러처리
