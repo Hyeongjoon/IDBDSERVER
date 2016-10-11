@@ -368,10 +368,8 @@ io.on('connection', function(socket) {
 				gid = args1.insertId;
 				belong_grDAO.addBelong_gr(socket.handshake.session.uid , args1 , data , callback);
 			} , function(args1 , callback){
-				var key = encryptHelper.codeGen();
-				var check = true;
-				while(check){
-					async.parallel([function(subCallback){
+				codeDAO.insertCode(key , gid , subCallback);
+					/*async.parallel([function(subCallback){
 						codeDAO.insertCode(key , gid , subCallback);
 					}] , function(err ,results){
 						if((err+"").indexOf('PRIMARY')!=-1){
@@ -387,12 +385,10 @@ io.on('connection', function(socket) {
 							check=false;
 							errCheck = true;
 							callback(null , true);
-							
 						}
-					});
-				}
+					});*/
 			}] , function(err , results){
-				if(err || errCheck == false){
+				if(err){
 					//에러처리
 				} else{
 					var inform = {

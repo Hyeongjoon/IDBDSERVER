@@ -1,6 +1,6 @@
 var mysql = require('mysql');
 var config = require('../helper/config.js');
-
+var encryptHelper = require('../helper/EncryptHelper');
 
 var connection = mysql.createConnection({
 	host : config.mysql.host,
@@ -21,18 +21,18 @@ exports.select = function(params, callback) {
 	});
 };
 
-exports.insert = function(params, inform, callback){
-	connection.query(params, inform , function(err, rows, fields) {
+exports.insert = function(params, inform, callback) {
+	connection.query(params, inform, function(err, rows, fields) {
 		if (!err) {
 			callback(null, true);
 		} else {
 			console.log("err" + err);
 			callback(err, false);
 		}
-	});	
+	});
 };
 
-exports.update = function(params , callback){
+exports.update = function(params, callback) {
 	connection.query(params, function(err, rows, fields) {
 		if (!err) {
 			callback(null, true);
@@ -43,7 +43,7 @@ exports.update = function(params , callback){
 	});
 };
 
-exports.deletion = function(params , callback){
+exports.deletion = function(params, callback) {
 	connection.query(params, function(err, rows, fields) {
 		if (!err) {
 			callback(null, true);
@@ -52,9 +52,9 @@ exports.deletion = function(params , callback){
 			callback(err, false);
 		}
 	});
-}
+};
 
-exports.lastInsertId = function(params , callback){
+exports.lastInsertId = function(params, callback) {
 	connection.query(params, function(err, rows, fields) {
 		if (!err) {
 			callback(null, rows);
@@ -63,8 +63,24 @@ exports.lastInsertId = function(params , callback){
 			callback(err, false);
 		}
 	});
-}
+};
 
-
-
-
+exports.whileInsert = function(params, inform, callback) {
+	var check = true;
+	while (check) {
+		var key = encryptHelper.codeGen();
+		inform.code = key;
+		connection.query(params, inform, function(err, rows, fields) {
+			if (!err) {
+				check = false;
+				callback(null, true);
+			} else if((err+"").indexOf('PRIMARY')!=-1){
+				
+			} else {
+				check = false;
+				console.log("err" + err);
+				callback(err, false);
+			}
+		});
+	}
+};
