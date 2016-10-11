@@ -65,20 +65,20 @@ exports.lastInsertId = function(params, callback) {
 	});
 };
 
-exports.whileInsert = function(params, inform, check , callback) {
+exports.whileInsert = function(params, inform,  callback) {
 	var key = encryptHelper.codeGen();
 	inform.code = key;
 	connection.query(params, inform, function(err, rows, fields) {
 		if (!err) {
-			check = false;
 			console.log("여긴오냐고");
-			callback(null, true);
+			return true;
 		} else if ((err + "").indexOf('PRIMARY') != -1) {
 			console.log("여긴오냐");
+			return false;
 		} else {
-			check = false;
 			console.log("err" + err);
-			callback(err, false);
+			callback(err);
+			return true;
 		}
 	});
 };

@@ -7,5 +7,5 @@ exports.insertCode = function( gid , check ,callback){
 			'code' : '',
 			'gid' : gid
 	}
-	base.whileInsert(sqlQuery , inform , check , callback);
+	return base.whileInsert(sqlQuery , inform , check , callback);
 }

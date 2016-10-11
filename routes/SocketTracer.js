@@ -372,7 +372,9 @@ io.on('connection', function(socket) {
 				async.whilst(
 						function(){return check==true},
 						function(subCallback){
-							codeDAO.insertCode(gid ,check, callback);
+							if(codeDAO.insertCode(gid ,check, subCallback)){
+								check = false;
+							}
 							setTimeout(function() {
 								subCallback(null, check);
 					        }, 1000);
