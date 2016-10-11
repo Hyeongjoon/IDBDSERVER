@@ -393,7 +393,7 @@ io.on('connection', function(socket) {
 						},
 						function(err , check){
 							if(err){
-							callback(err , false);
+								callback(err , false);
 							} else{
 								callback(null , true);
 							}
@@ -431,7 +431,6 @@ io.on('connection', function(socket) {
 				groupDAO.subtractGroupNum(data1[0] , callback);
 			}
 		} , function(args1 , callback) {
-			console.log(data1);//여기부터 하면되고 view_order 바꾸는것만 하면 delete 끝납니다.
 			belong_grDAO.subtractViewOrder(socket.handshake.session.uid ,data1 ,data2 , callback);
 		}] , function(err , results) {
 			if(err){
@@ -455,6 +454,10 @@ io.on('connection', function(socket) {
 				socket.emit('changeGroup' , inform );
 			}
 		});
+	});
+	
+	socket.on('getCode' , function(data){
+		console.log(data);
 	});
 });
 
