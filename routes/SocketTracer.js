@@ -372,7 +372,7 @@ io.on('connection', function(socket) {
 				async.whilst(
 						function(){return check==true},
 						function(subCallback){
-							if(codeDAO.insertCode(gid ,check, subCallback)){
+							if(codeDAO.insertCode(gid , subCallback)){
 								check = false;
 							}
 							setTimeout(function() {
@@ -391,7 +391,7 @@ io.on('connection', function(socket) {
 						if((err+"").indexOf('PRIMARY')!=-1){
 							console.log('코드가 중복');
 						} else if(err){
-							//이거 에러처리해야됨 코드 삽입 안됐을때(중복빼고) 어캐할껀지....슈벌탱
+							//이거 에러처리해야됨 코드 삽입 안됐을때(중복빼고) 어캐할껀지....슈벌탱H
 							check=false;
 							callback(true , false);
 							console.log("여기는?/");
