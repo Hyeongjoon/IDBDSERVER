@@ -372,14 +372,15 @@ io.on('connection', function(socket) {
 				async.whilst(
 						function(){return check==true},
 						function(subCallback){
-								check = false;
-							}
+							
+							check = false;
+							
 							setTimeout(function() {
 								subCallback(null, check);
 					        }, 1000);
 						},
 						function(err , check){
-							console.log("여긴 언제오냐 시발련아");
+							console.log("여긴언제오냐 시발");
 						}
 				);
 				
