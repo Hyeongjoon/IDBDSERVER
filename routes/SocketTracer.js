@@ -370,7 +370,7 @@ io.on('connection', function(socket) {
 			} , function(args1 , callback){
 				var key = encryptHelper.codeGen();
 				var check = true;
-				//while(check){
+				while(check){
 					async.parallel([function(subCallback){
 						codeDAO.insertCode(key , gid , subCallback);
 					}] , function(err ,results){
@@ -390,7 +390,7 @@ io.on('connection', function(socket) {
 							
 						}
 					});
-				//}
+				}
 			}] , function(err , results){
 				if(err || errCheck == false){
 					//에러처리
