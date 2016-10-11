@@ -14,11 +14,10 @@ exports.encryptEmail = function(input){
 }
 
 exports.codeGen = function(){
-	var result;
+	var result='';
 	var stringLength = 5;
 	for( var i = 0 ; i < stringLength ; i++ ) {
 		result = result + char[Math.floor(Math.random()*26)];
 	}
-	console.log(result);
-	//return result;
+	return result;
 }
