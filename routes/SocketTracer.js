@@ -368,7 +368,7 @@ io.on('connection', function(socket) {
 				gid = args1.insertId;
 				belong_grDAO.addBelong_gr(socket.handshake.session.uid , args1 , data , callback);
 			} , function(args1 , callback){
-				codeDAO.insertCode(key , gid , subCallback);
+				codeDAO.insertCode( gid , subCallback);
 					/*async.parallel([function(subCallback){
 						codeDAO.insertCode(key , gid , subCallback);
 					}] , function(err ,results){
