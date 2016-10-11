@@ -8,6 +8,7 @@ var belong_grDAO = require('../model/Belong_grDAO');
 var alramDAO = require('../model/AlramDAO');
 var groupDAO = require('../model/GroupDAO');
 var locationDAO = require('../model/LocationDAO');
+var codeDAO = require('../model/CodeDAO');
 var decryptHelper = require('../helper/DecryptHelper');
 var encryptHelper = require('../helper/EncryptHelper');
 var EmailHelper = require('../helper/EmailMake');
@@ -365,17 +366,16 @@ io.on('connection', function(socket) {
 			} , function(args1 , callback){
 				gid = args1.insertId;
 				belong_grDAO.addBelong_gr(socket.handshake.session.uid , args1 , data , callback);
-			} /*, function(args1 , callback){
+			} , function(args1 , callback){
 				var key = encryptHelper.codeGen();
-				console.log(key);
-				while(true){
+				//while(true){
 					async.parallel([function( subCallback ){
-						
+						codeDAO.insertCode(key , gid , subCallback);
 					}] , function(err ,results){
-						
+						console.log(results);
 					});
-				}
-			}*/] , function(err , results){
+				//}
+			}] , function(err , results){
 				if(err){
 					//에러처리
 				}else{
