@@ -372,7 +372,6 @@ io.on('connection', function(socket) {
 				async.whilst(
 						function(){return check==true},
 						function(subCallback){
-							if(codeDAO.insertCode(gid , subCallback)){
 								check = false;
 							}
 							setTimeout(function() {
@@ -380,7 +379,7 @@ io.on('connection', function(socket) {
 					        }, 1000);
 						},
 						function(err , check){
-							console.log(check);
+							console.log("여긴 언제오냐 시발련아");
 						}
 				);
 				
