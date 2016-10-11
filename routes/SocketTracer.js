@@ -372,13 +372,13 @@ io.on('connection', function(socket) {
 				async.whilst(
 						function(){return check==true},
 						function(subCallback){
-							codeDAO.insertCode(gid ,check, subCallback);
+							codeDAO.insertCode(gid ,check, callback);
 							setTimeout(function() {
 								subCallback(null, check);
 					        }, 1000);
 						},
-						function(err , n){
-							console.log(n);
+						function(err , check){
+							console.log(check);
 						}
 				);
 				
