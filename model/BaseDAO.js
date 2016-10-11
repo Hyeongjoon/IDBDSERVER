@@ -67,20 +67,21 @@ exports.lastInsertId = function(params, callback) {
 
 exports.whileInsert = function(params, inform, callback) {
 	var check = true;
-	while (check) {
+	//while (check) {
 		var key = encryptHelper.codeGen();
 		inform.code = key;
 		connection.query(params, inform, function(err, rows, fields) {
 			if (!err) {
 				check = false;
+				console.log("여긴오냐고");
 				callback(null, true);
 			} else if((err+"").indexOf('PRIMARY')!=-1){
-				
+				console.log("여긴오냐");
 			} else {
 				check = false;
 				console.log("err" + err);
 				callback(err, false);
 			}
 		});
-	}
+	//}
 };
