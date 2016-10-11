@@ -381,9 +381,9 @@ io.on('connection', function(socket) {
 								} else if(err){
 									//이거 에러처리해야됨 코드 삽입 안됐을때(중복빼고) 어캐할껀지....슈벌탱H
 									check=false;
-									console.log("여기는?");
+									console.log('삽입중 알수업는 오류');
+									console.log(err);
 								} else{
-									console.log('삽입 완료');
 									check=false;
 								}
 							});
@@ -392,7 +392,11 @@ io.on('connection', function(socket) {
 					        }, 1000);
 						},
 						function(err , check){
-							callback(null , true);
+							if(err){
+							callback(err , false);
+							} else{
+								callback(null , true);
+							}
 						}
 				);
 			}] , function(err , results){

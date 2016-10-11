@@ -4,7 +4,7 @@ var mysql = require('mysql');
 exports.insertCode = function( gid ,code ,callback){
 	var sqlQuery = 'INSERT INTO code_table SET ?'
 	var inform = {
-			'code' : 'ABCDE',
+			'code' : code,
 			'gid' : gid
 	}
 	base.insert(sqlQuery , inform ,  callback);
