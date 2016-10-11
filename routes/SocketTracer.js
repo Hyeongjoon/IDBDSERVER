@@ -365,17 +365,17 @@ io.on('connection', function(socket) {
 			} , function(args1 , callback){
 				gid = args1.insertId;
 				belong_grDAO.addBelong_gr(socket.handshake.session.uid , args1 , data , callback);
-			} , function(args1 , callback){
+			} /*, function(args1 , callback){
 				var key = encryptHelper.codeGen();
 				console.log(key);
-				/*while(true){
+				while(true){
 					async.parallel([function( subCallback ){
 						
 					}] , function(err ,results){
 						
 					});
-				}*/
-			}] , function(err , results){
+				}
+			}*/] , function(err , results){
 				if(err){
 					//에러처리
 				}else{
