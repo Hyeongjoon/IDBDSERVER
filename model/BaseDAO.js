@@ -65,7 +65,7 @@ exports.lastInsertId = function(params, callback) {
 	});
 };
 
-exports.whileInsert = function(params, check ,inform, callback) {
+exports.whileInsert = function(params, inform, check , callback) {
 	var key = encryptHelper.codeGen();
 	inform.code = key;
 	connection.query(params, inform, function(err, rows, fields) {
