@@ -359,7 +359,7 @@ io.on('connection', function(socket) {
 			//세션 만료됐을때
 		} else{
 			var gid;
-			var check = false;
+			var errCheck = false;
 			async.waterfall([function(callback){
 				belong_grDAO.addViewOrder(socket.handshake.session.uid , callback);
 			} , function(args1 , callback){
@@ -369,25 +369,28 @@ io.on('connection', function(socket) {
 				belong_grDAO.addBelong_gr(socket.handshake.session.uid , args1 , data , callback);
 			} , function(args1 , callback){
 				var key = encryptHelper.codeGen();
-				while(true){
+				var check = true;
+				while(check){
 					async.parallel([function(subCallback){
 						codeDAO.insertCode(key , gid , subCallback);
 					}] , function(err ,results){
 						if((err+"").indexOf('PRIMARY')!=-1){
 							console.log('코드가 중복');
 						} else if(err){
-							//이거 에러처리해야됨 코드 삽입 안됐을때(중복빼고) 어캐할껀지....슈벌탱 
+							//이거 에러처리해야됨 코드 삽입 안됐을때(중복빼고) 어캐할껀지....슈벌탱
+							check=false;
 							callback(true , false);
-							break;
+							//break , continue astnc안에서 안먹나바 시벌탱
 						} else{
+							check=false;
+							errCheck = true;
 							callback(null , true);
-							check = true;
-							break;
+							
 						}
 					});
 				}
 			}] , function(err , results){
-				if(err || check == false){
+				if(err || errCheck == false){
 					//에러처리
 				} else{
 					var inform = {
