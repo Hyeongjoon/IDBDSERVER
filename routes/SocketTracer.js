@@ -379,7 +379,7 @@ io.on('connection', function(socket) {
 								if((err+"").indexOf('PRIMARY')!=-1){
 									console.log('코드가 중복');
 								} else if(err){
-									//이거 에러처리해야됨 코드 삽입 안됐을때(중복빼고) 어캐할껀지....슈벌탱H
+									//이거 에러처리해야됨 코드 삽입 안됐을때(중복빼고) 어캐할껀지....슈벌탱
 									check=false;
 									console.log('삽입중 알수업는 오류');
 									console.log(err);
@@ -402,7 +402,7 @@ io.on('connection', function(socket) {
 			}] , function(err , results){
 				if(err){
 					//에러처리
-				} else{
+				} else {
 					var inform = {
 							gid :gid,
 							member_number : 1,
