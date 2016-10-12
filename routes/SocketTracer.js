@@ -457,7 +457,11 @@ io.on('connection', function(socket) {
 	});
 	
 	socket.on('getCode' , function(data){
-		console.log(data);
+		async.series([function(callback){
+			codeDAO.findCode(data , callback);
+		}] , function(err, results){
+			console.log(results);
+		});
 	});
 });
 

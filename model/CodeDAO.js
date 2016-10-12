@@ -9,3 +9,8 @@ exports.insertCode = function( gid ,code ,callback){
 	}
 	base.insert(sqlQuery , inform ,  callback);
 }
+
+exports.findCode = function(gid , callback){
+	var sqlQuery = 'SELECT * FROM code_table WHERE gid = ' + mysql.escape(gid);
+	base.select(sqlQuery , callback);
+}
