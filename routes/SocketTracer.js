@@ -459,8 +459,12 @@ io.on('connection', function(socket) {
 	socket.on('getCode' , function(data){
 		async.series([function(callback){
 			codeDAO.findCode(data , callback);
-		}] , function(err, results){
-			console.log(results);
+		}] , function (err, results) {
+			if(err || (results.length!=1)){
+				socket.emit('codeResult' , false);
+			} else {
+				socket.emit('codeResult' , results[0].code );
+			}
 		});
 	});
 });
