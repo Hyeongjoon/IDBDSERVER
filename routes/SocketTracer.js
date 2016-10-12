@@ -463,6 +463,7 @@ io.on('connection', function(socket) {
 			if(err || (results.length!=1)){
 				socket.emit( 'codeResult' , false );
 			} else {
+				console.log(results[0].code);
 				socket.emit( 'codeResult' , results[0].code );
 			}
 		});
