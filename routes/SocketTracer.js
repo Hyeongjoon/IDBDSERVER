@@ -461,9 +461,9 @@ io.on('connection', function(socket) {
 			codeDAO.findCode(data , callback);
 		}] , function (err, results) {
 			if(err || (results.length!=1)){
-				socket.emit('codeResult' , false);
+				socket.emit( 'codeResult' , false );
 			} else {
-				socket.emit('codeResult' , results[0].code );
+				socket.emit( 'codeResult' , results[0].code );
 			}
 		});
 	});
