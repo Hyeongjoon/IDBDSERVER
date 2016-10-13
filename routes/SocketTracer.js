@@ -519,7 +519,7 @@ io.on('connection', function(socket) {
 				console.log(grInform);
 				grInform.member_name = '';
 				for(var i = 0 ; i <result.length ; i++){
-					grInform.member_name = grInform.member_name + ','
+					grInform.member_name = grInform.member_name + result[i].name +','
 				}
 				console.log(grInform);
 				resultInform = 'true';
