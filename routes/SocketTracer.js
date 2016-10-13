@@ -517,9 +517,9 @@ io.on('connection', function(socket) {
 				}
 			} else{
 				console.log(grInform);
-				grInform.member_name = '';
+				grInform.memberName = '';
 				for(var i = 0 ; i <result.length ; i++){
-					grInform.member_name = grInform.member_name + result[i].name +','
+					grInform.memberName = grInform.memberName + result[i].name +','
 				}
 				grInform.memberName = grInform.memberName.substring(0 , grInform.memberName.length-1);
 				grInform.gid = gid;
