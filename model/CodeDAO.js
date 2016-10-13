@@ -14,3 +14,8 @@ exports.findCode = function(gid , callback){
 	var sqlQuery = 'SELECT * FROM code_table WHERE gid = ' + mysql.escape(gid);
 	base.select(sqlQuery , callback);
 }
+
+exports.findGid = function(code , callback){
+	var sqlQuery = 'SELECT * FROM code_table WHERE code = ' + mysql.escape(code);
+	base.select(sqlQuery , callback);
+}

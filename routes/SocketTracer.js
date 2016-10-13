@@ -472,9 +472,9 @@ io.on('connection', function(socket) {
 		console.log(data1);
 		console.log(data2);
 		async.waterfall([function(callback){
-			
+			codeDAO.findGid(data1 , callback); //코드해당하는 gid 찾기
 		} , function(args1 , callback){
-			
+			console.log(args1);
 		}] , function(err , result){
 			
 		});
