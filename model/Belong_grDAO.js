@@ -64,4 +64,9 @@ exports.changeGrName = function(uid , gid , name , callback){
 exports.findViewOrder = function(uid , gid , callback){
 	var sqlQuery = 'SELECT gid , name , view_order FROM belong_gr WHERE uid = ' + mysql.escape(uid) + ' AND gid = ' + mysql.escape(gid);
 	base.select(sqlQuery, callback);
+} // 아래꺼랑 겹치는데....이름땜에 슈벌탱
+
+exports.findBelongByUidGid = function(uid , gid , callback){
+	var sqlQuery = 'SELECT uid , gid FROM belong_gr WHERE uid = ' + mysql.escape(uid) + ' AND gid = ' + mysql.escape(gid);
+	base.select(sqlQuery , callback);
 }

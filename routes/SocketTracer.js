@@ -471,21 +471,35 @@ io.on('connection', function(socket) {
 	socket.on('addCode' , function(data1 , data2){
 		console.log(data1);
 		console.log(data2);
+		var grName = data2;
+		var gid;
 		async.waterfall([function(callback){
 			codeDAO.findGid(data1 , callback); //코드해당하는 gid 찾기
 		} , function(args1 , callback){
 			if(args1.length == 0){
-			console.log('일치하는거 옶옹');	
+			 callback('noCode' , null);	
 			}else{
-				console.log('일치하는거 있옹');	
+			 gid = args1[0].gid;
+			 belong_grDAO.findBelongByUidGid(socket.handshake.session.uid  ,gid , callback );
 			}
 			//코드 해당하는  gid없으면 err 있으면  belong_gr에 이미 존재하는지 안하는지 확인
 		} ,function(args1 , callback){
+			console.log(args1);
+			if(args1.length==0){
+				console.log('추가해도 됩니다.');
+			} else{
+			    console.log('이미 존재하는 놈들입니다');
+			}
 			//존재 안하면 자기가 속한 belong_gr view order 1개씩 증가  이미 존재한다는 err발생
 		} ,function(args1 , callback){
 			//belong_gr 에 추가
 		}] , function(err , result){
 			//result true로 나오면 됐다는 표시 아니면 err에 따른 에러 안드에 보내기
+			if(err){
+				console.log('에러뜸');
+			} else{
+				console.log('결과창');
+			}
 		});
 	});
 });
