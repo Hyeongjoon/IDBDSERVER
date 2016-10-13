@@ -489,17 +489,19 @@ io.on('connection', function(socket) {
 		} , function(args1 , callback){
 			belong_grDAO.addBelong_gr(socket.handshake.session.uid , gid , grName , callback);
 		}] , function(err , result){
+			var resultInform;
 			if(err){ 			//result true로 나오면 됐다는 표시 아니면 err에 따른 에러 안드에 보내기
 				if(err == 'noCode'){
-					console.log('코드없음');
+					resultInform = 'noCode'; 
 				} else if(err == 'alreadyExist'){
-					console.log('이미존재하는거');
+					resultInform = 'alreadyExist';
 				}else {
-					console.log('알수없는 오류');
+					resultInform = 'err';
 				}
 			} else{
-				console.log('결과창');
+				resultInform = 'true';
 			}
+			socket.emit('addCodeResult' , resultInform);
 		});
 	});
 });
