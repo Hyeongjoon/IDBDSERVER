@@ -31,11 +31,11 @@ exports.addViewOrder = function(uid , callback){
 	base.update(sqlQuery , callback);
 }
 
-exports.addBelong_gr = function(uid , grInform , title ,callback){
+exports.addBelong_gr = function(uid , gid , title ,callback){
 	var sqlQuery = 'INSERT INTO belong_gr SET ?';
 	var inform = {
 			'uid' : uid,
-			'gid' : grInform.insertId,
+			'gid' : gid,
 			'name' : title,
 			'view_order' : 0
 	}

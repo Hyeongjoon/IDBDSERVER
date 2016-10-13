@@ -366,7 +366,7 @@ io.on('connection', function(socket) {
 				groupDAO.addGroupReturnID(callback);
 			} , function(args1 , callback){
 				gid = args1.insertId;
-				belong_grDAO.addBelong_gr(socket.handshake.session.uid , args1 , data , callback);
+				belong_grDAO.addBelong_gr(socket.handshake.session.uid , gid , data , callback);
 			} , function(args1 , callback){
 				var check = true;
 				async.whilst(
@@ -481,20 +481,19 @@ io.on('connection', function(socket) {
 			}else{
 			 gid = args1[0].gid;
 			 belong_grDAO.findBelongByUidGid(socket.handshake.session.uid  ,gid , callback );
-			}
-			//코드 해당하는  gid없으면 err 있으면  belong_gr에 이미 존재하는지 안하는지 확인
-		} ,function(args1 , callback){
-			console.log(args1);
+			} 			//코드 해당하는  gid없으면 err 있으면  belong_gr에 이미 존재하는지 안하는지 확인
+		} , function(args1 , callback){
 			if(args1.length==0){
-				console.log('추가해도 됩니다.');
+				belong_grDAO.addViewOrder(socket.handshake.session.uid , callback);
 			} else{
-			    console.log('이미 존재하는 놈들입니다');
+			    callback('alreadyExist' , null);
 			}
 			//존재 안하면 자기가 속한 belong_gr view order 1개씩 증가  이미 존재한다는 err발생
 		} ,function(args1 , callback){
-			//belong_gr 에 추가
+			belong_grDAO.addBelong_gr(socket.handshake.session.uid , gid , grName , callback);
 		}] , function(err , result){
 			//result true로 나오면 됐다는 표시 아니면 err에 따른 에러 안드에 보내기
+			console.log(true);
 			if(err){
 				console.log('에러뜸');
 			} else{
