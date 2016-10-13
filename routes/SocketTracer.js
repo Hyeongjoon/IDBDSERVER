@@ -421,7 +421,7 @@ io.on('connection', function(socket) {
 		async.waterfall([function(callback) {
 			belong_grDAO.deleteBelong_gr(socket.handshake.session.uid , data1[0] , callback);
 		} , function(args1 , callback) {
-			groupDAO.findGrInfrom(data1[0] , callback);
+			groupDAO.findGrInform(data1[0] , callback);
 		} , function(args1 , callback) {
 			if (args1.length==0) {
 				console.log("델레트할 그룹이 없다는데 없으면 안되는데...");
@@ -471,6 +471,7 @@ io.on('connection', function(socket) {
 	socket.on('addCode' , function(data1 , data2){
 		var grName = data2;
 		var gid;
+		var grInform;
 		async.waterfall([function(callback){
 			codeDAO.findGid(data1 , callback); //코드해당하는 gid 찾기
 		} , function(args1 , callback){
@@ -490,6 +491,10 @@ io.on('connection', function(socket) {
 			groupDAO.addGroupNum(gid , callback);
 		} ,function(args1 , callback){
 			belong_grDAO.addBelong_gr(socket.handshake.session.uid , gid , grName , callback);
+		} , function(args1 , callback){
+			groupDAO.findGrInform(gid , callback);
+		} , function(args1 , callback){
+			console.log(args1);
 		}] , function(err , result){
 			var resultInform;
 			if(err){ 			//result true로 나오면 됐다는 표시 아니면 err에 따른 에러 안드에 보내기
@@ -502,8 +507,9 @@ io.on('connection', function(socket) {
 				}
 			} else{
 				resultInform = 'true';
+				grInform = {}
 			}
-			socket.emit('addCodeResult' , resultInform);
+			socket.emit('addCodeResult' , resultInform );
 		});
 	});
 });
