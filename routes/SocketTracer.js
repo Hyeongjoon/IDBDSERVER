@@ -501,7 +501,7 @@ io.on('connection', function(socket) {
 			belong_grDAO.getUidInGroupNotMe(tempGidArr , socket.handshake.session.uid , callback);
 		} , function(args1 , callback){
 			for(var i = 0 ; i <((args1.length>4)? 4 : args1.length) ; i++){
-				tempArr.push(args[i].uid);
+				tempArr.push(args1[i].uid);
 			}
 			userDAO.getUserNameByUID(tempArr , callback);
 		}] , function(err , result){
