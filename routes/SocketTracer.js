@@ -472,6 +472,7 @@ io.on('connection', function(socket) {
 		var grName = data2;
 		var gid;
 		var grInform = {};
+		var tempArr = [];
 		async.waterfall([function(callback){
 			codeDAO.findGid(data1 , callback); //코드해당하는 gid 찾기
 		} , function(args1 , callback){
@@ -499,8 +500,12 @@ io.on('connection', function(socket) {
 			tempGidArr[0] = {gid : gid};
 			belong_grDAO.getUidInGroupNotMe(tempGidArr , socket.handshake.session.uid , callback);
 		} , function(args1 , callback){
-			console.log(args1);
+			for(var i = 0 ; i <((args1.length>4)? 4 : args1.length) ; i++){
+				tempArr.push(args[i].uid);
+			}
+			userDAO.getUserNameByUID(tempArr , callback);
 		}] , function(err , result){
+			console.log(result);
 			var resultInform;
 			if(err){ 			//result true로 나오면 됐다는 표시 아니면 err에 따른 에러 안드에 보내기
 				if(err == 'noCode'){
