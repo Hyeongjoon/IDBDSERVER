@@ -516,7 +516,6 @@ io.on('connection', function(socket) {
 					resultInform = 'err';
 				}
 			} else{
-				console.log(grInform);
 				grInform.memberName = '';
 				for(var i = 0 ; i <result.length ; i++){
 					grInform.memberName = grInform.memberName + result[i].name +','
@@ -526,19 +525,9 @@ io.on('connection', function(socket) {
 				grInform.name = grName;
 				grInform.update = 0;
 				grInform.file_location = null;
-				console.log(grInform);
 				resultInform = 'true';
-				/*var inform = {
-						gid :gid,
-						member_number : 1,
-						name : data,
-						updated : 0,
-						memberName : '',
-						file_location : null
-				}*/
-				
 			}
-			socket.emit('addCodeResult' , resultInform );
+			socket.emit('addCodeResult' , resultInform , grInform);
 		});
 	});
 });
