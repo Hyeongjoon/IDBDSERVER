@@ -469,8 +469,6 @@ io.on('connection', function(socket) {
 	});
 	
 	socket.on('addCode' , function(data1 , data2){
-		console.log(data1);
-		console.log(data2);
 		var grName = data2;
 		var gid;
 		async.waterfall([function(callback){
@@ -487,15 +485,18 @@ io.on('connection', function(socket) {
 				belong_grDAO.addViewOrder(socket.handshake.session.uid , callback);
 			} else{
 			    callback('alreadyExist' , null);
-			}
-			//존재 안하면 자기가 속한 belong_gr view order 1개씩 증가  이미 존재한다는 err발생
-		} ,function(args1 , callback){
+			} 			//존재 안하면 자기가 속한 belong_gr view order 1개씩 증가  이미 존재한다는 err발생s
+		} , function(args1 , callback){
 			belong_grDAO.addBelong_gr(socket.handshake.session.uid , gid , grName , callback);
 		}] , function(err , result){
-			//result true로 나오면 됐다는 표시 아니면 err에 따른 에러 안드에 보내기
-			console.log(true);
-			if(err){
-				console.log('에러뜸');
+			if(err){ 			//result true로 나오면 됐다는 표시 아니면 err에 따른 에러 안드에 보내기
+				if(err == 'noCode'){
+					console.log('코드없음');
+				} else if(err == 'alreadyExist'){
+					console.log('이미존재하는거');
+				}else {
+					console.log('알수없는 오류');
+				}
 			} else{
 				console.log('결과창');
 			}
