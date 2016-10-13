@@ -472,7 +472,7 @@ io.on('connection', function(socket) {
 		var grName = data2;
 		var gid;
 		var grInform = {};
-		var tempArr = [];
+		var uidArr = [];
 		async.waterfall([function(callback){
 			codeDAO.findGid(data1 , callback); //코드해당하는 gid 찾기
 		} , function(args1 , callback){
@@ -501,9 +501,9 @@ io.on('connection', function(socket) {
 			belong_grDAO.getUidInGroupNotMe(tempGidArr , socket.handshake.session.uid , callback);
 		} , function(args1 , callback){
 			for(var i = 0 ; i <((args1.length>4)? 4 : args1.length) ; i++){
-				tempArr.push(args1[i].uid);
+				uidArr.push(args1[i].uid);
 			}
-			userDAO.getUserNameByUID(tempArr , callback);
+			userDAO.getUserNameByUID(uidArr , callback);
 		}] , function(err , result){
 			console.log(result);
 			var resultInform;
@@ -516,8 +516,14 @@ io.on('connection', function(socket) {
 					resultInform = 'err';
 				}
 			} else{
+				console.log(grInform);
+				grInform.member_name = '';
+				for(var i = 0 ; i <result.length ; i++){
+					grInform.member_name = grInform.member_name + ','
+				}
+				console.log(grInform);
 				resultInform = 'true';
-				grInform = {}
+				
 			}
 			socket.emit('addCodeResult' , resultInform );
 		});
