@@ -474,9 +474,13 @@ io.on('connection', function(socket) {
 		async.waterfall([function(callback){
 			codeDAO.findGid(data1 , callback); //코드해당하는 gid 찾기
 		} , function(args1 , callback){
-			console.log(args1);
+			console.log(args1);//코드 해당하는  gid없으면 err 있으면  belong_gr에 이미 존재하는지 안하는지 확인
+		} ,function(args1 , callback){
+			//존재 안하면 자기가 속한 belong_gr view order 1개씩 증가  이미 존재한다는 err발생
+		} ,function(args1 , callback){
+			//belong_gr 에 추가
 		}] , function(err , result){
-			
+			//result true로 나오면 됐다는 표시 아니면 err에 따른 에러 안드에 보내기
 		});
 	});
 });
