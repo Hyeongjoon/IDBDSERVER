@@ -30,3 +30,8 @@ exports.deleteGroup = function(gid , callback){
 	var sqlQuery = 'DELETE FROM gr WHERE gid = ' + mysql.escape(gid);
 	base.deletion(sqlQuery , callback);
 }
+
+exports.addGroupNum = function(gid , callback){
+	var sqlQuery = 'UPDATE gr SET member_number = member_number + 1 WHERE gid = ' + mysql.escape(gid);
+	base.update(sqlQuery , callback);
+}

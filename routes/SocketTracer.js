@@ -487,6 +487,8 @@ io.on('connection', function(socket) {
 			    callback('alreadyExist' , null);
 			} 			//존재 안하면 자기가 속한 belong_gr view order 1개씩 증가  이미 존재한다는 err발생s
 		} , function(args1 , callback){
+			groupDAO.addGroupNum(gid , callback);
+		} ,function(args1 , callback){
 			belong_grDAO.addBelong_gr(socket.handshake.session.uid , gid , grName , callback);
 		}] , function(err , result){
 			var resultInform;
