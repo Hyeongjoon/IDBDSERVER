@@ -521,8 +521,21 @@ io.on('connection', function(socket) {
 				for(var i = 0 ; i <result.length ; i++){
 					grInform.member_name = grInform.member_name + result[i].name +','
 				}
+				grInform.memberName = grInform.memberName.substring(0 , grInform.memberName.length-1);
+				grInform.gid = gid;
+				grInform.name = grName;
+				grInform.update = 0;
+				grInform.file_location = null;
 				console.log(grInform);
 				resultInform = 'true';
+				/*var inform = {
+						gid :gid,
+						member_number : 1,
+						name : data,
+						updated : 0,
+						memberName : '',
+						file_location : null
+				}*/
 				
 			}
 			socket.emit('addCodeResult' , resultInform );
