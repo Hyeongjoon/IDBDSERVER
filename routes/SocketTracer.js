@@ -471,7 +471,7 @@ io.on('connection', function(socket) {
 	socket.on('addCode' , function(data1 , data2){
 		var grName = data2;
 		var gid;
-		var grInform;
+		var grInform = {};
 		async.waterfall([function(callback){
 			codeDAO.findGid(data1 , callback); //코드해당하는 gid 찾기
 		} , function(args1 , callback){
@@ -493,6 +493,11 @@ io.on('connection', function(socket) {
 			belong_grDAO.addBelong_gr(socket.handshake.session.uid , gid , grName , callback);
 		} , function(args1 , callback){
 			groupDAO.findGrInform(gid , callback);
+		} , function(args1 , callback){
+			grInform.member_number = args1[0].member_number;
+			var tempGidArr = [];
+			tempGidArr[0] = {gid : gid};
+			belong_grDAO.getUidInGroupNotMe(tempGidArr , socket.handshake.session.uid , callback);
 		} , function(args1 , callback){
 			console.log(args1);
 		}] , function(err , result){
