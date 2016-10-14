@@ -505,7 +505,6 @@ io.on('connection', function(socket) {
 			}
 			userDAO.getUserNameByUID(uidArr , callback);
 		}] , function(err , result){
-			console.log(result);
 			var resultInform;
 			if(err){ 			//result true로 나오면 됐다는 표시 아니면 err에 따른 에러 안드에 보내기
 				if(err == 'noCode'){
