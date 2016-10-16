@@ -209,6 +209,7 @@ create table file_table (
     uid int unsigned NOT NULL,
     location VARCHAR(255) NOT NULL,
     upload_time datetime default now(),
+    upload_day date default now(),
     primary key(fid),
     foreign key(gid) references gr(gid) ON DELETE SET NULL ON UPDATE CASCADE, /**그룹 지워졌을때 어캐 보일지 확인해볼것 **/
     foreign key(uid) references user(uid) ON DELETE SET NULL ON UPDATE CASCADE

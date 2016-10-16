@@ -529,6 +529,10 @@ io.on('connection', function(socket) {
 			socket.emit('addCodeResult' , resultInform , grInform);
 		});
 	});
+	
+	socket.on('getGrInfo' , function(data){
+		console.log(data);
+	});
 });
 
 
