@@ -205,14 +205,14 @@ create table code_table(
 DROP TABLE IF exists file_table;
 create table file_table (
 	fid int unsigned NOT NULL AUTO_INCREMENT,
-	gid int unsigned NOT NULL,
-    uid int unsigned NOT NULL,
+	gid int unsigned ,
+    uid int unsigned ,
     location VARCHAR(255) NOT NULL,
     upload_time datetime default now(),
-    upload_day date default now(),
+    image boolean NOT NULL,  /** true면 이미지 아니면 걍 파일 **/
     primary key(fid),
     foreign key(gid) references gr(gid) ON DELETE SET NULL ON UPDATE CASCADE, /**그룹 지워졌을때 어캐 보일지 확인해볼것 **/
     foreign key(uid) references user(uid) ON DELETE SET NULL ON UPDATE CASCADE
 ) Engine =InnoDB DEFAULT CHARSET = utf8;
-/**이거 디비에 반영 안했다 이테이블 하고 주석 지워라**/
+
  SET foreign_key_checks = 1;

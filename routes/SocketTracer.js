@@ -9,6 +9,7 @@ var alramDAO = require('../model/AlramDAO');
 var groupDAO = require('../model/GroupDAO');
 var locationDAO = require('../model/LocationDAO');
 var codeDAO = require('../model/CodeDAO');
+var fileDAO = require('../model/FileDAO');
 var decryptHelper = require('../helper/DecryptHelper');
 var encryptHelper = require('../helper/EncryptHelper');
 var EmailHelper = require('../helper/EmailMake');
@@ -531,7 +532,13 @@ io.on('connection', function(socket) {
 	});
 	
 	socket.on('getGrInfo' , function(data){
-		console.log(data);
+		async.waterfall([function(callback){
+			fileDAO.findFileByDate(data , callback);
+		} , function(args , callback){
+			console.log(args);
+		}] , function(err , result){
+			
+		});
 	});
 });
 
