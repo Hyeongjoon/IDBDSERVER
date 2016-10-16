@@ -534,8 +534,18 @@ io.on('connection', function(socket) {
 	socket.on('getGrInfo' , function(data){
 		async.waterfall([function(callback){
 			fileDAO.findFileByDate(data , callback);
+		} , function(args1 , callback){
+			var params = config.awsS3GetConfig;
+			for(var i = 0 ; i <args1.length ; i++){
+			params.Key = args1[i].file_location;
+			s3.getSignedUrl('getObject', params, function (err, url) {
+				url = url.replace("https://" , "http://")
+				args1[i].file_location = url;
+			}); //https -> http로 바꾸기
+			}
+			callback(null , args1);
 		} , function(args , callback){
-			console.log(args);
+		console.log(args);	
 		}] , function(err , result){
 			
 		});
