@@ -539,12 +539,14 @@ io.on('connection', function(socket) {
 			for(var i = 0 ; i <args1.length ; i++){
 			params.Key = args1[i].location;
 			s3.getSignedUrl('getObject', params, function (err, url) {
-				args1[i].file_location = url;
+				var temp = args1[i].location.split('/');
+				console.log(temp);
+				args1[i].location = url;
 			}); 
 			}
 			callback(null , args1);
 		} , function(args , callback){
-		console.log(args);	
+			console.log(args);	
 		}] , function(err , result){
 			
 		});
