@@ -549,7 +549,7 @@ io.on('connection', function(socket) {
 			if(err){
 				console.log('이미지 불러오는데 오류생김');
 			} else{
-				socket.emit()
+				
 			}
 		});
 	});
