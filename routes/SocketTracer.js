@@ -540,7 +540,7 @@ io.on('connection', function(socket) {
 			params.Key = args1[i].location;
 			s3.getSignedUrl('getObject', params, function (err, url) {
 				var temp = args1[i].location.split('/');  //파일 이름 설정하는곳
-				args[i].file_name = temp[2].substr(10);
+				args1[i].file_name = temp[2].substr(10);
 				args1[i].location = url;
 			}); 
 			}
