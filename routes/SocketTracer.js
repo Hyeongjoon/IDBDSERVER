@@ -537,11 +537,10 @@ io.on('connection', function(socket) {
 		} , function(args1 , callback){
 			var params = config.awsS3GetConfig;
 			for(var i = 0 ; i <args1.length ; i++){
-			params.Key = args1[i].file_location;
+			params.Key = args1[i].location;
 			s3.getSignedUrl('getObject', params, function (err, url) {
-				url = url.replace("https://" , "http://")
 				args1[i].file_location = url;
-			}); //https -> http로 바꾸기
+			}); 
 			}
 			callback(null , args1);
 		} , function(args , callback){
