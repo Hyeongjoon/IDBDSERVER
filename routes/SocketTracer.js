@@ -540,15 +540,17 @@ io.on('connection', function(socket) {
 			params.Key = args1[i].location;
 			s3.getSignedUrl('getObject', params, function (err, url) {
 				var temp = args1[i].location.split('/');  //파일 이름 설정하는곳
-				args1[i].file_name = temp[2].substr(10);
+				args1[i].file_name = temp[2].substr(10); //나중에 파일 시스템 완료 되면 타임스탬프로 이름 찍을꺼니까 그때 다시 바꿀것
 				args1[i].location = url;
 			}); 
 			}
 			callback(null , args1);
-		} , function(args , callback){
-			console.log(args);	
 		}] , function(err , result){
-			
+			if(err){
+				console.log('이미지 불러오는데 오류생김');
+			} else{
+				socket.emit()
+			}
 		});
 	});
 });
