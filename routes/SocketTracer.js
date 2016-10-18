@@ -533,7 +533,7 @@ io.on('connection', function(socket) {
 	
 	socket.on('getGrInfo' , function(data){
 		async.waterfall([function(callback){
-			fileDAO.findFileByDate(data , callback);
+			fileDAO.findFileByGid(data , callback);
 		} , function(args1 , callback){
 			var params = config.awsS3GetConfig;
 			for(var i = 0 ; i <args1.length ; i++){
@@ -548,8 +548,17 @@ io.on('connection', function(socket) {
 		}] , function(err , result){
 			if(err){
 				console.log('이미지 불러오는데 오류생김');
+				socket.emit('getGroupFile' , false);
 			} else{
-				console.log(result);
+				var finalArr = [];
+				if(result.length != 0){
+					finalArr.push(result[0]);
+				}
+				for(var i = 0 ; i < result.length ; i++){
+					var temp = [];
+					
+				}
+				console.log(finalArr);
 				socket.emit('getGroupFile' , result);
 			}
 		});
