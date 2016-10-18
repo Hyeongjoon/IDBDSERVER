@@ -549,14 +549,20 @@ io.on('connection', function(socket) {
 			if(err){
 				console.log('이미지 불러오는데 오류생김');
 				socket.emit('getGroupFile' , false);
-			} else{
+			} else {
 				var finalArr = [];
-				if(result.length != 0){
-					finalArr.push(result[0]);
-				}
-				for(var i = 0 ; i < result.length ; i++){
-					var temp = [];
-					
+				var temp = [];
+				
+				for(var i = 0 ; i < result.length-1 ; i++){
+					if(i == 0){
+						temp.push(result[0]);
+					} else if(result[i].d == result[i+1].d){
+						temp.push(result[i+1]);
+					} else{
+						finalArr.push(temp);
+						temp = [];
+						temp.push(result[i+1]);
+					}
 				}
 				console.log(finalArr);
 				socket.emit('getGroupFile' , result);
