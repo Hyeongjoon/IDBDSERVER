@@ -570,9 +570,7 @@ io.on('connection', function(socket) {
 				if(temp.length != 0){
 					finalArr.push(temp);
 				}                                      //여기까지가 날짜별로 데이터 넣은거
-				
-				console.log(finalArr);
-				socket.emit('getGroupFile' , result);
+				socket.emit('getGroupFile' , finalArr);
 			}
 		});
 	});
