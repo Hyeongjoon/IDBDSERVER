@@ -566,6 +566,11 @@ io.on('connection', function(socket) {
 						temp.push(result[i+1]);
 					}
 				}
+				
+				if(temp.length != 0){
+					finalArr.push(temp);
+				}                                      //여기까지가 날짜별로 데이터 넣은거
+				
 				console.log(finalArr);
 				socket.emit('getGroupFile' , result);
 			}
