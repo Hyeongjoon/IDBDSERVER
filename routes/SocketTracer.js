@@ -556,7 +556,9 @@ io.on('connection', function(socket) {
 				for(var i = 0 ; i < result.length-1 ; i++){
 					if(i == 0){
 						temp.push(result[0]);
-					} else if(result[i].d == result[i+1].d){
+					}
+					
+					if(result[i].d == result[i+1].d){
 						temp.push(result[i+1]);
 					} else{
 						finalArr.push(temp);
