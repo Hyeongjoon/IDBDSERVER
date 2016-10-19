@@ -46,3 +46,8 @@ exports.awsS3GetConfig = {
 	Bucket : 'sendwitchtracer',
 	Key : ''
 };
+
+exports.aswS3Credential = {
+	AccessKey : 'AKIAI4L7BILFY43GCPXQ',
+	Secret : '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'
+};

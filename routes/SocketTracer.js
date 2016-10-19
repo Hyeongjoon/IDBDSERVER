@@ -15,7 +15,7 @@ var encryptHelper = require('../helper/EncryptHelper');
 var EmailHelper = require('../helper/EmailMake');
 var alramHelper = require('../helper/AlramHelper');
 var AWS = require('aws-sdk');
-var fs = require('fs');
+
 
 AWS.config.region = 'ap-northeast-2';
 var s3 = new AWS.S3();
@@ -37,7 +37,7 @@ io.on('connection', function(socket) {
 				if(decryptHelper.decryption(result[0][0].password)== data.password){
 					if(result[0][0].email_verify==true){
 					var results = {result : "true"};
-					socket.emit('login_result' , results);
+					socket.emit('login_result' , results , config.aswS3Credential );
 					socket.handshake.session.email = result[0][0].email; 
 					socket.handshake.session.login = true;
 					socket.handshake.session.save();
@@ -570,6 +570,7 @@ io.on('connection', function(socket) {
 				if(temp.length != 0){
 					finalArr.push(temp);
 				}                                      //여기까지가 날짜별로 데이터 넣은거
+				console.log(finalArr);
 				socket.emit('getGroupFile' , finalArr);
 			}
 		});
