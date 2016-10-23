@@ -554,6 +554,7 @@ io.on('connection', function(socket) {
 				var temp = [];
 				
 				for(var i = 0 ; i < result.length-1 ; i++){
+					
 					if(i == 0){
 						temp.push(result[0]);
 					}
@@ -581,7 +582,11 @@ io.on('connection', function(socket) {
 		async.parallel([function(callback){
 			fileDAO.insertFile(input , callback);
 		}] , function(err , results){
-			console.log(results);
+			if(!err || results!=true){
+				//err처리 해야합니당
+			}else {
+				socket.emit('addFileResult' , true);
+			}
 		});
 	});
 });
