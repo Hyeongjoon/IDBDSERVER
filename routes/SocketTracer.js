@@ -581,9 +581,8 @@ io.on('connection', function(socket) {
 		async.parallel([function(callback){
 			fileDAO.insertFile(input , callback);
 		}] , function(err , results){
-			
+			console.log(results);
 		});
-		fileDAO.insertFile()
 	});
 });
 
