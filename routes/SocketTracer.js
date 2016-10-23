@@ -570,14 +570,20 @@ io.on('connection', function(socket) {
 				if(temp.length != 0){
 					finalArr.push(temp);
 				}                                      //여기까지가 날짜별로 데이터 넣은거
-				console.log(finalArr);
 				socket.emit('getGroupFile' , finalArr);
 			}
 		});
 	});
 	
 	socket.on('addFile' , function(data){
-		console.log(data);
+		var input = data;
+		input.uid = socket.handshake.session.uid;
+		async.parallel([function(callback){
+			fileDAO.insertFile(input , callback);
+		}] , function(err , results){
+			
+		});
+		fileDAO.insertFile()
 	});
 });
 
