@@ -34,13 +34,6 @@ exports.emailConfig = {
 							}
 						};
 
-exports.awsS3UploadConfig = {
-		Bucket : 'sendwitchtracer',
-		Key : 'tmptmp.png',
-		ACL : 'public-read-write',
-		Body : '',
-		ContentType : 'image/png'	
-};
 
 exports.awsS3GetConfig = {
 	Bucket : 'sendwitchtracer',

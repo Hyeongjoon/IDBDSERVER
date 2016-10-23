@@ -575,6 +575,10 @@ io.on('connection', function(socket) {
 			}
 		});
 	});
+	
+	socket.on('addFile' , function(data){
+		console.log(data);
+	});
 });
 
 
