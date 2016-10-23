@@ -582,7 +582,7 @@ io.on('connection', function(socket) {
 		async.parallel([function(callback){
 			fileDAO.insertFile(input , callback);
 		}] , function(err , results){
-			if(!err || results!=true){
+			if(!err || results[0]!=true){
 				//err처리 해야합니당
 			}else {
 				socket.emit('addFileResult' , true);
