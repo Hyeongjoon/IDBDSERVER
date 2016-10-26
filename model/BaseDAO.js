@@ -54,7 +54,8 @@ exports.deletion = function(params, callback) {
 	});
 };
 
-exports.lastInsertId = function(params, callback) {
+exports.lastInsertId = function(params, callback , input) {
+	if(input==undefined){
 	connection.query(params, function(err, rows, fields) {
 		if (!err) {
 			callback(null, rows);
@@ -63,6 +64,16 @@ exports.lastInsertId = function(params, callback) {
 			callback(err, false);
 		}
 	});
+	} else{
+		connection.query(params, input, function(err, rows, fields) {
+			if (!err) {
+				callback(null, rows);
+			} else {
+				console.log("err" + err);
+				callback(err, false);
+			}
+		});
+	}
 };
 /*
 exports.whileInsert = function(params, inform,  callback) {

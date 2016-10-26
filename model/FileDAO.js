@@ -8,5 +8,5 @@ exports.findFileByGid = function ( gid , callback){
 
 exports.insertFile = function(input , callback){
 	var sqlQuery = 'INSERT INTO file_table SET ?';
-	base.insert(sqlQuery, input , callback);
+	base.lastInsertId (sqlQuery,  callback , input );
 }

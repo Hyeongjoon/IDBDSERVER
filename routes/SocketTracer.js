@@ -579,11 +579,14 @@ io.on('connection', function(socket) {
 	socket.on('addFile' , function(data){
 		var input = data;
 		input.uid = socket.handshake.session.uid;
-		async.parallel([function(callback){
+		async.waterfall([function(callback){
 			fileDAO.insertFile(input , callback);
+		} , function(args1 , callback){
+			console.log(args1);
 		}] , function(err , results){
 			if(!err || results[0]!=true){
 				//err처리 해야합니당
+				//들어간거 정보 불러올것
 			}else {
 				socket.emit('addFileResult' , true);
 			}
