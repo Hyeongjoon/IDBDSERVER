@@ -584,14 +584,11 @@ io.on('connection', function(socket) {
 		} , function(args1 , callback){
 			fileDAO.findFileByFid(args1.insertId , callback);
 		}] , function(err , results){
-			console.log(results);
-			console.log(results[0]);
-			console.log(results.length);
-			if(!err || results.length!=1){
-				console.log("여기로 오면 안되는데 슈밤");
-			}else {
-				console.log(results[0]);
+			if(!err || results.length==1){
+				
 				socket.emit('addFileResult' , results[0]);
+			}else {
+				//여기가 에러처리지 뭐하는샛끼야진짜.......허.........
 			}
 		});
 	});
