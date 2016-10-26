@@ -588,6 +588,7 @@ io.on('connection', function(socket) {
 				//err처리 해야합니당
 				//들어간거 정보 불러올것
 			}else {
+				console.log(results[0]);
 				socket.emit('addFileResult' , results[0]);
 			}
 		});
