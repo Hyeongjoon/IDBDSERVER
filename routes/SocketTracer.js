@@ -584,6 +584,8 @@ io.on('connection', function(socket) {
 		} , function(args1 , callback){
 			fileDAO.findFileByFid(args1.insertId , callback);
 		}] , function(err , results){
+			console.log(results);
+			console.log(results[0]);
 			if(!err || results.length!=1){
 				//err처리 해야합니당
 				//들어간거 정보 불러올것
