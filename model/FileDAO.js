@@ -10,3 +10,8 @@ exports.insertFile = function(input , callback){
 	var sqlQuery = 'INSERT INTO file_table SET ?';
 	base.lastInsertId (sqlQuery,  callback , input );
 }
+
+exports.findFileByFid = function(fid , callback){
+	var sqlQuery = 'SELECT * from file_table WHERE fid = ' + mysql.escape(fid);
+	base.select(sqlQuery , callback);
+}

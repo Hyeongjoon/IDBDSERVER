@@ -582,8 +582,9 @@ io.on('connection', function(socket) {
 		async.waterfall([function(callback){
 			fileDAO.insertFile(input , callback);
 		} , function(args1 , callback){
-			console.log(args1);
+			fileDAO.findFileByFid(args1.insertId , callback);
 		}] , function(err , results){
+			console.log(results);
 			if(!err || results[0]!=true){
 				//err처리 해야합니당
 				//들어간거 정보 불러올것
