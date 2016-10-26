@@ -586,6 +586,7 @@ io.on('connection', function(socket) {
 		}] , function(err , results){
 			console.log(results);
 			console.log(results[0]);
+			console.log(results.length);
 			if(!err || results.length!=1){
 				console.log("여기로 오면 안되는데 슈밤");
 			}else {
