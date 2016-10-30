@@ -545,14 +545,6 @@ io.on('connection', function(socket) {
 	socket.on('getGrInfo' , function(data){
 		async.waterfall([function(callback){
 			fileDAO.findFileByGid(data, socket.handshake.session.timezone, callback);
-			/*var temp =socket.handshake.address.split(':');
-			satelize.satelize({ip:temp[temp.length-1]} , function(err, payload){
-				if(!err){
-					
-				}else{
-					callback('timeZoneErr' , null);
-				}
-			})*/
 		} , function(args1 , callback){
 			var params = config.awsS3GetConfig;
 			for(var i = 0 ; i <args1.length ; i++){
@@ -601,7 +593,7 @@ io.on('connection', function(socket) {
 		async.waterfall([function(callback){
 			fileDAO.insertFile(input , callback);
 		} , function(args1 , callback){
-			fileDAO.findFileByFid(args1.insertId , callback);
+			fileDAO.findFileByFid(args1.insertId ,socket.handshake.session.timezone ,callback);
 		}] , function(err , results){
 			if(!err || results.length==1){
 				var params = config.awsS3GetConfig;

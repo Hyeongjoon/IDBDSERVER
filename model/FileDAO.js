@@ -11,7 +11,7 @@ exports.insertFile = function(input , callback){
 	base.lastInsertId (sqlQuery,  callback , input );
 }
 
-exports.findFileByFid = function(fid , callback){
-	var sqlQuery = 'SELECT * , DATE_FORMAT from file_table WHERE fid = ' + mysql.escape(fid);
+exports.findFileByFid = function(fid ,timeZone ,callback){
+	var sqlQuery = 'SELECT * , DATE_FORMAT( convert_tz(upload_time , \'GMT\' , \''+timeZone+'\'), "%Y-%m-%d") as `d` FROM file_table WHERE fid = ' + mysql.escape(fid);
 	base.select(sqlQuery , callback);
 }
