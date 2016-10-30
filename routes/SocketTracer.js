@@ -536,6 +536,7 @@ io.on('connection', function(socket) {
 		async.waterfall([function(callback){
 			console.log(socket.handshake.headers);
 			satelize.satelize({ip:socket.handshake.headers.host} , function(err, payload){
+				console.log(err);
 				if(!err){
 					console.log(payload)
 				}else{
