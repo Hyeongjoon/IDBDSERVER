@@ -537,7 +537,7 @@ io.on('connection', function(socket) {
 			var temp =socket.handshake.address.split(':');
 			satelize.satelize({ip:temp[temp.length-1]} , function(err, payload){
 				if(!err){
-					fileDAO.findFileByGid(data,playload.timezone , callback);
+					fileDAO.findFileByGid(data, payload.timezone , callback);
 				}else{
 					callback('timeZoneErr' , null);
 				}
