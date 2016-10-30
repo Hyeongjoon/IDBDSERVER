@@ -12,6 +12,6 @@ exports.insertFile = function(input , callback){
 }
 
 exports.findFileByFid = function(fid , callback){
-	var sqlQuery = 'SELECT * from file_table WHERE fid = ' + mysql.escape(fid);
+	var sqlQuery = 'SELECT * , DATE_FORMAT from file_table WHERE fid = ' + mysql.escape(fid);
 	base.select(sqlQuery , callback);
 }

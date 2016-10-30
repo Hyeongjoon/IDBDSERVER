@@ -28,7 +28,17 @@ var io = require('../app.js').tmp;
 io.on('connection', function(socket) {
 	socket.on('login', function(data) {
 		async.series([function(callback){
-      	  userDAO.findUserByEmail(data.email , callback);
+			var temp =socket.handshake.address.split(':');
+			satelize.satelize({ip:temp[temp.length-1]} , function(err, payload){
+				if(!err){
+					userDAO.findUserByEmail(data.email , callback);
+					socket.handshake.session.timezone = payload.timezone;
+					socket.handshake.session.save();
+				}else{
+					callback('timeZoneErr' , null);
+				}
+			})
+      	  
   	  }], function(err , result){
 			if(result[0]==''){
 				var result = {result : "false"};
@@ -39,7 +49,7 @@ io.on('connection', function(socket) {
 					if(result[0][0].email_verify==true){
 					var results = {result : "true"};
 					socket.emit('login_result' , results , config.aswS3Credential );
-					socket.handshake.session.email = result[0][0].email; 
+					socket.handshake.session.email = result[0][0].email;
 					socket.handshake.session.login = true;
 					socket.handshake.session.save();
 					return;
@@ -534,15 +544,15 @@ io.on('connection', function(socket) {
 	
 	socket.on('getGrInfo' , function(data){
 		async.waterfall([function(callback){
-			var temp =socket.handshake.address.split(':');
+			fileDAO.findFileByGid(data, socket.handshake.session.timezone, callback);
+			/*var temp =socket.handshake.address.split(':');
 			satelize.satelize({ip:temp[temp.length-1]} , function(err, payload){
 				if(!err){
-					fileDAO.findFileByGid(data, payload.timezone , callback);
+					
 				}else{
 					callback('timeZoneErr' , null);
 				}
-			})
-			
+			})*/
 		} , function(args1 , callback){
 			var params = config.awsS3GetConfig;
 			for(var i = 0 ; i <args1.length ; i++){
