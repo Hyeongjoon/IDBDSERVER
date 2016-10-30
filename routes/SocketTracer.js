@@ -534,9 +534,7 @@ io.on('connection', function(socket) {
 	
 	socket.on('getGrInfo' , function(data){
 		async.waterfall([function(callback){
-			console.log(socket.handshake.headers);
-			satelize.satelize({ip:socket.handshake.headers.host} , function(err, payload){
-				console.log(err);
+			satelize.satelize({ip:socket.request.connection.remoteAddress} , function(err, payload){
 				if(!err){
 					console.log(payload)
 				}else{
