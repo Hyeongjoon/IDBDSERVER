@@ -534,13 +534,14 @@ io.on('connection', function(socket) {
 	
 	socket.on('getGrInfo' , function(data){
 		async.waterfall([function(callback){
-			satelize.satelize({ip:socket.handshake.address} , function(err, payload){
+			console.log(socket.handshake);
+			/*satelize.satelize({ip:} , function(err, payload){
 				if(!err){
 					console.log(payload)
 				}else{
 					
 				}
-			})
+			})*/
 			fileDAO.findFileByGid(data , callback);
 		} , function(args1 , callback){
 			var params = config.awsS3GetConfig;
