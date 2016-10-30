@@ -1,8 +1,8 @@
 var base = require('./BaseDAO.js');
 var mysql = require('mysql');
 
-exports.findFileByGid = function ( gid , callback){
-	var sqlQuery = 'SELECT fid, gid, uid, location , upload_time ,  image , MOD(`fid`,3) as `md`, DATE_FORMAT( convert_tz(upload_time , \'GMT\' , \'Asia/Seoul\'), "%Y-%m-%d") as `d` FROM file_table WHERE gid = ' + mysql.escape(gid) + ' GROUP BY `d` , `md`';
+exports.findFileByGid = function ( gid ,timeZone, callback){
+	var sqlQuery = 'SELECT fid, gid, uid, location , upload_time ,  image , MOD(`fid`,3) as `md`, DATE_FORMAT( convert_tz(upload_time , \'GMT\' , \''+timeZone+'\'), "%Y-%m-%d") as `d` FROM file_table WHERE gid = ' + mysql.escape(gid) + ' GROUP BY `d` , `md`';
 	base.select(sqlQuery , callback);
 }
 

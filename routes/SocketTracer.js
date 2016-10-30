@@ -537,12 +537,12 @@ io.on('connection', function(socket) {
 			var temp =socket.handshake.address.split(':');
 			satelize.satelize({ip:temp[temp.length-1]} , function(err, payload){
 				if(!err){
-					console.log(payload)
+					fileDAO.findFileByGid(data,playload.timezone , callback);
 				}else{
-					
+					callback('timeZoneErr' , null);
 				}
 			})
-			fileDAO.findFileByGid(data , callback);
+			
 		} , function(args1 , callback){
 			var params = config.awsS3GetConfig;
 			for(var i = 0 ; i <args1.length ; i++){
