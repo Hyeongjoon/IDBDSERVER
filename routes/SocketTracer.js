@@ -533,6 +533,7 @@ io.on('connection', function(socket) {
 	
 	socket.on('getGrInfo' , function(data){
 		async.waterfall([function(callback){
+			console.log(socket.handshake.session);
 			fileDAO.findFileByGid(data , callback);
 		} , function(args1 , callback){
 			var params = config.awsS3GetConfig;
