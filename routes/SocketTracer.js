@@ -623,10 +623,10 @@ io.on('connection', function(socket) {
 					params.Key = args1[i].location;
 					s3.getSignedUrl('getObject', params, function (err, url) {
 						if(!err){
-							var temp = args1[i].location.split('/'); 
-							args1[i].file_name = temp[2].substr(17); 
+							var temp = args1[i].location.split('/');
+							var name = temp[2].substr(17);
+							args1[i].file_name = name.substring(0,name.lastIndexOf('.'));  
 							args1[i].location = url;
-							
 						} else{
 							callback('awsErr' , null);
 						}
@@ -635,8 +635,6 @@ io.on('connection', function(socket) {
 				console.log(args1);
 			}] , function(err , results){
 			if(!err){
-				
-				console.log(results);
 				socket.emit('dateFileResult' , results);
 			}else{
 				socket.emit('dateFileResult' , false);
