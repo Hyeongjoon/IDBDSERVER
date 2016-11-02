@@ -599,10 +599,14 @@ io.on('connection', function(socket) {
 				var params = config.awsS3GetConfig;
 				params.Key = results[0].location;
 				s3.getSignedUrl('getObject', params, function (err, url) {
+					if(!err){
 					var temp = results[0].location.split('/'); 
 					results[0].file_name = temp[2].substr(17); 
 					results[0].location = url;
 					socket.emit('addFileResult' , results[0]);
+					} else{
+						socket.emit('addFileResult' , false);
+					}
 				});
 			}else {
 				//여기가 에러처리지 뭐하는샛끼야진짜.......허.........
@@ -611,10 +615,33 @@ io.on('connection', function(socket) {
 	});
 	
 	socket.on('getDateFile' , function(data1 , data2){
-		async.parallel([function(callback){
+		async.waterfall([function(callback){
 			fileDAO.findDateFile(data1 , data2 , socket.handshake.session.timezone , callback);
-		}] , function(err , result){
-			console.log(result);
+		} , function(args1 , callback){
+				var params = config.awsS3GetConfig;
+				for(var i = 0 ; i < args1.length ; i++){
+					params.Key = args1[i].location;
+					s3.getSignedUrl('getObject', params, function (err, url) {
+						if(!err){
+							var temp = args1[i].location.split('/'); 
+							args1[i].file_name = temp[2].substr(17); 
+							args1[i].location = url;
+							
+						} else{
+							callback('awsErr' , null);
+						}
+					});
+				}
+				console.log(args1);
+			}
+		}] , function(err , results){
+			if(!err){
+				
+				console.log(results);
+				socket.emit('dateFileResult' , results);
+			}else{
+				socket.emit('dateFileResult' , false);
+			}
 		});
 	});
 });
