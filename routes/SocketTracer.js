@@ -610,8 +610,9 @@ io.on('connection', function(socket) {
 		});
 	});
 	
-	socket.on('getDateFile' , function(data){
-		console.log(data);
+	socket.on('getDateFile' , function(data1 , data2){
+		console.log(data1);
+		console.log(data2);
 	});
 });
 
