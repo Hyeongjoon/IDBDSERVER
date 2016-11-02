@@ -599,8 +599,8 @@ io.on('connection', function(socket) {
 				var params = config.awsS3GetConfig;
 				params.Key = results[0].location;
 				s3.getSignedUrl('getObject', params, function (err, url) {
-					var temp = results[0].location.split('/');  //파일 이름 설정하는곳
-					results[0].file_name = temp[2].substr(17); //나중에 파일 시스템 완료 되면 타임스탬프로 이름 찍을꺼니까 그때 다시 바꿀것
+					var temp = results[0].location.split('/'); 
+					results[0].file_name = temp[2].substr(17); 
 					results[0].location = url;
 					socket.emit('addFileResult' , results[0]);
 				});
@@ -608,6 +608,10 @@ io.on('connection', function(socket) {
 				//여기가 에러처리지 뭐하는샛끼야진짜.......허.........
 			}
 		});
+	});
+	
+	socket.on('getDateFile' , function(data){
+		console.log(data);
 	});
 });
 
