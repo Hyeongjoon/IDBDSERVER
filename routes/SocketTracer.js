@@ -633,8 +633,7 @@ io.on('connection', function(socket) {
 					});
 				}
 				console.log(args1);
-			}
-		}] , function(err , results){
+			}] , function(err , results){
 			if(!err){
 				
 				console.log(results);
