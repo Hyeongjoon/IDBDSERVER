@@ -15,3 +15,9 @@ exports.findFileByFid = function(fid ,timeZone ,callback){
 	var sqlQuery = 'SELECT * , DATE_FORMAT( convert_tz(upload_time , \'GMT\' , \''+timeZone+'\'), "%Y-%m-%d") as `d` FROM file_table WHERE fid = ' + mysql.escape(fid);
 	base.select(sqlQuery , callback);
 }
+
+exports.findDateFile = function(gid , date, timeZone , callback){
+	var sqlQuery = 'select fid , gid , uid , location , image , convert_tz(upload_time , \'GMT\' , \'' + 
+	                 timeZone + '\') as upload_time FROM file_table WHERE gid = ' +mysql.escape(gid)+ ' AND  date_format(convert_tz(upload_time , \'GMT\' , \'' + timeZone +'\'), "%Y-%m-%d") = ' + mysql.escape(date) + ';'
+	base.select(sqlQuery , callback);
+}
