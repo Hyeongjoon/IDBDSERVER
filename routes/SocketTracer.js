@@ -632,9 +632,10 @@ io.on('connection', function(socket) {
 						}
 					});
 				}
-				console.log(args1);
+				callback(null , args1);
 			}] , function(err , results){
 			if(!err){
+				console.log(results);
 				socket.emit('dateFileResult' , results);
 			}else{
 				socket.emit('dateFileResult' , false);
