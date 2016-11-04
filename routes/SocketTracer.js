@@ -636,7 +636,7 @@ io.on('connection', function(socket) {
 			}] , function(err , results){
 			if(!err){
 				console.log(results);
-				socket.emit('dateFileResult' , results);
+				socket.emit('dateFileResult' , false);
 			}else{
 				socket.emit('dateFileResult' , false);
 			}
