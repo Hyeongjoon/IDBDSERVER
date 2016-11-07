@@ -47,6 +47,7 @@ create table belong_gr
 ) Engine = InnoDB DEFAULT CHARSET = utf8;
 
 
+/**
 	DROP TABLE IF exists location;
 create table location
 	(lid int unsigned NOT NULL AUTO_INCREMENT,
@@ -177,7 +178,7 @@ create table like_re_reply(
     foreign key(belong_rrid) references re_reply(rrid) ON DELETE CASCADE ON UPDATE CASCADE,
     foreign key(belong_uid) references user(uid) ON DELETE SET NULL ON UPDATE CASCADE
 ) Engine = InnoDB DEFAULT CHARSET = utf8;
-    
+ **/  
     DROP TABLE IF exists alram;
 create table alram(
 	aid int unsigned NOT NULL AUTO_INCREMENT,

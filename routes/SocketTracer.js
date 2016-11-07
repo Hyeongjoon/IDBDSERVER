@@ -625,8 +625,8 @@ io.on('connection', function(socket) {
 						if(!err){
 							var temp = args1[i].location.split('/');
 							var name = temp[2].substr(17);
-							args1[i].file_name = name.substring(0,name.lastIndexOf('.'));  
-							args1[i].location = url;
+							args1[i].file_name = name.substring(0,name.lastIndexOf('.'));
+							args1[i].url = url;
 						} else{
 							callback('awsErr' , null);
 						}
@@ -635,7 +635,6 @@ io.on('connection', function(socket) {
 				callback(null , args1);
 			}] , function(err , results){
 			if(!err){
-				console.log(results);
 				socket.emit('dateFileResult' , results , socket.handshake.session.uid);
 			}else{
 				socket.emit('dateFileResult' , false);
