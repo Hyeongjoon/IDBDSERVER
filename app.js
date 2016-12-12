@@ -4,21 +4,22 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
 var Session = require('express-session');
-
-var config = require('./helper/config.js');
-
-var CookiePaser = cookieParser(config.secretKey);
-
+var redis = require('redis');
+var redisStore = require('connect-redis')(Session);
 
 var passport = require('./helper/passport.js').passport;
 
+var config = require('./helper/config');
 
+var client = redis.createClient(config.redisConfig.port , config.redisConfig.host , {no_ready_check: true});
+
+var CookiePaser = cookieParser(config.secretKey);
+var sessionStore = new redisStore({client : client});
 
 
 var session = new Session({
-	//store: sessionStore,
+	store: sessionStore,
 	cookie:{
 		maxAge: 1000 * 60 * 60
 	},
@@ -64,7 +65,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 var sharedsession = require("express-socket.io-session");
-var io = require('socket.io').listen(80);
+var io = require('socket.io').listen(3000);
 
 exports.tmp = io.use(sharedsession(session));
 
@@ -72,11 +73,13 @@ var socketT = require('./routes/SocketTracer');
 var signUp = require('./routes/signUp');
 var verify = require('./routes/verify');
 var imageReq = require('./routes/imageReq');
+var login = require('./routes/Login');
 
 app.use('/', socketT);
 app.use('/signUp' , signUp);
 app.use('/verify' , verify);
 app.use('/imageReq' , imageReq);
+app.use('/login' , login);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

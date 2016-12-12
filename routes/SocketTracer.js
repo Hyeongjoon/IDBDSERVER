@@ -48,7 +48,7 @@ io.on('connection', function(socket) {
 				if(decryptHelper.decryption(result[0][0].password)== data.password){
 					if(result[0][0].email_verify==true){
 					var results = {result : "true"};
-					socket.emit('login_result' , results , config.aswS3Credential );
+					socket.emit('login_result' , results , config.awsS3Credential );
 					socket.handshake.session.email = result[0][0].email;
 					socket.handshake.session.login = true;
 					socket.handshake.session.save();
