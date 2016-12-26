@@ -48,11 +48,14 @@ app.engine('ejs', engine);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(CookiePaser);
-app.use(session);
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(CookiePaser);
+app.use(session);
+
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -69,17 +72,42 @@ var io = require('socket.io').listen(3000);
 
 exports.tmp = io.use(sharedsession(session));
 
-var socketT = require('./routes/SocketTracer');
+//var socketT = require('./routes/SocketTracer');
 var signUp = require('./routes/signUp');
 var verify = require('./routes/verify');
 var imageReq = require('./routes/imageReq');
 var login = require('./routes/Login');
+var index = require('./routes/Index');
 
-app.use('/', socketT);
-app.use('/signUp' , signUp);
-app.use('/verify' , verify);
+//app.use('/', socketT);
+app.use('/' , index);
+app.use('/signUp', signUp);
 app.use('/imageReq' , imageReq);
 app.use('/login' , login);
+
+var url = require('url');
+var decryptHelper = require('./helper/DecryptHelper');
+
+
+app.use('/verify', function(req , res , next){
+	var parseObject = url.parse(req.url);
+	if(parseObject.query==null){
+		res.send('잘못된 접근입니다');
+	} else{
+		var sessionId = decryptHelper.decryptEmail(parseObject.query);
+		sessionStore.get(sessionId , function(err , session){
+			if(session==undefined){
+				res.send('만료된 세션입니다 새로 가입해 주세요');//여기 페이지도 만들것
+			} else{				
+				req.session.inform = session.inform;
+				sessionStore.destroy(sessionId , function(err){
+					//세선 스토어에서 임시저장해놨던거 디스트로이 했을때 에러나면 처리해야할 구간
+				});
+				next();
+			}
+		});
+	}
+} , verify);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

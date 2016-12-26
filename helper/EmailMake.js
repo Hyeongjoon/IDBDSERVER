@@ -5,24 +5,24 @@ var config = require('../helper/config.js');
 var emailTransport = email.createTransport(config.emailConfig);
 
 
-
-
 var mailOption = {
 		from : '"sendwitch" <sendwitch.co@gmail.com>',
 		to : '',
-		subject : '인증메일입니당',
+		subject : '',
 		html : ''
 }
 
 
-exports.makeEmail = function(email){
+exports.makeEmail = function(email , sessionId){
 	mailOption.to = email;
-	var encryptedEmail = EncryptHelper.encryptEmail(email).toString();
-	mailOption.html = '<a href="http://52.78.18.19:3000/verify/?query='+encryptedEmail+'">인증하기</a>';
+	mailOption.subject='[campoint] 이메일 인증을 위한 링크가 발급 되었습니다.';
+	var encryptedSessionId = EncryptHelper.encryptEmail(sessionId);
+	mailOption.html = '<a href="http://52.78.18.19/verify/?'+encryptedSessionId+'">인증하기</a>';
 	emailTransport.sendMail(mailOption , function(err , info){
 		if(err){
-			return console.log(err);
+			console.log(err);
+		} else{
+			console.log(info);
 		}
-		console.log(info.response);
 	});
 }

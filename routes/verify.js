@@ -4,31 +4,17 @@ var async = require('async');
 var DecryptHelper = require('../helper/DecryptHelper');
 var UserDAO = require('../model/UserDAO');
 
+
 router.get('/' , function(req , res , next){
-	if(req.url.length <= 8){
-		res.render('failReq', {});
-	} else {
-		async.waterfall([function(callback){ 
-			var tmp = req.url;
-			var tmpEmail = tmp.slice(8);
-			var email = DecryptHelper.decryptEmail(tmpEmail);
-			UserDAO.findUserByEmail(email , callback);
-		}, function(args1 , callback){
-			if(args1.length!==1){
-				callback(true , false);
-			} else if(args1[0].email_verify==true){
-				callback(true , false);
-			} else{
-				UserDAO.verifyEmail(args1[0].email , callback);
-			}
-		}], function(err , results){
-			if(err){
-				res.render('verifyAlready' , {});
-			} else{
-				res.render('verifSuccess' , {});
-			}
-		});
-	}
+	async.parallel([function(callback){
+		UserDAO.register(req.session.inform , callback);
+	}] , function(err ,results){
+		if(results[0] == true){
+			res.send('회원가입 완료'); //완료 페이지 html 만들것
+		} else{
+			res.send('회원가입 실패');
+		}
+	});
 });
 
 

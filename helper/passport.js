@@ -7,16 +7,16 @@ var userDAO = require('../model/UserDAO.js');
 
 passport.use( new localStrategy({
         usernameField: 'email',
-        passwordField: 'password'
+        passwordField: 'pwd'
       } , function(email, password, done) {
     	  async.series([function(callback){
-        	  userDAO.findUser(email , callback);
+        	  userDAO.findUserByEmail(email , callback);
     	  }], function(err , result){
     		  if(result[0]==''){
     			  return done(null, false);
     		  } else{
-    	        	if(decryptHelper.decryption(result[0][0].password)== password){
-    	        		  delete result[0][0].password;
+    	        	if(decryptHelper.decryption(result[0][0].pwd)== password){
+    	        		  delete result[0][0].pwd;
     	    	          return done(null, result[0][0]);
     	        		
     	        	} else{

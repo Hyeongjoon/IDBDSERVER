@@ -5,12 +5,12 @@ var char = 'abcdefghijklmnopqrstuvwxyz';
 
 exports.encryption = function(input){
 	var result = cryptoJS.AES.encrypt(input , config.dbSecretKey);
-	return result;
+	return result.toString();
 }
 
 exports.encryptEmail = function(input){
 	var result = cryptoJS.AES.encrypt(input , config.emailSecretKey);
-	return result;
+	return result.toString();
 }
 
 exports.codeGen = function(){
