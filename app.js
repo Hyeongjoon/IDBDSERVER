@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var Session = require('express-session');
 var redis = require('redis');
 var redisStore = require('connect-redis')(Session);
+var firebase = require('firebase');
 
 var passport = require('./helper/passport.js').passport;
 
@@ -32,8 +33,8 @@ var session = new Session({
 
 var app = express();
 
-/*app.set('port', 80);
-app.listen(app.get('port'));*/
+//app.set('port', 80);
+//app.listen(app.get('port'));
 //ejs
 
 var engine = require('ejs-locals');
@@ -78,12 +79,15 @@ var verify = require('./routes/verify');
 var imageReq = require('./routes/imageReq');
 var login = require('./routes/Login');
 var index = require('./routes/Index');
+var findEmail = require('./routes/FindPwd');
 
 //app.use('/', socketT);
 app.use('/' , index);
 app.use('/signUp', signUp);
 app.use('/imageReq' , imageReq);
 app.use('/login' , login);
+app.use('/findPwd' , findEmail);
+//app.use('/modify' , )
 
 var url = require('url');
 var decryptHelper = require('./helper/DecryptHelper');

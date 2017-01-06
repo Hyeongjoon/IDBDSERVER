@@ -21,3 +21,12 @@ exports.codeGen = function(){
 	}
 	return result;
 }
+
+exports.findPwdCode = function(){
+	var result='';
+	var stringLength = 7;
+	for( var i = 0 ; i < stringLength ; i++ ) {
+		result = result + char[Math.floor(Math.random()*26)];
+	}
+	return result;
+}

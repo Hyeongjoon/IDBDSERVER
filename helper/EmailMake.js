@@ -26,3 +26,16 @@ exports.makeEmail = function(email , sessionId){
 		}
 	});
 }
+
+exports.makeFindPwdEmail = function(email , code){
+	mailOption.to = email;
+	mailOption.subject='[campoint] 비밀번호를 찾기 위한 코드가 발급되었습니다.';
+	mailOption.html = '<p>'+code+'</p>';
+	emailTransport.sendMail(mailOption , function(err , info){
+		if(err){
+			console.log(err);
+		} else{
+			console.log(info);
+		}
+	});
+}

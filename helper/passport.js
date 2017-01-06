@@ -18,7 +18,6 @@ passport.use( new localStrategy({
     	        	if(decryptHelper.decryption(result[0][0].pwd)== password){
     	        		  delete result[0][0].pwd;
     	    	          return done(null, result[0][0]);
-    	        		
     	        	} else{
     	        		return done(null, false);
     	        	}
