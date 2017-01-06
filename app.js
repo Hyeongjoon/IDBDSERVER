@@ -7,7 +7,14 @@ var bodyParser = require('body-parser');
 var Session = require('express-session');
 var redis = require('redis');
 var redisStore = require('connect-redis')(Session);
-var firebase = require('firebase');
+
+var admin = require('firebase-admin');
+
+var serviceAccount = require('./helper/tracer-6de9934918ad.json');
+
+admin.initializeApp({
+	  credential: admin.credential.cert(serviceAccount) 
+	});
 
 var passport = require('./helper/passport.js').passport;
 
