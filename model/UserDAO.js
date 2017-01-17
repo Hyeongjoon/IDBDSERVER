@@ -43,3 +43,8 @@ exports.getUserNameByUID = function( uidArr , callback ){
 	base.select(sqlQuery , callback);
 }
 
+exports.findUserInfo = function(uid , callback){
+	var sqlQuery = 'SELECT email , name FROM user WHERE uid = ' + mysql.escape(uid);
+	base.select(sqlQuery , callback);
+}
+

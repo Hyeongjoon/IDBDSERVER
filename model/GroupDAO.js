@@ -3,7 +3,6 @@ var mysql = require('mysql');
 
 exports.getGroupBygid  = function(gidArr , callback){
 	var sqlQuery = 'SELECT gid , member_number from gr WHERE gid = ';
-	
 	for (var i = 0 ; i < gidArr.length ; i++){
 		sqlQuery = sqlQuery + gidArr[i].gid + ' or gid = '
 	}
@@ -11,8 +10,9 @@ exports.getGroupBygid  = function(gidArr , callback){
 	base.select(sqlQuery , callback);
 }
 
-exports.addGroupReturnID = function(callback){
-	var sqlQuery = ' INSERT INTO gr() VALUES();';
+exports.addGroupReturnID = function(uid , key, callback){
+	var sqlQuery = 'INSERT INTO gr(`gr_code` , `member_num` , `master`) VALUES ("' + key + '",' + 0 + ',' + uid +')'; 
+	//트리거 때문에 쿼리에 삽입값 1로하면 안됨 멤버넘 2됨 ㅇㅋ???
 	base.lastInsertId(sqlQuery , callback);
 }
 

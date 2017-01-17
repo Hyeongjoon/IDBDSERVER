@@ -5,6 +5,7 @@ var decryptHelper = require('../helper/DecryptHelper.js');
 var userDAO = require('../model/UserDAO.js');
 
 
+
 passport.use( new localStrategy({
         usernameField: 'email',
         passwordField: 'pwd'
@@ -12,6 +13,7 @@ passport.use( new localStrategy({
     	  async.series([function(callback){
         	  userDAO.findUserByEmail(email , callback);
     	  }], function(err , result){
+    		  
     		  if(result[0]==''){
     			  return done(null, false);
     		  } else{

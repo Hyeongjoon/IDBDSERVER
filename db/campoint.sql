@@ -142,6 +142,7 @@ create table gr(
     `update_time` datetime NOT NULL default now(),
     `master` int unsigned,
     primary key(`gid`),
+    unique key(`gr_code`),
     foreign key(`master`) references user(uid) ON DELETE SET NULL ON update CASCADE
 ) Engine =InnoDB DEFAULT CHARSET = utf8;	
    

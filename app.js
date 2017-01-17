@@ -8,13 +8,7 @@ var Session = require('express-session');
 var redis = require('redis');
 var redisStore = require('connect-redis')(Session);
 
-var admin = require('firebase-admin');
 
-var serviceAccount = require('./helper/tracer-6de9934918ad.json');
-
-admin.initializeApp({
-	  credential: admin.credential.cert(serviceAccount) 
-	});
 
 var passport = require('./helper/passport.js').passport;
 
@@ -87,6 +81,8 @@ var imageReq = require('./routes/imageReq');
 var login = require('./routes/Login');
 var index = require('./routes/Index');
 var findEmail = require('./routes/FindPwd');
+var sche_save = require('./routes/sche_save');
+var gr = require('./routes/Gr');
 
 //app.use('/', socketT);
 app.use('/' , index);
@@ -94,6 +90,8 @@ app.use('/signUp', signUp);
 app.use('/imageReq' , imageReq);
 app.use('/login' , login);
 app.use('/findPwd' , findEmail);
+app.use('/sche_save' , sche_save);
+app.use('/gr' , gr);
 //app.use('/modify' , )
 
 var url = require('url');

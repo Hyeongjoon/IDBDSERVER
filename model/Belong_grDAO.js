@@ -7,6 +7,12 @@ exports.getGidByUid = function(uid , callback){
 	base.select(sqlQuery, callback);
 };
 
+exports.getGrInfo = function(uid , callback){
+	var sqlQuery = 'SELECT straight_join gr.member_num , gr.gid , belong_gr.new_file_num , belong_gr.new_talk_num' +
+					', belong_gr.name from gr LEFT JOIN belong_gr ON belong_gr.gid = gr.gid WHERE uid = ' + mysql.escape(uid) + 'ORDER by gr.update_time DESC';
+		base.select(sqlQuery , callback);
+};
+
 exports.getUidInGroupNotMe = function(gidArr , uid, callback){
 	var sqlQuery = 'SELECT * from belong_gr WHERE ( ';
 	for (var i = 0 ; i < gidArr.length ; i ++){
@@ -37,7 +43,8 @@ exports.addBelong_gr = function(uid , gid , title ,callback){
 			'uid' : uid,
 			'gid' : gid,
 			'name' : title,
-			'view_order' : 0
+			'new_file_num' : 0,
+			'new_talk_num' : 0
 	}
 	base.insert(sqlQuery , inform , callback);
 }
