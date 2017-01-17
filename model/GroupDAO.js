@@ -16,6 +16,11 @@ exports.addGroupReturnID = function(uid , key, callback){
 	base.lastInsertId(sqlQuery , callback);
 }
 
+exports.findGrByCode = function(code , callback){
+	var sqlQuery = 'SELECT gid , member_num FROM gr WHERE gr_code = ' + mysql.escape(code);
+	base.select(sqlQuery , callback);
+}
+
 exports.findGrInform = function(gid , callback){
 	var sqlQuery = ' SELECT gid , member_number FROM gr WHERE gid = ' + mysql.escape(gid);
 	base.select(sqlQuery , callback);

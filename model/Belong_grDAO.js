@@ -37,13 +37,13 @@ exports.addViewOrder = function(uid , callback){
 	base.update(sqlQuery , callback);
 }
 
-exports.addBelong_gr = function(uid , gid , title ,callback){
+exports.addBelong_gr = function(uid , gid , title , new_file_num ,callback){
 	var sqlQuery = 'INSERT INTO belong_gr SET ?';
 	var inform = {
 			'uid' : uid,
 			'gid' : gid,
 			'name' : title,
-			'new_file_num' : 0,
+			'new_file_num' : new_file_num,
 			'new_talk_num' : 0
 	}
 	base.insert(sqlQuery , inform , callback);

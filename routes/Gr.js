@@ -5,6 +5,7 @@ var admin = require('firebase-admin');
 var groupDAO = require('../model/GroupDAO');
 var belongDAO = require('../model/Belong_grDAO');
 var userDAO = require('../model/UserDAO');
+var fileDAO = require('../model/FileDAO');
 var encryptHelper = require('../helper/EncryptHelper');
 
 var async = require('async');
@@ -66,7 +67,7 @@ router.post('/add' , function(req , res, next){
 						}
 				);
 		  } , function(args1 , callback){
-			  belongDAO.addBelong_gr(uid, args1, req.body.title, callback);
+			  belongDAO.addBelong_gr(uid, args1, req.body.title, 0 ,callback);
 		  }] , function(err ,results){
 			  if(err){
 				  res.json({result : 'false'});
@@ -82,15 +83,37 @@ router.post('/add' , function(req , res, next){
 
 router.post('/addByCode/:token', function(req , res, next){
 	var idToken = req.params.token;
-	console.log(idToken);
-	console.log(req.body.code);
-	
+	console.log(req.body.name);
 	admin.auth().verifyIdToken(idToken).then(function(decodedToken) {
 		var uid = decodedToken.uid;
-		async.
+		var gid;
+		var new_file_num;
+		var member_num;      //코드가 맞는지 확인하는 과정에서 gid 얻어오는데 같이 그룹 멤버넘버까지 따오는데....아직 우리껀 추가안됐으므로 +1해서 넘겨야함
+		async.waterfall([function(callback){
+			groupDAO.findGrByCode(req.body.code , callback);
+		} , function(args1 , callback){
+			if(args1.length==1){
+				gid = args1[0].gid;
+				member_num = args1[0].member_num;
+				fileDAO.findGrFileNum(gid , callback);
+			} else{
+				callback('wrong_code' , null);
+			}
+		} , function(args1 , callback){
+			new_file_num = args1[0].new_file_num;
+			 belongDAO.addBelong_gr(uid, gid, req.body.name, new_file_num ,callback);
+		}] , function(err ,results){
+			if(err=='wrong_code'){
+				res.json({result:'false' , content:'code'});
+			} else if(err){
+				res.json({result:'false' , content:'duplication'});
+			} else {
+				res.json({result:'true' , gid : gid , name : req.body.name , new_file_num : new_file_num , new_talk_num : 0 , member_num : member_num + 1});
+			}
+		});
 	}).catch(function(error) {
 		//토큰 로드 실패했을때
-		res.json({result : 'false'});
+		res.json({result : 'false' , content:'server'});
 	});
 });
 

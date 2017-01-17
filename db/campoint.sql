@@ -346,11 +346,11 @@ create event delete_gr_schedule
         STARTS '2016-12-30 23:59:59'
 	DO
 	 BEGIN
-		delete from delete_gr_schedule WHERE delete_gr_schedule.start_date < date_sub(now() , interval 1 week); /**1주일 지나면 양도 현황 지워지게 하는거 **/
+		delete from delete_gr_schedule WHERE delete_gr_schedule.start_date < date_sub(now() , interval 1 week); /**1주일 지나면 스케쥴 지워지게 하는거 **/
      END |
     DELIMITER ;
 
-     DROP TRIGGER IF EXISTS plus_gr_number;
+     DROP TRIGGER IF EXISTS plus_gr_number;													/** belong_gr에 추가되면 gr member_num 자동으로 추가되는 트리거  **/
 DELIMITER |
 create trigger plus_gr_number after INSERT ON belong_gr
 	for each row
@@ -359,7 +359,7 @@ create trigger plus_gr_number after INSERT ON belong_gr
 	END|
     DELIMITER ;
 
-	DROP TRIGGER IF EXISTS minus_gr_number;
+	DROP TRIGGER IF EXISTS minus_gr_number;													/** belong_gr에 삭제되면  gr member_num 자동으로 추가되는 트리거  **/
 DELIMITER |
 create trigger minus_gr_number after DELETE ON belong_gr
 	for each row
@@ -369,13 +369,13 @@ create trigger minus_gr_number after DELETE ON belong_gr
     DELIMITER ;
     
     
-	DROP TRIGGER IF EXISTS plus_new_file_num;
+	DROP TRIGGER IF EXISTS plus_new_file_num;										/** file_table에 파일 추가되면 new_file_num이랑 업데이트시간 자동으로 추가되는 트리거  **/
 DELIMITER |
 create trigger plus_new_file_num after INSERT ON file_table
 	for each row
     BEGIN
 		UPDATE belong_gr SET belong_gr.new_file_num = belong_gr.new_file_num + 1 WHERE belong_gr.gid = new.gid;
-        UPDATE gr SET gr.updated_time = now() WHERE gr.gid = new.gid;
+        UPDATE gr SET gr.update_time = now() WHERE gr.gid = new.gid;
 	END|
     DELIMITER ;
 
