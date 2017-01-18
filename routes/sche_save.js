@@ -10,7 +10,7 @@ router.post('/' , function(req, res, next){
 	admin.auth().verifyIdToken(idToken).then(function(decodedToken) {
 		  var uid = decodedToken.uid;
 		  async.parallel([function(callback){
-			  scheDAO.regScher(temp,uid , callback);
+			  scheDAO.regSche(temp,uid , callback);
 		  }] , function(err ,results){
 			  if(err || results[0]!==true){ 
 				  res.json({result :'false'});
@@ -21,7 +21,6 @@ router.post('/' , function(req, res, next){
 		}).catch(function(error) {
 			//토큰 로드 실패했을때
 			res.json({result : 'false'});
-			
 		});
 });
 

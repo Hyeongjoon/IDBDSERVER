@@ -75,21 +75,4 @@ exports.lastInsertId = function(params, callback , input) {
 		});
 	}
 };
-/*
-exports.whileInsert = function(params, inform,  callback) {
-	var key = encryptHelper.codeGen();
-	inform.code = key;
-	connection.query(params, inform, function(err, rows, fields) {
-		if (!err) {
-			console.log("여긴오냐고");
-			return true;
-		} else if ((err + "").indexOf('PRIMARY') != -1) {
-			console.log("여긴오냐");
-			return false;
-		} else {
-			console.log("err" + err);
-			callback(err);
-			return true;
-		}
-	});
-};*/
+

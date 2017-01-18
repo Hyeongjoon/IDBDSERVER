@@ -83,7 +83,6 @@ router.post('/add' , function(req , res, next){
 
 router.post('/addByCode/:token', function(req , res, next){
 	var idToken = req.params.token;
-	console.log(req.body.name);
 	admin.auth().verifyIdToken(idToken).then(function(decodedToken) {
 		var uid = decodedToken.uid;
 		var gid;
