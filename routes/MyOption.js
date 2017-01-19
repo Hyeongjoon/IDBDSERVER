@@ -16,11 +16,10 @@ router.get('/getSche/:token' , function(req, res, next){
 				if(result==undefined){
 					result = "null";
 				}
-				console.log(result);
 				res.json({result: 'success' , content : result});
 			}
 		});
-	}).catch(function(error) {
+	}).catch(function(error){
 		//토큰 로드 실패했을때
 		res.json({result : 'false'});
 	});
@@ -44,7 +43,7 @@ router.post('/sche_save/:token' , function(req, res, next){
 				res.json({result : 'success'});
 			}
 		});
-	}).catch(function(error) {
+	}).catch(function(error){
 		//토큰 로드 실패했을때
 		res.json({result : 'false'});
 	});;

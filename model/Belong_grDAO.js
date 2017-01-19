@@ -1,5 +1,6 @@
 var base = require('./BaseDAO.js');
 var mysql = require('mysql');
+var makeColor = require('../helper/MakeColorNum');
 
 exports.getGidByUid = function(uid , callback){
 	var sqlQuery = 'SELECT * from belong_gr WHERE uid = ' + mysql.escape(uid);
@@ -8,7 +9,7 @@ exports.getGidByUid = function(uid , callback){
 };
 
 exports.getGrInfo = function(uid , callback){
-	var sqlQuery = 'SELECT straight_join gr.member_num , gr.gid , belong_gr.new_file_num , belong_gr.new_talk_num' +
+	var sqlQuery = 'SELECT straight_join gr.member_num , gr.gid , belong_gr.new_file_num , belong_gr.new_talk_num , belong_gr.color' +
 					', belong_gr.name from gr LEFT JOIN belong_gr ON belong_gr.gid = gr.gid WHERE uid = ' + mysql.escape(uid) + 'ORDER by gr.update_time DESC';
 		base.select(sqlQuery , callback);
 };
@@ -37,14 +38,15 @@ exports.addViewOrder = function(uid , callback){
 	base.update(sqlQuery , callback);
 }
 
-exports.addBelong_gr = function(uid , gid , title , new_file_num ,callback){
+exports.addBelong_gr = function(uid , gid , title , new_file_num, color ,callback){
 	var sqlQuery = 'INSERT INTO belong_gr SET ?';
 	var inform = {
 			'uid' : uid,
 			'gid' : gid,
 			'name' : title,
 			'new_file_num' : new_file_num,
-			'new_talk_num' : 0
+			'new_talk_num' : 0,
+			'color' : color
 	}
 	base.insert(sqlQuery , inform , callback);
 }
@@ -52,6 +54,11 @@ exports.addBelong_gr = function(uid , gid , title , new_file_num ,callback){
 exports.deleteBelong_gr = function(uid , gid , callback){
 	var sqlQuery = 'DELETE FROM belong_gr WHERE uid = ' + mysql.escape(uid) + ' AND gid = ' + mysql.escape(gid);
 	base.deletion(sqlQuery , callback);
+}
+
+exports.changeColor = function(uid, gid, color, callback){
+	var sqlQuery = 'UPDATE belong_gr SET `color` = ' + mysql.escape(color) + ' WHERE uid = ' + mysql.escape(uid) + ' AND gid = ' + mysql.escape(gid);
+	base.update(sqlQuery, callback);
 }
 
 exports.subtractViewOrder = function(uid , gidArr , viewOrder , callback){

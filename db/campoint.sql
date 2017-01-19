@@ -154,6 +154,7 @@ create table belong_gr(
     `new_file_num` tinyint NOT NULL,
     `new_talk_num` tinyint NOT NULL,
     `s_input` boolean NOT NULL default false,
+    `color` tinyint unsigned NOT NULL,
     primary key(`uid` , `gid`),
     foreign key(`uid`) references user(`uid`) ON DELETE CASCADE ON UPDATE CASCADE,
     foreign key(`gid`) references gr(`gid`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -343,14 +344,26 @@ DELIMITER |
 create event delete_gr_schedule
 	ON SCHEDULE
 		EVERY 1 DAY
-        STARTS '2016-12-30 23:59:59'
+        STARTS '2017-01-19 23:59:59'
 	DO
 	 BEGIN
 		delete from delete_gr_schedule WHERE delete_gr_schedule.start_date < date_sub(now() , interval 1 week); /**1주일 지나면 스케쥴 지워지게 하는거 **/
      END |
     DELIMITER ;
+    
+    DROP EVENT IF exists delete_gr_member_zero;
+    DELIMITER |
+create event delete_gr_member_zero                 /**이벤트 먹는거 확인함**/
+	ON SCHEDULE
+		EVERY 1 DAY
+        STARTS '2017-01-19 23:59:59'
+    DO
+	 BEGIN
+		delete from gr WHERE gr.member_num = 0;                                                                 /**멤버수 0명인거 gr 삭제 매일 1번씩**/     
+	 END |
+    DELIMITER ;
 
-     DROP TRIGGER IF EXISTS plus_gr_number;													/** belong_gr에 추가되면 gr member_num 자동으로 추가되는 트리거  **/
+     DROP TRIGGER IF EXISTS plus_gr_number;													/** belong_gr에 추가되면 gr member_num 자동으로 추가되는 트리거 확인완료  **/
 DELIMITER |
 create trigger plus_gr_number after INSERT ON belong_gr
 	for each row
@@ -359,7 +372,7 @@ create trigger plus_gr_number after INSERT ON belong_gr
 	END|
     DELIMITER ;
 
-	DROP TRIGGER IF EXISTS minus_gr_number;													/** belong_gr에 삭제되면  gr member_num 자동으로 추가되는 트리거  **/
+	DROP TRIGGER IF EXISTS minus_gr_number;													/** belong_gr에 삭제되면  gr member_num 자동으로 추가되는 트리거 확인완료 **/
 DELIMITER |
 create trigger minus_gr_number after DELETE ON belong_gr
 	for each row
@@ -369,7 +382,7 @@ create trigger minus_gr_number after DELETE ON belong_gr
     DELIMITER ;
     
     
-	DROP TRIGGER IF EXISTS plus_new_file_num;										/** file_table에 파일 추가되면 new_file_num이랑 업데이트시간 자동으로 추가되는 트리거  **/
+	DROP TRIGGER IF EXISTS plus_new_file_num;										/** file_table에 파일 추가되면 new_file_num이랑 업데이트시간 자동으로 추가되는 트리거 확인완료 **/
 DELIMITER |
 create trigger plus_new_file_num after INSERT ON file_table
 	for each row

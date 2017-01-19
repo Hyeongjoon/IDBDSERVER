@@ -7,6 +7,7 @@ var belongDAO = require('../model/Belong_grDAO');
 var userDAO = require('../model/UserDAO');
 var fileDAO = require('../model/FileDAO');
 var encryptHelper = require('../helper/EncryptHelper');
+var colorMake = require('../helper/MakeColorNum');
 
 var async = require('async');
 
@@ -35,6 +36,7 @@ router.post('/add' , function(req , res, next){
 	admin.auth().verifyIdToken(idToken).then(function(decodedToken) {
 			uid = decodedToken.uid;
 			var resultId;
+			var color = colorMake.makeColor();
 		  async.waterfall([function(callback){
 			  var check = true;
 				async.whilst(
@@ -67,12 +69,12 @@ router.post('/add' , function(req , res, next){
 						}
 				);
 		  } , function(args1 , callback){
-			  belongDAO.addBelong_gr(uid, args1, req.body.title, 0 ,callback);
+			  belongDAO.addBelong_gr(uid, args1, req.body.title, 0, color ,callback);
 		  }] , function(err ,results){
 			  if(err){
 				  res.json({result : 'false'});
 			  }else{
-				  res.json({result : 'success' , gid : resultId , name : req.body.title, member_num : 1 ,new_file_num : 0 , new_talk_num : 0});
+				  res.json({result : 'success' , gid : resultId , name : req.body.title, color:color ,member_num : 1 ,new_file_num : 0 , new_talk_num : 0});
 			  }
 		  });
 		}).catch(function(error) {
@@ -88,6 +90,7 @@ router.post('/addByCode/:token', function(req , res, next){
 		var gid;
 		var new_file_num;
 		var member_num;      //코드가 맞는지 확인하는 과정에서 gid 얻어오는데 같이 그룹 멤버넘버까지 따오는데....아직 우리껀 추가안됐으므로 +1해서 넘겨야함
+		var color = colorMake.makeColor()
 		async.waterfall([function(callback){
 			groupDAO.findGrByCode(req.body.code , callback);
 		} , function(args1 , callback){
@@ -100,19 +103,70 @@ router.post('/addByCode/:token', function(req , res, next){
 			}
 		} , function(args1 , callback){
 			new_file_num = args1[0].new_file_num;
-			 belongDAO.addBelong_gr(uid, gid, req.body.name, new_file_num ,callback);
+			 belongDAO.addBelong_gr(uid, gid, req.body.name, new_file_num,color ,callback);
 		}] , function(err ,results){
 			if(err=='wrong_code'){
 				res.json({result:'false' , content:'code'});
 			} else if(err){
 				res.json({result:'false' , content:'duplication'});
 			} else {
-				res.json({result:'true' , gid : gid , name : req.body.name , new_file_num : new_file_num , new_talk_num : 0 , member_num : member_num + 1});
+				res.json({result:'true' , gid : gid , name : req.body.name, color:color , new_file_num : new_file_num , new_talk_num : 0 , member_num : member_num + 1});
+			}
+		});
+	}).catch(function(error){
+		//토큰 로드 실패했을때
+		res.json({result : 'false' , content:'server'});
+	});
+});
+
+router.post('/changeGrName/:token' , function(req, res ,next){
+	admin.auth().verifyIdToken(req.params.token).then(function(decodedToken) {
+		async.parallel([function(callback){
+			belongDAO.changeGrName(decodedToken.uid , req.body.gid , req.body.name , callback);
+		}] , function(err , results){
+			if(err){
+				res.json({result : 'false'});
+			} else{
+				res.json({result : 'success'});
 			}
 		});
 	}).catch(function(error) {
 		//토큰 로드 실패했을때
-		res.json({result : 'false' , content:'server'});
+		res.json({result : 'false'});
+	});
+});
+
+router.post('/delete/:token' , function(req , res , next){
+	admin.auth().verifyIdToken(req.params.token).then(function(decodedToken) {
+		async.parallel([function(callback){
+			belongDAO.deleteBelong_gr(decodedToken.uid , req.body.gid ,callback);
+		}] , function(err , results){
+			if(err){
+				res.json({result : 'false'});
+			} else{
+				res.json({result : 'success'});
+			}
+		});
+	}).catch(function(error) {
+		//토큰 로드 실패했을때
+		res.json({result : 'false'});
+	});
+});
+
+router.post('/change_color/:token' , function(req , res, next){
+	admin.auth().verifyIdToken(req.params.token).then(function(decodedToken) {
+		async.parallel([function(callback){
+			belongDAO.changeColor(decodedToken.uid , req.body.gid , req.body.color , callback);
+		}] , function(err ,results){
+			if(err){
+				res.json({result : 'false'});
+			} else{
+				res.json({result : 'success'});
+			}
+		});
+	}).catch(function(error) {
+		//토큰 로드 실패했을때
+		res.json({result : 'false'});
 	});
 });
 
