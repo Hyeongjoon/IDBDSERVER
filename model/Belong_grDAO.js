@@ -9,7 +9,7 @@ exports.getGidByUid = function(uid , callback){
 };
 
 exports.getGrInfo = function(uid , callback){
-	var sqlQuery = 'SELECT straight_join gr.member_num , gr.gid , belong_gr.new_file_num , belong_gr.new_talk_num , belong_gr.color' +
+	var sqlQuery = 'SELECT straight_join gr.member_num , gr.gid ,gr.notify_key ,belong_gr.new_file_num , belong_gr.new_talk_num , belong_gr.color' +
 					', belong_gr.name from gr LEFT JOIN belong_gr ON belong_gr.gid = gr.gid WHERE uid = ' + mysql.escape(uid) + 'ORDER by gr.update_time DESC';
 		base.select(sqlQuery , callback);
 };

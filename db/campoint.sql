@@ -141,6 +141,7 @@ create table gr(
     `member_num` tinyint unsigned NOT NULL,
     `update_time` datetime NOT NULL default now(),
     `master` int unsigned,
+    `notify_key` varchar(255) NOT NULL,
     primary key(`gid`),
     unique key(`gr_code`),
     foreign key(`master`) references user(uid) ON DELETE SET NULL ON update CASCADE
@@ -344,7 +345,7 @@ DELIMITER |
 create event delete_gr_schedule
 	ON SCHEDULE
 		EVERY 1 DAY
-        STARTS '2017-01-19 23:59:59'
+        STARTS '2017-01-28 23:59:59'
 	DO
 	 BEGIN
 		delete from delete_gr_schedule WHERE delete_gr_schedule.start_date < date_sub(now() , interval 1 week); /**1주일 지나면 스케쥴 지워지게 하는거 **/
@@ -356,7 +357,7 @@ create event delete_gr_schedule
 create event delete_gr_member_zero                 /**이벤트 먹는거 확인함**/
 	ON SCHEDULE
 		EVERY 1 DAY
-        STARTS '2017-01-19 23:59:59'
+        STARTS '2017-01-28 23:59:59'
     DO
 	 BEGIN
 		delete from gr WHERE gr.member_num = 0;                                                                 /**멤버수 0명인거 gr 삭제 매일 1번씩**/     

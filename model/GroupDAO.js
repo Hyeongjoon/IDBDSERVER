@@ -17,7 +17,7 @@ exports.addGroupReturnID = function(uid , key, callback){
 }
 
 exports.findGrByCode = function(code , callback){
-	var sqlQuery = 'SELECT gid , member_num FROM gr WHERE gr_code = ' + mysql.escape(code);
+	var sqlQuery = 'SELECT gid , member_num, notify_key FROM gr WHERE gr_code = ' + mysql.escape(code);
 	base.select(sqlQuery , callback);
 }
 
@@ -38,5 +38,10 @@ exports.deleteGroup = function(gid , callback){
 
 exports.addGroupNum = function(gid , callback){
 	var sqlQuery = 'UPDATE gr SET member_number = member_number + 1 WHERE gid = ' + mysql.escape(gid);
+	base.update(sqlQuery , callback);
+}
+
+exports.updateNotikey = function(gid , key , callback){
+	var sqlQuery = 'UPDATE gr SET notify_key = ' + mysql.escape(key) + 'WHERE gid = ' + mysql.escape(gid);
 	base.update(sqlQuery , callback);
 }

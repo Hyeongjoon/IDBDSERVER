@@ -46,6 +46,7 @@ router.post('/' , function(req , res , next){
     	        		}
     	        		admin.auth().createCustomToken(userInfo.uid+"")
     	      		    .then(function(customToken) {
+    	      			  	console.log(customToken);
     	      			  	res.json({result:'success' , content:customToken , goMain:goMain }); //토큰땜에 여기서 이메일이랑 이름 설정 불가능 ㅠㅠ 
     	      		    })																		//왜냐하면 토큰으로 로그인정보 체크 시 정보 못줌 ㅠㅠ
     	      		    .catch(function(error) {
