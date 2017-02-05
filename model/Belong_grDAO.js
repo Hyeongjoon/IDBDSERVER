@@ -1,4 +1,5 @@
 var base = require('./BaseDAO.js');
+
 var mysql = require('mysql');
 var makeColor = require('../helper/MakeColorNum');
 
@@ -13,6 +14,16 @@ exports.getGrInfo = function(uid , callback){
 					', belong_gr.name from gr LEFT JOIN belong_gr ON belong_gr.gid = gr.gid WHERE uid = ' + mysql.escape(uid) + 'ORDER by gr.update_time DESC';
 		base.select(sqlQuery , callback);
 };
+
+exports.addNewTalkNum = function(gid , uid , callback){
+	var sqlQuery = 'UPDATE belong_gr SET new_talk_num = new_talk_num + 1 WHERE gid = ' + mysql.escape(gid) + ' AND uid = ' + mysql.escape(uid);
+	base.update(sqlQuery , callback);
+}
+
+exports.resetTalkNum = function(gid , uid , callback){
+	var sqlQuery = 'UPDATE belong_gr SET new_talk_num = 0 WHERE gid = ' + mysql.escape(gid) + ' AND uid = ' + mysql.escape(uid);
+	base.update(sqlQuery , callback);
+}
 
 exports.getUidInGroupNotMe = function(gidArr , uid, callback){
 	var sqlQuery = 'SELECT * from belong_gr WHERE ( ';
@@ -82,5 +93,10 @@ exports.findViewOrder = function(uid , gid , callback){
 
 exports.findBelongByUidGid = function(uid , gid , callback){
 	var sqlQuery = 'SELECT uid , gid FROM belong_gr WHERE uid = ' + mysql.escape(uid) + ' AND gid = ' + mysql.escape(gid);
+	base.select(sqlQuery , callback);
+}
+
+exports.findNameIngr = function(gid ,callback){
+	var sqlQuery = 'SELECT straight_join user.name , user.uid from user left JOIN belong_gr ON belong_gr.gid= '+ mysql.escape(gid)+ 'WHERE user.uid = belong_gr.uid';
 	base.select(sqlQuery , callback);
 }

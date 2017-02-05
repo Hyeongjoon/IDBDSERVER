@@ -84,7 +84,8 @@ var findEmail = require('./routes/FindPwd');
 var sche_save = require('./routes/sche_save');
 var gr = require('./routes/Gr');
 var my_option = require('./routes/MyOption');
-var temp = require('./routes/temp');
+var chat = require('./routes/chat');
+var gr_info = require('./routes/Gr_info');
 
 //app.use('/', socketT);
 app.use('/' , index);
@@ -94,9 +95,10 @@ app.use('/login' , login);
 app.use('/findPwd' , findEmail);
 app.use('/sche_save' , sche_save);
 app.use('/gr' , gr);
+app.use('/gr_info' , gr_info);
 app.use('/my_option' , my_option);
-app.use('/temp' , temp);
-//app.use('/modify' , )
+app.use('/chat' , chat);
+
 
 var url = require('url');
 var decryptHelper = require('./helper/DecryptHelper');

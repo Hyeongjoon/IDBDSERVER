@@ -45,3 +45,18 @@ exports.updateNotikey = function(gid , key , callback){
 	var sqlQuery = 'UPDATE gr SET notify_key = ' + mysql.escape(key) + 'WHERE gid = ' + mysql.escape(gid);
 	base.update(sqlQuery , callback);
 }
+
+exports.findNotikey = function(gid , callback){
+	var sqlQuery = 'SELECT notify_key FROM gr WHERE gid = ' + mysql.escape(gid);
+	base.select(sqlQuery , callback);
+}
+
+exports.findMasterInGr = function(gid , callback){
+	var sqlQuery = 'SELECT master , gr_code FROM gr WHERE gid = ' + mysql.escape(gid);
+	base.select(sqlQuery , callback);
+}
+
+exports.updateTime = function(gid , callback){
+	var sqlQuery = 'UPDATE gr SET update_time = now() WHERE gid = ' + mysql.escape(gid);
+	base.update(sqlQuery , callback);
+}
