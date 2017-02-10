@@ -27,7 +27,7 @@ router.get('/' , function(req, res, next){
 			if(err){
 				res.json({result:'false'});
 			} else{
-				res.json({result:'success' , userInfo : results[0] , grInfo : results[1]});
+				res.json({result:'success' , userInfo : results[0] , grInfo : results[1] , s3Secret : config.awsS3Credential});
 			}
 		});
 	});
