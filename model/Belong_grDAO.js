@@ -100,3 +100,8 @@ exports.findNameIngr = function(gid ,callback){
 	var sqlQuery = 'SELECT straight_join user.name , user.uid from user left JOIN belong_gr ON belong_gr.gid= '+ mysql.escape(gid)+ 'WHERE user.uid = belong_gr.uid';
 	base.select(sqlQuery , callback);
 }
+
+exports.resetFileNum = function(uid , gid , callback){
+	var sqlQuery = 'UPDATE belong_gr SET new_file_num = 0 WHERE gid = '+mysql.escape(gid)+' AND uid = ' + mysql.escape(uid);
+	base.update(sqlQuery , callback);
+}

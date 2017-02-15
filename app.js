@@ -86,6 +86,7 @@ var gr = require('./routes/Gr');
 var my_option = require('./routes/MyOption');
 var chat = require('./routes/chat');
 var gr_info = require('./routes/Gr_info');
+var file = require('./routes/file');
 
 //app.use('/', socketT);
 app.use('/' , index);
@@ -98,6 +99,7 @@ app.use('/gr' , gr);
 app.use('/gr_info' , gr_info);
 app.use('/my_option' , my_option);
 app.use('/chat' , chat);
+app.use('/file' , file);
 
 
 var url = require('url');
