@@ -15,23 +15,56 @@ var s3 = new AWS.S3();
 
 router.post('/upload/:token' , function(req, res, next){ 
 	admin.auth().verifyIdToken(req.params.token).then(function(decodedToken) {
+		var input = {
+				uid : decodedToken.uid, 
+				gid : req.body.gid,
+				location : req.body.location
+		};
 		async.parallel([function(callback){
-			var input = {
-					uid : decodedToken.uid, 
-					gid : req.body.gid,
-					location : req.body.location
-			};
 			if(req.body.image=='true'){
 				input.image = true;
 			} else{
 				input.image = false;
 			}
 			fileDAO.insertFile(input , callback);
+		} , function(callback){
+			belongDAO.resetFileNum(decodedToken.uid , req.body.gid , callback);
 		}] , function(err , results){
 			if(err){
 				res.json({result : 'false'});
 			} else{
-				res.json({result: 'true' , fid: results[0].insertId});
+				
+				var params = config.awsS3GetConfig;
+				params.Key = input.location;
+				s3.getSignedUrl('getObject', params, function (err, url) {
+					if(err){
+						console.log(err)
+					}
+					input.location = url;
+				});
+				
+				if(req.body.image=='true'){
+					input.image = 1;
+				} else{
+					input.image = 0;
+				}
+				
+				
+				var today = new Date();
+				input.d = today.getFullYear() + "-";
+				var month = today.getMonth() + 1;
+				if(month<9){
+					input.d = input.d + "0" + month + "-";
+				} else{
+					input.d = input.d + month + "-";
+				}
+				
+				if(today.getDate() > 9){
+					input.d = input.d + today.getDate();
+				} else{
+					input.d = input.d + "0" + today.getDate();
+				}
+				res.json({result: 'true' , input : input});
 			}
 		});
 	}).catch(function(error) {
@@ -48,11 +81,11 @@ router.get('/:token/:gid' , function(req , res , next){
 		} , function(callback){
 			belongDAO.resetFileNum(decodedToken.uid , req.params.gid , callback);
 		}] , function(err , results){
+			console.log(results);
 			if(err){
 				res.json({result : 'false'});
 			} else{
 				var params = config.awsS3GetConfig;
-				
 				for(var i = 0 ; i <results[0].length ; i++){
 					params.Key = results[0][i].location;				
 					s3.getSignedUrl('getObject', params, function (err, url) {
@@ -65,12 +98,12 @@ router.get('/:token/:gid' , function(req , res , next){
 				var finalArr = [];
 				var temp = [];
 				
+				if(results[0].length!=0){
+					temp.push(results[0][0]);
+				}
+				
 				for(var i = 0 ; i < results[0].length-1 ; i++){
-					
-					if(i == 0){
-						temp.push(results[0][0]);
-					}
-					
+
 					if(results[0][i].d == results[0][i+1].d){
 						temp.push(results[0][i+1]);
 					} else{
@@ -83,11 +116,12 @@ router.get('/:token/:gid' , function(req , res , next){
 				if(temp.length != 0){
 					finalArr.push(temp);
 				}                        //여기코드 겁나 맘에안든다 나중에 다 고치자
+				console.log(finalArr);
 				res.json({result:'true' , file_list : finalArr});
 			}
 		});
 	}).catch(function(error) {
 		res.json({result : 'false'});
-	})
+	});
 });
 module.exports = router;

@@ -2,7 +2,7 @@ var base = require('./BaseDAO.js');
 var mysql = require('mysql');
 
 exports.findFileByGid = function ( gid , callback){
-	var sqlQuery = 'SELECT temp.fid, temp.location, temp.image , mod(temp.fid , 3) AS `md` , date_format(temp.upload_time ,  "%Y-%m-%d") AS `d` FROM (SELECT fid , location , image , upload_time FROM file_table WHERE gid = ' + mysql.escape(gid) + ' ORDER BY upload_time DESC) temp GROUP BY `d` , `md`';
+	var sqlQuery = 'SELECT temp.location, temp.image , mod(temp.fid , 4) AS `md` , date_format(temp.upload_time ,  "%Y-%m-%d") AS `d` FROM (SELECT fid , location , image , upload_time FROM file_table WHERE gid = ' + mysql.escape(gid) + ' ORDER BY upload_time DESC) temp GROUP BY `d` , `md`';
 	base.select(sqlQuery , callback);
 }
 
