@@ -26,3 +26,8 @@ exports.findGrFileNum = function(gid , callback){ //그룹 코드로 추가할�
 	var sqlQuery = 'SELECT count(*) AS new_file_num FROM file_table WHERE gid = ' + mysql.escape(gid);
 	base.select(sqlQuery , callback);
 }
+
+exports.findFileByDate = function(gid , date , callback){
+	var sqlQuery = 'SELECT * FROM(SELECT fid , uid , location , date_format(upload_time ,  "%Y-%m-%d") AS d , image from file_table WHERE gid = ' +mysql.escape(gid) +') AS temp WHERE temp.d = ' + mysql.escape(date) + ' ORDER BY fid DESC';
+	base.select(sqlQuery , callback);
+}
