@@ -130,6 +130,8 @@ router.get('/get_file/:token/:gid/:date' , function(req, res, next){
 							if(err){
 								console.log(err)
 							}
+							var temp = results[0][i].location.split('/');
+							results[0][i].fileName = temp[temp.length-1];
 							results[0][i].location = url;
 						}); 
 						}
