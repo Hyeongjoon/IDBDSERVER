@@ -105,3 +105,8 @@ exports.resetFileNum = function(uid , gid , callback){
 	var sqlQuery = 'UPDATE belong_gr SET new_file_num = 0 WHERE gid = '+mysql.escape(gid)+' AND uid = ' + mysql.escape(uid);
 	base.update(sqlQuery , callback);
 }
+
+exports.findGrSche = function(gid , callback){
+	var sqlQuery = 'SELECT a.* From (SELECT uid FROM belong_gr WHERE gid = ' + mysql.escape(gid) + ') AS b join schedule_table AS a on a.uid = b.uid';
+	base.select(sqlQuery , callback);
+}

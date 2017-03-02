@@ -13,11 +13,13 @@ router.post('/' , function(req , res , next){
 			belong_grDAO.findNameIngr(req.body.gid , callback);
 		} , function(callback){
 			grDAO.findMasterInGr(req.body.gid  , callback);
+		} , function(callback){
+			belong_grDAO.findGrSche(req.body.gid  , callback);
 		}] , function(err , results){
 			if(err){
 				res.json({result : 'false' , content:'server'})
 			} else{
-				res.json({result : 'success' , user_list : results[0] , gr_master : results[1][0].master , gr_code : results[1][0].gr_code})
+				res.json({result : 'success' , user_list : results[0] , gr_master : results[1][0].master , gr_code : results[1][0].gr_code , gr_sche : results[2]})
 			}
 		});
 	}).catch(function(error){
