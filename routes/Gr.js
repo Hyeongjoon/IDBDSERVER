@@ -77,6 +77,8 @@ router.post('/add' , function(req , res, next){
 			  if(err){
 				  res.json({result : 'false'});
 			  }else{
+				  console.log(req.body);
+				  console.log("여기가 로그");
 					var request = https.request(config.addNotificationConfig, function(response) {
 						  response.setEncoding('utf8');
 						  response.on('data', function (body) {
@@ -100,7 +102,7 @@ router.post('/add' , function(req , res, next){
 								'{'+
 								'"operation": "create",'+
 								'"notification_key_name":'+ '"'+resultId+'",'+
-								'"registration_ids"'+'["'+req.body.reg_id+'"]'+
+								'"registration_ids"'+'["'+req.body.reg_id+'","0"]'+
 							   '}'
 							);
 						request.end();

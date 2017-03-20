@@ -7,7 +7,7 @@ exports.findExistByUid = function(uid , callback){
 }
 
 exports.regSche = function( array, uid , callback){
-	var sqlQuery = 'INSERT INTO schedule_table( `uid` , ';
+	var sqlQuery = 'INSERT INTO schedule_table( `uid`,';
 	for(var i = 0 ; i < array.size ; i++){ 	//array 마지막에서 앞에서 1번째가 size 마지막에 token 딸려있음 그래서 그거빼고 삽입시킬라고 그러는거
 		sqlQuery = sqlQuery + '`'+array[i]+'`,';
 	}
@@ -16,6 +16,7 @@ exports.regSche = function( array, uid , callback){
 		sqlQuery = sqlQuery + mysql.escape(true) + ',';
 	}
 	sqlQuery = sqlQuery.substring(0 ,sqlQuery.length - 1) + ')';
+	console.log(sqlQuery);
 	base.update(sqlQuery , callback); // 쿼리에 숫자안들어가고 바꾸는법모르겠고 차피 셀렉트도 걍 쿼리 1회실행하고 결과를 콜백에 넣는거여서...ㅠㅠ
 }
 

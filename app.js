@@ -9,7 +9,6 @@ var redis = require('redis');
 var redisStore = require('connect-redis')(Session);
 
 
-
 var passport = require('./helper/passport.js').passport;
 
 var config = require('./helper/config');
@@ -34,8 +33,8 @@ var session = new Session({
 
 var app = express();
 
-app.set('port', 80);
-app.listen(app.get('port'));
+//app.set('port', 80);
+//app.listen(app.get('port'));
 //ejs
 
 var engine = require('ejs-locals');
@@ -68,7 +67,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-
 var sharedsession = require("express-socket.io-session");
 var io = require('socket.io').listen(3000);
 
@@ -87,6 +85,7 @@ var my_option = require('./routes/MyOption');
 var chat = require('./routes/chat');
 var gr_info = require('./routes/Gr_info');
 var file = require('./routes/file');
+var refresh = require('./routes/Refresh');
 
 //app.use('/', socketT);
 app.use('/' , index);
@@ -100,6 +99,7 @@ app.use('/gr_info' , gr_info);
 app.use('/my_option' , my_option);
 app.use('/chat' , chat);
 app.use('/file' , file);
+app.use('/refresh' , refresh);
 
 
 var url = require('url');

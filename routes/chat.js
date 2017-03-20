@@ -31,7 +31,6 @@ router.post('/' , function(request , response, next){
 					req.on('error', function(e) {
 						response.json({result : 'false' , content:'server'});
 					});
-					
 					req.write(
 							'{'+
 						   '"to": "'+results[0][0].notify_key+'"'+
