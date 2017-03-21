@@ -23,6 +23,11 @@ exports.verifyEmail = function(userEmail , callback){
 	base.update(sqlQuery , callback);
 }
 
+exports.findEmailByUid = function(uid , callback){
+	var sqlQuery = 'SELECT email FROM user WHERE uid = ' + mysql.escape(uid);
+	base.select(sqlQuery , callback);
+}
+
 exports.getProfileByUid = function(uidArr , callback){
 	var sqlQuery = 'SELECT uid , profile from user WHERE profile != \'\' AND (';
 	for (var i = 0 ; i<uidArr.length ; i++){

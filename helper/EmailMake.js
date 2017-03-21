@@ -39,3 +39,21 @@ exports.makeFindPwdEmail = function(email , code){
 		}
 	});
 }
+
+exports.makeWonEmail = function(email ,url , callback){
+	mailOption.to = email;
+	mailOption.subject='[IDBD] 축하합니다. 당첨 되었습니다.';
+	var email = EncryptHelper.encryptEmail(email);// 이걸로 이메일 온사람 확인시킬것
+	var pid = EncryptHelper.encryptEmail(pid);
+	mailOption.html ='<p>당첨된 상품입니다</p><img src="https://s3.ap-northeast-2.amazonaws.com/sendwitchtracer/'+url+'"/>'+
+	'<a href="http://52.78.18.19/phone/?'+email+"/?"+pid+'">링크를 눌러 수령을 진행해 주세요</a>';
+	emailTransport.sendMail(mailOption , function(err , info){
+		if(err){
+			console.log(err);
+			callback('server' , null);
+		} else{
+			console.log(info);
+			callback(null , true);
+		}
+	});
+}

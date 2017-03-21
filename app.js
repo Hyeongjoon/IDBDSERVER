@@ -33,8 +33,8 @@ var session = new Session({
 
 var app = express();
 
-app.set('port', 80);
-app.listen(app.get('port'));
+//app.set('port', 80);
+//app.listen(app.get('port'));
 //ejs
 
 var engine = require('ejs-locals');
@@ -75,32 +75,21 @@ exports.tmp = io.use(sharedsession(session));
 //var socketT = require('./routes/SocketTracer');
 var signUp = require('./routes/signUp');
 var verify = require('./routes/verify');
-var imageReq = require('./routes/imageReq');
 var login = require('./routes/Login');
 var index = require('./routes/Index');
 var findEmail = require('./routes/FindPwd');
-var sche_save = require('./routes/sche_save');
-var gr = require('./routes/Gr');
-var my_option = require('./routes/MyOption');
-var chat = require('./routes/chat');
-var gr_info = require('./routes/Gr_info');
-var file = require('./routes/file');
-var refresh = require('./routes/Refresh');
+var main = require('./routes/getMain');
+var confirm = require('./routes/confirm');
+var phone = require('./routes/phone')
 
 //app.use('/', socketT);
 app.use('/' , index);
 app.use('/signUp', signUp);
-app.use('/imageReq' , imageReq);
 app.use('/login' , login);
 app.use('/findPwd' , findEmail);
-app.use('/sche_save' , sche_save);
-app.use('/gr' , gr);
-app.use('/gr_info' , gr_info);
-app.use('/my_option' , my_option);
-app.use('/chat' , chat);
-app.use('/file' , file);
-app.use('/refresh' , refresh);
-
+app.use('/main' , main);
+app.use('/confirm' , confirm);
+app.use('/phone' , phone);
 
 var url = require('url');
 var decryptHelper = require('./helper/DecryptHelper');
