@@ -12,13 +12,15 @@ router.post('/:token' , function(req , res , next){
 	admin.auth().verifyIdToken(idToken).then(function(decodedToken) {
 		var uid = decodedToken.uid;
 		var Imageurl;
+		var pid;
 		async.waterfall([function(callback){
 			prizeDAO.confirmCode(req.body.code , callback);
 		} , function(args1 , callback){
 			if(args1.length==0){
 				callback('non' , null);
 			} else if(args1[0].uid==null){
-				Imageurl = args1[0].imageURL; 
+				Imageurl = args1[0].imageURL;
+				pid = args1[0].pid;
 				prizeDAO.selectedPrize(req.body.code, uid , callback);
 				//여기서 메일보내기
 			} else{
@@ -27,7 +29,7 @@ router.post('/:token' , function(req , res , next){
 		}, function(args1 , callback){
 			userDAO.findEmailByUid(uid , callback);
 		}, function(args1 , callback){
-			mailHelper.makeWonEmail(args1[0].email, Imageurl , callback);
+			mailHelper.makeWonEmail(args1[0].email, Imageurl , pid ,callback);
 		}] ,function(err ,results){
 			if(err=='non'){
 				res.json({result : 'false' , content:'non'});
@@ -43,6 +45,10 @@ router.post('/:token' , function(req , res , next){
 		//토큰 로드 실패했을때
 		res.json({result : 'false' , content:'server'});
 	});
+});
+
+router.post('/' , function(req , res, next){
+	console.log(req.body);
 });
 
 module.exports = router;

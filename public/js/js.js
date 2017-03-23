@@ -1,33 +1,30 @@
-$(document).ready(function(){
-	$('#free_register').on('click' , function(){
-		if($('#input-title').val().trim().length==0){
-			$('#common-modal-title').text('입력 오류');
-			$('#common-modal-content').text('제목을 입력해 주세요');
-			$('#common-modal').modal('show');
-		} else if($('#input-content').val().trim().length==0){
-			$('#common-modal-title').text('입력 오류');
-			$('#common-modal-content').text('내용을 입력해 주세요');
-			$('#common-modal').modal('show');
-		} else{
-			var tmp = $('#input-content').val().trim();
-			tmp = tmp.replace(/\n/g, '<br/>');
-			tmp = tmp.replace(/\s/g, '&nbsp;');
-			
-			$.ajax({url: 'http://52.78.208.137/commu/free_register',
-				dataType: 'json',
-				type: 'POST',
-				data: {
-						'title': $('#input-title').val().trim(),
-						'content': tmp
-				},
-				success: function(result) {
-					if(result==false || result == undefined){
-						
-					} else {
-						location.replace("/commu?tab=1");
-					}
+function goSubmit(encryptEmail){
+	alert(encryptEmail);
+	var phoneExp =  /^[0-9]{6,15}$/;
+	if(!phoneExp.test($('#phone_num').val())){
+		$('#common-modal-title').text('입력 오류');
+		$('#common-modal-content').text('정확한 핸드폰 번호를 입력해 주세요');
+		$('#common-modal').modal('show');
+	} else{
+		var phone_num = $('#phone_num').val();
+		$.ajax({url: 'http://52.78.18.19/confirm',
+			dataType: 'json',
+			type: 'POST',
+			data: {
+					phone_num : phone_num,
+					encryptEmail : encrytEmail 
+			},
+			success: function(result) {
+				if(result==false || result == undefined){
+					$('#common-modal-title').text('서버 오류');
+					$('#common-modal-content').text('잠시후에 사용해 주세요');
+					$('#common-modal').modal('show');
+				} else {
+					$('#common-modal-title').text('입력 오류');
+					$('#common-modal-content').text('정확한 핸드폰 번호를 입력해 주세요');
+					$('#common-modal').modal('show');
 				}
-			});
-		}
-	});
-});
+			}
+		});
+	}
+}

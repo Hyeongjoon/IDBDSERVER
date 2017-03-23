@@ -7,6 +7,11 @@ exports.confirmCode = function(code , callback){
 };
 
 exports.selectedPrize = function(code , uid , callback){
-	var sqlQuery =  'UPDATE prize SET `uid` ='+ mysql.escape(uid) + ' AND `end_date` = now() WHERE `prize_code` = ' + mysql.escape(code);
+	var sqlQuery =  'UPDATE prize SET `uid` ='+ mysql.escape(uid) + ' , `end_date` = now() WHERE `prize_code` = ' + mysql.escape(code);
 	base.update(sqlQuery , callback);
 };
+
+exports.verifyPrize = function(email , pid ,callback){
+	var sqlQuery = 'SELECT p.pid , p.imageURL from prize AS p , (SELECT uid from user WHERE email = ' + mysql.escape(email) + ') AS u WHERE p.pid = '+ mysql.escape(pid) + ' AND u.uid = p.uid;';
+	base.select(sqlQuery , callback);
+}
