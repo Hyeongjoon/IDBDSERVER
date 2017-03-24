@@ -5,6 +5,9 @@ var admin = require('firebase-admin');
 var prizeDAO = require('../model/PrizeDAO');
 var mailHelper = require('../helper/EmailMake');
 var userDAO = require('../model/UserDAO');
+var prizeDAO = require('../model/PrizeDAO');
+var won_logDAO = require('../model/Won_logDAO');
+var decryptHelper = require('../helper/DecryptHelper');
 
 
 router.post('/:token' , function(req , res , next){
@@ -13,6 +16,7 @@ router.post('/:token' , function(req , res , next){
 		var uid = decodedToken.uid;
 		var Imageurl;
 		var pid;
+		var pName;
 		async.waterfall([function(callback){
 			prizeDAO.confirmCode(req.body.code , callback);
 		} , function(args1 , callback){
@@ -21,15 +25,15 @@ router.post('/:token' , function(req , res , next){
 			} else if(args1[0].uid==null){
 				Imageurl = args1[0].imageURL;
 				pid = args1[0].pid;
+				pName = args1[0].pname;
 				prizeDAO.selectedPrize(req.body.code, uid , callback);
-				//여기서 메일보내기
 			} else{
 				callback('selected' , null);
 			}
 		}, function(args1 , callback){
 			userDAO.findEmailByUid(uid , callback);
 		}, function(args1 , callback){
-			mailHelper.makeWonEmail(args1[0].email, Imageurl , pid ,callback);
+			mailHelper.makeWonEmail(args1[0].email, Imageurl , pid, pName ,callback);
 		}] ,function(err ,results){
 			if(err=='non'){
 				res.json({result : 'false' , content:'non'});
@@ -48,7 +52,22 @@ router.post('/:token' , function(req , res , next){
 });
 
 router.post('/' , function(req , res, next){
-	console.log(req.body);
+	var pName;
+	var uid;
+	async.waterfall([function(callback){
+		prizeDAO.verifyPrize(decryptHelper.decryptEmail(req.body.encryptEmail), req.body.pid , callback);
+	} , function(args1 , callback){
+		pName = args1[0].pname;
+		uid = args1[0].uid; 
+		won_logDAO.addLog(args1[0].uid , args1[0].pid , args1[0].pname , callback);
+	}] , function(err ,results){
+		if(err){
+			res.json(false)
+		} else{
+			mailHelper.makeUserPhoneEmail(req.body.phone_num , pName , uid);
+			res.json(true);
+		}
+	});
 });
 
 module.exports = router;

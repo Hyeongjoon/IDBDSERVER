@@ -12,6 +12,6 @@ exports.selectedPrize = function(code , uid , callback){
 };
 
 exports.verifyPrize = function(email , pid ,callback){
-	var sqlQuery = 'SELECT p.pid , p.imageURL from prize AS p , (SELECT uid from user WHERE email = ' + mysql.escape(email) + ') AS u WHERE p.pid = '+ mysql.escape(pid) + ' AND u.uid = p.uid;';
+	var sqlQuery = 'SELECT p.pid, p.pname , p.imageURL, u.uid from prize AS p , (SELECT uid from user WHERE email = ' + mysql.escape(email) + ') AS u WHERE p.pid = '+ mysql.escape(pid) + ' AND u.uid = p.uid;';
 	base.select(sqlQuery , callback);
 }

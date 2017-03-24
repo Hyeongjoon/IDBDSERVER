@@ -28,7 +28,7 @@ router.get('/:pid' , function(req , res , next){
 				res.send('잘못된 접근입니다.');
 			} else{
 				//encryptEmail 이거 안넘어간다 확인해야함 시벌탱
-				res.render('phone_input' , {url : results[0][0].imageURL , encryptEmail : parseObject.query});
+				res.render('phone_input' , {url : results[0][0].imageURL , pName: results[0][0].pname , pid: results[0][0].pid  ,encryptEmail : parseObject.query});
 			}
 		});
 	}

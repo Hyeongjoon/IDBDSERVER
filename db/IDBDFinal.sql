@@ -339,17 +339,33 @@ create table file_table(
     foreign key(`uid`) references user(`uid`) ON DELETE SET NULL ON UPDATE CASCADE
 ) Engine =InnoDB DEFAULT CHARSET = utf8;	
 
-DROP TABLE IF EXISTS prize;
-create table prize 
-(`pid` int unsigned NOT NULL AUTO_INCREMENT, 
-`prize_code` varchar(5) NOT NULL,
-`uid` int unsigned default NULL,
-`imageURL` varchar(255) NOT NULL,
-`start_date` timestamp default now(),
-`end_date` timestamp default NULL,
-primary key(`pid`),
-unique(prize_code),
-foreign key(`uid`) references user(`uid`) ON DELETE SET NULL ON update CASCADE
+
+	DROP TABLE IF EXISTS prize;
+create table prize(
+	`pid` int unsigned NOT NULL AUTO_INCREMENT, 
+	`prize_code` varchar(5) NOT NULL,
+	`pname` varchar(255) NOT NULL,
+	`uid` int unsigned default NULL,
+	`imageURL` varchar(255) NOT NULL,
+	`start_date` timestamp default now(),
+	`end_date` timestamp default NULL,
+	primary key(`pid`),
+	unique(prize_code),
+	foreign key(`uid`) references user(`uid`) ON DELETE SET NULL ON update CASCADE
+)Engine =InnoDB DEFAULT CHARSET = utf8;
+
+
+	DROP TABLE IF EXISTS won_log;
+create table won_log(
+	`lid` int unsigned NOT NULL AUTO_INCREMENT, 
+	`uid` int unsigned,
+	`pid` int unsigned NOT NULL,
+	`pname` varchar(255) NOT NULL,
+	`get_phone_date` timestamp default now(),
+	`deliver` boolean NOT NULL default false,
+	primary key(`lid`),
+	unique(`pid`),
+	foreign key(`uid`) references user(`uid`) ON DELETE SET NULL ON update CASCADE
 )Engine =InnoDB DEFAULT CHARSET = utf8;
 
 	DROP EVENT IF exists delete_gr_schedule;

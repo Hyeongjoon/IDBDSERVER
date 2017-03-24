@@ -31,6 +31,8 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    <script src="/js/js.js"></script>
 
 </head>
 
@@ -49,7 +51,7 @@
     <header>
         <div class="header-content">
             <div class="header-content-inner">
-                <h1 id="homeHeading">당첨된 상품입니다</h1>
+                <h1 id="homeHeading"><%=pName%>의 당첨을 축하드립니다.</h1>
 				<hr>
                 <div class="row">
 	                <div class="col-md-4">
@@ -61,7 +63,7 @@
 				    <label for="exampleInputPassword1">연락 받으실 핸드폰 번호를 입력해 주세요</label>
 				    <input type="number" class="form-control" id="phone_num" placeholder="번호만 입력해 주세요">
 				  </div>
-				  <button type="button" class="btn btn-primary btn-xl" onclick="goSubmit(<%=encryptEmail%>)">제출</button>
+				  <button type="button" class="btn btn-primary btn-xl" onclick="goSubmit('<%=encryptEmail%>' , '<%=pid%>')">제출</button>
 				</form>
             </div>
         </div>
@@ -109,7 +111,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script src="/vendor/scrollreveal/scrollreveal.min.js"></script>
     <script src="/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
-	<script src="/js/js.js"></script>
+	
     <!-- Theme JavaScript -->
     <script src="/js/creative.min.js"></script>
 
