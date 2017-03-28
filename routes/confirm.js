@@ -36,9 +36,18 @@ router.post('/:token' , function(req , res , next){
 			mailHelper.makeWonEmail(args1[0].email, Imageurl , pid, pName ,callback);
 		}] ,function(err ,results){
 			if(err=='non'){
-				res.json({result : 'false' , content:'non'});
+				async.parallel([function(callback){
+					prizeDAO.getNotWon(callback)
+				}] , function(err , results){
+					console.log(results[0]);
+					res.json({result : 'false' , content:'non' , list : results[0]});
+				});
 			} else if(err == 'selected'){
-				res.json({result : 'false' , content:'selected'});
+				async.parallel([function(callback){
+					prizeDAO.getNotWon(callback)
+				}] , function(err , results){
+					res.json({result : 'false' , content:'selected' , list : results[0]});
+				});
 			} else if(err){
 				res.json({result : 'false' , content:'server'});
 			}else{

@@ -33,8 +33,8 @@ var session = new Session({
 
 var app = express();
 
-//app.set('port', 80);
-//app.listen(app.get('port'));
+app.set('port', 80);
+app.listen(app.get('port'));
 //ejs
 
 var engine = require('ejs-locals');
@@ -80,7 +80,8 @@ var index = require('./routes/Index');
 var findEmail = require('./routes/FindPwd');
 var main = require('./routes/getMain');
 var confirm = require('./routes/confirm');
-var phone = require('./routes/phone')
+var phone = require('./routes/phone');
+var getList = require('./routes/GetList');
 
 //app.use('/', socketT);
 app.use('/' , index);
@@ -90,6 +91,7 @@ app.use('/findPwd' , findEmail);
 app.use('/main' , main);
 app.use('/confirm' , confirm);
 app.use('/phone' , phone);
+app.use('/getList' , getList);
 
 var url = require('url');
 var decryptHelper = require('./helper/DecryptHelper');

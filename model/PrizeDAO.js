@@ -15,3 +15,8 @@ exports.verifyPrize = function(email , pid ,callback){
 	var sqlQuery = 'SELECT p.pid, p.pname , p.imageURL, u.uid from prize AS p , (SELECT uid from user WHERE email = ' + mysql.escape(email) + ') AS u WHERE p.pid = '+ mysql.escape(pid) + ' AND u.uid = p.uid;';
 	base.select(sqlQuery , callback);
 }
+
+exports.getNotWon = function(callback){
+	var sqlQuery = 'SELECT pname from prize WHERE uid is NULL';
+	base.select(sqlQuery , callback);
+}
