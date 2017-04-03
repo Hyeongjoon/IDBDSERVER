@@ -11,7 +11,7 @@ router.get('/' , function(req , res , next){
 	}] , function(err ,results){
 		if(results[0] == true){
 			req.session==undefined;
-			res.send('회원가입 완료'); //완료 페이지 html 만들것
+			res.render('verifSuccess' , {}); //완료 페이지 html 만들것
 		} else{
 			req.session==undefined;
 			res.send('회원가입 실패');
