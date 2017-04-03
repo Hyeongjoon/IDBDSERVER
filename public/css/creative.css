@@ -27,7 +27,7 @@ a {
 }
 a:hover,
 a:focus {
-  color: #eb3812;
+  color: #004063;
 }
 h1,
 h2,
@@ -43,7 +43,7 @@ p {
   margin-bottom: 20px;
 }
 .bg-primary {
-  background-color: #F05F40;
+  background-color: #004063;
 }
 .bg-dark {
   background-color: #222222;
@@ -70,14 +70,14 @@ aside {
   transition: all 0.35s;
 }
 .navbar-default .navbar-header .navbar-brand {
-  color: #F05F40;
+  color: #A8CECB;
   font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
   font-weight: 700;
   text-transform: uppercase;
 }
 .navbar-default .navbar-header .navbar-brand:hover,
 .navbar-default .navbar-header .navbar-brand:focus {
-  color: #eb3812;
+  color: #A8CECB;
 }
 .navbar-default .navbar-header .navbar-toggle {
   font-weight: 700;
@@ -94,11 +94,11 @@ aside {
 }
 .navbar-default .nav > li > a:hover,
 .navbar-default .nav > li > a:focus:hover {
-  color: #F05F40;
+  color: #A8CECB;
 }
 .navbar-default .nav > li.active > a,
 .navbar-default .nav > li.active > a:focus {
-  color: #F05F40 !important;
+  color: #A8CECB !important;
   background-color: transparent;
 }
 .navbar-default .nav > li.active > a:hover,
@@ -135,7 +135,7 @@ aside {
   }
   .navbar-default.affix .navbar-header .navbar-brand:hover,
   .navbar-default.affix .navbar-header .navbar-brand:focus {
-    color: #eb3812;
+    color: #A8CECB;
   }
   .navbar-default.affix .nav > li > a,
   .navbar-default.affix .nav > li > a:focus {
@@ -143,7 +143,7 @@ aside {
   }
   .navbar-default.affix .nav > li > a:hover,
   .navbar-default.affix .nav > li > a:focus:hover {
-    color: #F05F40;
+    color: #A8CECB;
   }
 }
 header {
@@ -233,7 +233,7 @@ header .header-content .header-content-inner p {
   color: white;
   opacity: 0;
   display: block;
-  background: rgba(240, 95, 64, 0.9);
+  background: rgba(168, 206, 203, 0.8);
   position: absolute;
   bottom: 0;
   text-align: center;
@@ -302,7 +302,7 @@ header .header-content .header-content-inner p {
 .btn-default.active,
 .open > .dropdown-toggle.btn-default {
   color: #222222;
-  background-color: #f2f2f2;
+  background-color: #A8CECB;
   border-color: #ededed;
 }
 .btn-default:active,
@@ -350,7 +350,7 @@ fieldset[disabled] .btn-default.active {
 .btn-primary.active,
 .open > .dropdown-toggle.btn-primary {
   color: white;
-  background-color: #004063;
+  background-color: #A8CECB;
   border-color: #ed431f;
 }
 .btn-primary:active,
