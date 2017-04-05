@@ -15,6 +15,14 @@ var config = require('./helper/config');
 
 var client = redis.createClient(config.redisConfig.port , config.redisConfig.host , {no_ready_check: true});
 
+var admin = require('firebase-admin');
+
+var serviceAccount = require('./helper/tracer-6de9934918ad.json');
+
+admin.initializeApp({
+	  credential: admin.credential.cert(serviceAccount) 
+	});
+
 var CookiePaser = cookieParser(config.secretKey);
 var sessionStore = new redisStore({client : client});
 
@@ -33,8 +41,9 @@ var session = new Session({
 
 var app = express();
 
-app.set('port', 80);
-app.listen(app.get('port'));
+//app.set('port', 80);
+//app.listen(app.get('port'));
+
 //ejs
 
 var engine = require('ejs-locals');
@@ -82,19 +91,48 @@ var main = require('./routes/getMain');
 var confirm = require('./routes/confirm');
 var phone = require('./routes/phone');
 var getList = require('./routes/GetList');
+var auth = require('./routes/Auth');
+var logout = require('./routes/Logout');
+var mining = require('./routes/Mining');
+var mail_send = require('./routes/Mail_send');
+var emailverify = require('./routes/email_verify');
 
 //app.use('/', socketT);
 app.use('/' , index);
-app.use('/signUp', signUp);
-app.use('/login' , login);
+app.use('/signUp',notensureAuthenticated, signUp);
+app.use('/login' ,notensureAuthenticated, login);
 app.use('/findPwd' , findEmail);
+app.use('/mail_send' , mail_send);
 app.use('/main' , main);
 app.use('/confirm' , confirm);
 app.use('/phone' , phone);
 app.use('/getList' , getList);
+app.use('/auth' , auth);
+app.use('/emailverify' ,ensureAuthenticated , emailverify );
+app.use('/logout', ensureAuthenticated , logout);
+app.use('/mining' , function(req, res, next){
+	if (req.isAuthenticated()) { return next(); }
+    // 로그인이 안되어 있으면, 만료된 페이지 
+    res.redirect('/login');
+} , mining);
 
 var url = require('url');
 var decryptHelper = require('./helper/DecryptHelper');
+
+function ensureAuthenticated(req, res, next) {
+    // 로그인이 되어 있으면, 다음 파이프라인으로 진행
+    if (req.isAuthenticated()) { return next(); }
+    // 로그인이 안되어 있으면, 만료된 페이지 
+    res.render('invalid', {});
+}
+
+
+function notensureAuthenticated(req, res, next) {
+    // 로그인이 되어 있으면, 다음 파이프라인으로 진행
+    if (req.isAuthenticated()) { res.redirect('/'); }
+    // 로그인이 안되어 있으면, 만료된 페이지 
+    return next();
+}
 
 
 app.use('/verify', function(req , res , next){

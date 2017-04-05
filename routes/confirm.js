@@ -11,7 +11,7 @@ var decryptHelper = require('../helper/DecryptHelper');
 
 
 router.post('/:token' , function(req , res , next){
-	var idToken = req.params.token;
+	var idToken = req.params.token+"";
 	admin.auth().verifyIdToken(idToken).then(function(decodedToken) {
 		var uid = decodedToken.uid;
 		var Imageurl;

@@ -28,3 +28,11 @@ function goSubmit(encryptEmail , pid){
 		});
 	}
 }
+
+function logout(){
+	firebase.auth().signOut().then(function() {
+		  location.replace("/logout");
+		}, function(error) {
+			location.replace("/fail");
+		});
+}

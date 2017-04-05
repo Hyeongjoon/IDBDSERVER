@@ -27,6 +27,7 @@
     "mysql": "^2.11.1",
     "nodemailer": "^2.5.0",
     "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
     "passport-local": "^1.0.0",
     "redis": "^2.6.3",
     "satelize": "^0.2.0",

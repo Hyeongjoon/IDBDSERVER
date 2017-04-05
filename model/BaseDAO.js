@@ -32,6 +32,17 @@ exports.insert = function(params, inform, callback) {
 	});
 };
 
+exports.FbInsert = function(params, inform, callback) {
+	connection.query(params, inform, function(err, rows, fields) {
+		if (!err) {
+			callback(null, rows);
+		} else {
+			console.log("err" + err);
+			callback(err, false);
+		}
+	});
+}; 
+
 exports.update = function(params, callback) {
 	connection.query(params, function(err, rows, fields) {
 		if (!err) {

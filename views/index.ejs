@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
 
@@ -31,7 +31,20 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+	<script>
+	var config = {
+		    apiKey: "AIzaSyANPM6HBdl3ZLcITL-2BkQQ2gOJEtlubAE"
+		    }
+	firebase.initializeApp(config);
+	function logout(){
+		firebase.auth().signOut().then(function() {
+			  location.replace("/logout");
+			}, function(error) {
+				location.replace("/fail");
+			});
+	}
+	</script>
 </head>
 
 <body id="page-top">
@@ -58,11 +71,20 @@
                     <li>
                         <a class="page-scroll" href="#contact">Contact</a>
                     </li>
+                    <% if(login ==false){%>
                     <li>
                         <a class="page-scroll" href="/login">Login</a>
+                    </li><%}else{%>
+                    <li>
+					  <a class="page-scroll"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><strong><%=name%></strong></a>
+            		</li>
+                    <li>
+                        <a class="page-scroll" onclick="logout()" style="cursor:pointer">Logout</a>
                     </li>
+                    <%}%>
                 </ul>
             </div>
+            
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container-fluid -->
@@ -71,18 +93,18 @@
     <header>
         <div class="header-content">
             <div class="header-content-inner">
-                <h1 id="homeHeading">조모임을 쉽게 해결할수 있는 솔루션</h1>
+                <h1 id="homeHeading">IDBD</h1>
                 <hr>
                 <p>Start Bootstrap can help you build better websites using the Bootstrap CSS framework! Just download your template and start going, no strings attached!</p>
-                <a href="/login" class="btn btn-primary btn-xl page-scroll">Login 하러 가기</a>
+                <a href="/mining" class="btn btn-primary btn-xl page-scroll">Mining 하러 가기</a>
             </div>
         </div>
     </header>
 
 	<section class="no-padding" id="item_list">
         <div class="container-fluid">
-            <div class="row no-gutter popup-gallery">
-                    <a href="https://s3.ap-northeast-2.amazonaws.com/sendwitchtracer/prizeImage/cherry_bottle.jpg" class="portfolio-box">
+            <div class="row no-gutter">
+                    <a href="/login" class="portfolio-box">
                         <img src="	https://s3.ap-northeast-2.amazonaws.com/sendwitchtracer/mainImage/Main.png" class="img-responsive center-block"  alt=""/>
                         <div class="portfolio-box-caption">
                             <div class="portfolio-box-caption-content">
@@ -103,10 +125,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">We've got what you need!</h2>
+                    <h2 class="section-heading">안드로이드 앱이 출시 되었습니다.</h2>
                     <hr class="light">
-                    <p class="text-faded">Start Bootstrap has everything you need to get your new website up and running in no time! All of the templates and themes on Start Bootstrap are open source, free to download, and easy to use. No strings attached!</p>
-                    <a href="#services" class="page-scroll btn btn-default btn-xl sr-button">Get Started!</a>
+                    <p class="text-faded">가장 빠르게 item 업데이트 소식을 접하세요!!</p>
+                    <a href="https://play.google.com/store/apps/details?id=com.idbd.admin.myapplication" class="page-scroll btn btn-default btn-xl sr-button">앱스토어에서 다운받기</a>
                 </div>
             </div>
         </div>

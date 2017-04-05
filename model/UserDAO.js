@@ -53,3 +53,14 @@ exports.findUserInfo = function(uid , callback){
 	base.select(sqlQuery , callback);
 }
 
+exports.findFbUser = function(id , callback){
+	var sqlQuery = 'SELECT uid , name , email FROM user WHERE facebook_id = ' + mysql.escape(id);
+	base.select(sqlQuery , callback);
+}
+
+exports.insertFbUser = function(fbid , userName , callback){
+	console.log(userName);
+	var sqlQuery = 'INSERT into user set ?';
+	var inform = { name : userName , facebook_id : fbid};
+	base.FbInsert(sqlQuery , inform , callback);
+}

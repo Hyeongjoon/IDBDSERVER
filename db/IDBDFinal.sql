@@ -12,6 +12,7 @@ create table user
          `email` VARCHAR(30) NOT NULL,
          `pwd` VARCHAR (255) NOT NULL,
          `name` VARCHAR(30) NOT NULL,
+         `facebook_id` VARCHAR(255) default NULL,
          primary key(`uid`),
          unique(email)
 ) Engine =InnoDB DEFAULT CHARSET = utf8;

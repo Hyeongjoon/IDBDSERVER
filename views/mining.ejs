@@ -31,7 +31,16 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+	<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+	<script>
+	var config = {
+		    apiKey: "AIzaSyANPM6HBdl3ZLcITL-2BkQQ2gOJEtlubAE"
+		    }
+	firebase.initializeApp(config);
+	firebase.auth().signInWithCustomToken("<%=token%>").catch(function(error) {
+			location.replace("/fail");
+		});
+	</script>
 </head>
 
 <body id="page-top">
@@ -43,7 +52,7 @@
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a href=""><img class="navbar-brand page-scroll" src="/img/web_logo.png"/></a>	
+                <a href="/"><img class="navbar-brand page-scroll" src="/img/web_logo.png"/></a>	
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->

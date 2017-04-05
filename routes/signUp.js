@@ -28,9 +28,6 @@ router.post('/' , function(req , res, next){
 	 }
 });
 
-router.get('/' , function(req , res, next){
-	res.send("홍정수 나쁘다");
-});
 
 module.exports = router;
 
