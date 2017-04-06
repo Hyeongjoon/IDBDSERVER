@@ -18,6 +18,11 @@ exports.findUserByName = function(userName , callback){
 	base.select(sqlQuery, callback);
 }
 
+exports.findFbIdByUid = function(uid , callback){
+	var sqlQuery = 'SELECT facebook_id from user WHERE uid = ' + mysql.escape(uid);
+	base.select(sqlQuery, callback);
+}
+
 exports.verifyEmail = function(userEmail , callback){
 	var sqlQuery = 'UPDATE user SET email_verify =' +mysql.escape(true) + ' WHERE email = ' + mysql.escape(userEmail);
 	base.update(sqlQuery , callback);
@@ -58,8 +63,12 @@ exports.findFbUser = function(id , callback){
 	base.select(sqlQuery , callback);
 }
 
+exports.updateEmail = function(uid, email , callback){
+	var sqlQuery = 'UPDATE user SET email = ' + mysql.escape(email) + ' WHERE uid = ' + mysql.escape(uid);
+	base.update(sqlQuery , callback);
+}
+
 exports.insertFbUser = function(fbid , userName , callback){
-	console.log(userName);
 	var sqlQuery = 'INSERT into user set ?';
 	var inform = { name : userName , facebook_id : fbid};
 	base.FbInsert(sqlQuery , inform , callback);

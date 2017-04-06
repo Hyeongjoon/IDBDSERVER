@@ -9,7 +9,7 @@ SET foreign_key_checks = 0;
 	DROP TABLE IF exists user;
 create table user
 		(`uid` int unsigned NOT NULL AUTO_INCREMENT,
-         `email` VARCHAR(30) NOT NULL,
+         `email` VARCHAR(30),
          `pwd` VARCHAR (255) NOT NULL,
          `name` VARCHAR(30) NOT NULL,
          `facebook_id` VARCHAR(255) default NULL,

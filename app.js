@@ -96,6 +96,7 @@ var logout = require('./routes/Logout');
 var mining = require('./routes/Mining');
 var mail_send = require('./routes/Mail_send');
 var emailverify = require('./routes/email_verify');
+var FbVerify = require('./routes/Fbverify');
 
 //app.use('/', socketT);
 app.use('/' , index);
@@ -109,6 +110,7 @@ app.use('/phone' , phone);
 app.use('/getList' , getList);
 app.use('/auth' , auth);
 app.use('/emailverify' ,ensureAuthenticated , emailverify );
+app.use('/emailverify_Fb' ,FbVerify);
 app.use('/logout', ensureAuthenticated , logout);
 app.use('/mining' , function(req, res, next){
 	if (req.isAuthenticated()) { return next(); }
@@ -138,7 +140,7 @@ function notensureAuthenticated(req, res, next) {
 app.use('/verify', function(req , res , next){
 	var parseObject = url.parse(req.url);
 	if(parseObject.query==null){
-		res.send('잘못된 접근입니다');
+		res.redirect('/invaild');
 	} else{
 		var sessionId = decryptHelper.decryptEmail(parseObject.query);
 		sessionStore.get(sessionId , function(err , session){

@@ -153,14 +153,12 @@
 								email :$('#email').val() 
 						},
 						success: function(result) {
-							if(result==false){
-								$('#common-modal-title').text('전송이 이미 완료되었습니다.');
-								$('#common-modal-content').text('본인 확인을 위해 1 ~ 2일 이내 연락을 드리겠습니다.');
-								$('#common-modal').modal('show');
+							if(result['result']==false){
+								$('#modal-title').text('이메일 오류');
+								$('#modal-content').text(result['content']);
+								$('#modal').modal('show');
 							} else {
-								$('#common-modal-title').text('전송 완료');
-								$('#common-modal-content').text('본인 확인을 위해 1 ~ 2일 이내 연락을 드리겠습니다.');
-								$('#common-modal').modal('show');
+								location.replace('/mail_send');
 							}
 						}
 					});

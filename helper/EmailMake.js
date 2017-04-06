@@ -38,7 +38,39 @@ exports.makeEmail = function(email , sessionId){
 				  '</tr>'+
 				'</table>'+
 	    '</div>';
-	//mailOption.html = '<a href="http://52.78.18.19/verify/?'+encryptedSessionId+'">인증하기</a>';
+	emailTransport.sendMail(mailOption , function(err , info){
+		if(err){
+			console.log(err);
+		} else{
+			console.log(info);
+		}
+	});
+}
+
+exports.makeFbVerifyEmail = function(email , FbId){
+	mailOption.to = email;
+	mailOption.subject='[IDBD] 이메일 인증을 위한 링크가 발급 되었습니다.';
+	mailOption.html = '<div>'+
+    '<img class="navbar-brand page-scroll" src="http://52.78.18.19/img/web_logo.png"/>'+
+    '</div>'+
+	    '</div>'+
+	    '<div>'+
+	        '<h1 align="center">이메일 인증을 위한 링크입니다.</h1>'+
+			'<hr>'+
+			'<h3 align="center">이메일은 경품 수령 절차 확인 외 사용되지 않습니다.</h3>'+
+	        '<div>'+
+	            '<table border="0" cellspacing="0" cellpadding="0" style="width=100%; margin:auto; text-align:center;">'+
+				  '<tr>'+
+				    '<td>'+
+				      '<table border="0" cellspacing="0" cellpadding="0">'+
+				        '<tr>'+
+				          '<td style="-webkit-border-radius: 3px; text-align: center; vertical-align: middle; -moz-border-radius: 3px; border-radius: 3px;" bgcolor="#004063"><a href="http://52.78.18.19/emailverify_Fb?FbId='+FbId+'&email='+email +'" target="_blank" style="font-size: 16px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; text-decoration: none; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; padding: 12px 18px; border: 1px solid #e9703e; display: inline-block;">인증하기 &rarr;</a></td>'+
+				        '</tr>'+
+				      '</table>'+
+				    '</td>'+
+				  '</tr>'+
+				'</table>'+
+	    '</div>';
 	emailTransport.sendMail(mailOption , function(err , info){
 		if(err){
 			console.log(err);

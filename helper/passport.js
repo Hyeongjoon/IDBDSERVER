@@ -24,6 +24,7 @@ passport.use( new localStrategy({
     	        		  admin.auth().createCustomToken(result[0][0].uid+"")
     		      		    .then(function(customToken) {
     		      			var user = {
+    		      					uid : result[0][0].uid,
     								name : result[0][0].name,
     								email : result[0][0].email,
     								token : customToken
@@ -69,6 +70,7 @@ passport.use(new FacebookStrategy(config.facebookConfig,
 				admin.auth().createCustomToken(tokenId+"")
 	      		    .then(function(customToken) {
 	      			var user = {
+	      					uid : tokenId,
 							name : profile.displayName,
 							email : results.email,
 							token : customToken
