@@ -41,8 +41,8 @@ var session = new Session({
 
 var app = express();
 
-//app.set('port', 80);
-//app.listen(app.get('port'));
+app.set('port', 80);
+app.listen(app.get('port'));
 
 //ejs
 
@@ -113,9 +113,10 @@ app.use('/emailverify' ,ensureAuthenticated , emailverify );
 app.use('/emailverify_Fb' ,FbVerify);
 app.use('/logout', ensureAuthenticated , logout);
 app.use('/mining' , function(req, res, next){
-	if (req.isAuthenticated()) { return next(); }
-    // 로그인이 안되어 있으면, 만료된 페이지 
+	if (req.isAuthenticated()) { return next();}
+	else{
     res.redirect('/login');
+	}
 } , mining);
 
 var url = require('url');

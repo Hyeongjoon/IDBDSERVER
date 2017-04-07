@@ -20,3 +20,8 @@ exports.getNotWon = function(callback){
 	var sqlQuery = 'SELECT pname from prize WHERE uid is NULL';
 	base.select(sqlQuery , callback);
 }
+
+exports.getNoWonInform = function(callback){
+	var sqlQuery = 'SELECT pname , imageURL from prize WHERE uid is NULL';
+	base.select(sqlQuery , callback);
+}
