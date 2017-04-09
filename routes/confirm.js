@@ -12,6 +12,7 @@ var decryptHelper = require('../helper/DecryptHelper');
 
 router.post('/:token' , function(req , res , next){
 	var idToken = req.params.token+"";
+	console.log(idToken);
 	admin.auth().verifyIdToken(idToken).then(function(decodedToken) {
 		var uid = decodedToken.uid;
 		var Imageurl;
@@ -56,6 +57,7 @@ router.post('/:token' , function(req , res , next){
 		});	
 	}).catch(function(error){
 		//토큰 로드 실패했을때
+		console.log(error);
 		res.json({result : 'false' , content:'server'});
 	});
 });
