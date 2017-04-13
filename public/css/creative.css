@@ -133,7 +133,7 @@ aside {
   }
   .navbar-default .nav > li > a:hover,
   .navbar-default .nav > li > a:focus:hover {
-    color: A8CECB;
+    color: #A8CECB;
   }
   .navbar-default.affix {
     background-color: white;
@@ -244,7 +244,7 @@ header .header-content .header-content-inner p {
   color: white;
   opacity: 0;
   display: block;
-  background: rgba(168, 206, 203, 0.8);
+  background: rgba(0, 0, 0, 0.5);
   position: absolute;
   bottom: 0;
   text-align: center;

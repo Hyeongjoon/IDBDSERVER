@@ -99,6 +99,14 @@ var emailverify = require('./routes/email_verify');
 var FbVerify = require('./routes/Fbverify');
 
 //app.use('/', socketT);
+app.get('/*', function(req, res, next) {
+	  if (req.headers.host.match(/^www/) !== null ) {
+	    res.redirect('http://' + req.headers.host.replace(/^www\./, '') + req.url);
+	  } else {
+	    next();     
+	  }
+	})
+
 app.use('/' , index);
 app.use('/signUp',notensureAuthenticated, signUp);
 app.use('/login' ,notensureAuthenticated, login);

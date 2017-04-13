@@ -51,7 +51,7 @@ router.post('/' , function(req , res , next){
     	        	if(decryptHelper.decryption(userInfo.pwd)== req.body.pwd){
     	        		admin.auth().createCustomToken(userInfo.uid+"")
     	      		    .then(function(customToken) {
-    	      			  	res.json({result:'success' , content:customToken, goMain: true }); //업데이트 끝나면 지울것
+    	      			  	res.json({result:'success' , content:customToken }); //업데이트 끝나면 지울것
     	      			  	//토큰땜에 여기서 이메일이랑 이름 설정 불가능 ㅠㅠ 
     	      		    })																		//왜냐하면 토큰으로 로그인정보 체크 시 정보 못줌 ㅠㅠ
     	      		    .catch(function(error) {
