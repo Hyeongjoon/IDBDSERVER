@@ -8,26 +8,19 @@ var admin = require('firebase-admin');
 
 /* GET home page. */
 router.get('/', function(req, res, next){
-	async.parallel([function(callback){
-		userDAO.findEmailByUid(req.session.passport.user.uid , callback);
-	}] , function(err , results){
-		if(err){
-			res.redirect('/invaild');
-		} else if(results[0][0].email==null){
-			res.redirect("/emailverify");
-		} else{
-			async.parallel([function(callback){
-				prizeDAO.getNoWonInform(callback);
-			}] , function(err , results){
-				if(err){
-					res.send('/invaild');
+		async.parallel([function(callback){
+			prizeDAO.getNoWonInform(callback);
+		}] , function(err , results){
+			if(err){
+				res.send('/invaild');
+			} else{
+				if(req.isAuthenticated()){
+					res.render('mining' , { login:true ,item :  results[0], name : req.session.passport.user.name, token : req.session.passport.user.token});
 				} else{
-					res.render('mining' , {token : req.session.passport.user.token , name : req.session.passport.user.name , item :  results[0]});
+					res.render('mining' , { login:false ,item :  results[0]  });
 				}
-			});
-			
-		}
-	});
+			}
+		});
 });
 
 module.exports = router;

@@ -2,6 +2,13 @@
 <html lang="ko">
 
 <head>
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script>
+	  (adsbygoogle = window.adsbygoogle || []).push({
+	    google_ad_client: "ca-pub-5393050588931338",
+	    enable_page_level_ads: true
+	  });
+	</script>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -37,6 +44,16 @@
 		    apiKey: "AIzaSyANPM6HBdl3ZLcITL-2BkQQ2gOJEtlubAE"
 		    }
 	firebase.initializeApp(config);
+	
+	<%if(login==false){%>
+	firebase.auth().signOut().then(function() {
+		
+		}, function(error) {
+
+		});
+	
+<%}%>
+	
 	function logout(){
 		firebase.auth().signOut().then(function() {
 			  location.replace("/logout");
@@ -71,7 +88,7 @@
                     <li>
                         <a class="page-scroll" href="/mining">mining</a>
                     </li>
-                    <% if(login ==false){%>
+                    <% if(login == false){%>
                     <li>
                         <a class="page-scroll" href="/login">Login</a>
                     </li><%}else{%>
@@ -89,17 +106,21 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-
+	
     <header>
-        <div class="header-content">
+    
+        <div class="header-content border-bottom-0">
             <div class="header-content-inner">
-                <h1 id="homeHeading">IDBD</h1>
+                <h1 id="homeHeading" style="color:#2F3034">IDBD</h1>
                 <hr>
-                <p>Start Bootstrap can help you build better websites using the Bootstrap CSS framework! Just download your template and start going, no strings attached!</p>
+                <img src="/img/diamond.png" class="img-responsive center-block">
+                <br />
                 <a href="/mining" class="btn btn-primary btn-xl page-scroll">Mining 하러 가기</a>
             </div>
         </div>
+    
     </header>
+    
 
 	<section class="no-padding" id="item_list">
         <div class="container-fluid">

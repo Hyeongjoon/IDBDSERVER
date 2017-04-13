@@ -72,7 +72,7 @@ passport.use(new FacebookStrategy(config.facebookConfig,
 	      			var user = {
 	      					uid : tokenId,
 							name : profile.displayName,
-							email : results.email,
+							email : results[0].email,
 							token : customToken
 					}
 	      			    done(null , user); //토큰땜에 여기서 이메일이랑 이름 설정 불가능 ㅠㅠ 

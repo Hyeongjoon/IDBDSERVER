@@ -6,7 +6,7 @@ var userDAO = require('../model/UserDAO');
 var emailHelper = require('../helper/EmailMake');
 
 router.get('/' , function(req, res, next){
-	if(req.session.passport.user.email==undefined){
+	if(req.session.passport.user.email==null){
 		res.render("email_verify" , {token : req.session.passport.user.token});
 	} else{
 		res.render("invalid" , {});

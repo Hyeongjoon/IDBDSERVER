@@ -31,7 +31,23 @@ function login(){
 	}
 }
 
+
+
 $(document).ready(function(){
+	
+	$('#email').keypress(function(e) {
+		if (e.which == 13) {/* 13 == enter key@ascii */
+			login();
+		}
+	});
+	
+	$('#pwd').keypress(function(e) {
+		if (e.which == 13) {/* 13 == enter key@ascii */
+			login();
+		}
+	});
+	
+	
 	$("#call_sign_up_modal").on('click' , function(){
 		$("#sign_up_modal").modal();
 	});

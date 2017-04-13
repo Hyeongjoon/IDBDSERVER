@@ -41,8 +41,8 @@ var session = new Session({
 
 var app = express();
 
-app.set('port', 80);
-app.listen(app.get('port'));
+//app.set('port', 80);
+//app.listen(app.get('port'));
 
 //ejs
 
@@ -112,10 +112,15 @@ app.use('/auth' , auth);
 app.use('/emailverify' ,ensureAuthenticated , emailverify );
 app.use('/emailverify_Fb' ,FbVerify);
 app.use('/logout', ensureAuthenticated , logout);
-app.use('/mining' , function(req, res, next){
-	if (req.isAuthenticated()) { return next();}
-	else{
-    res.redirect('/login');
+app.use('/mining', function(req, res,next){
+	if(req.isAuthenticated()){
+		if(req.session.passport.user.email==null){
+			res.redirect('/emailverify');
+		} else{
+			return next();
+		}
+	} else{
+		return next();
 	}
 } , mining);
 

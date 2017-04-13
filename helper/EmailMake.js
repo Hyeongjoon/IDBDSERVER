@@ -111,7 +111,7 @@ exports.makeFindPwdEmail = function(email , code){
 
 
 
-exports.makeWonEmail = function(email ,url, pid , pName , callback){
+exports.makeWonEmail = function(email ,url, pid , pName ){
 	mailOption.to = email;
 	mailOption.subject='[IDBD] 축하합니다. 당첨 되었습니다.';
 	var email = EncryptHelper.encryptEmail(email);// 이걸로 이메일 온사람 확인시킬것
@@ -138,15 +138,11 @@ exports.makeWonEmail = function(email ,url, pid , pName , callback){
 						  '</tr>'+
 						'</table>'+
 	            '</div>';
-
-
 	emailTransport.sendMail(mailOption , function(err , info){
 		if(err){
 			console.log(err);
-			callback('server' , null);
 		} else{
 			console.log(info);
-			callback(null , true);
 		}
 	});
 }

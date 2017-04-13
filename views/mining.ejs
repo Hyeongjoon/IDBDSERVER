@@ -37,19 +37,26 @@
 		    apiKey: "AIzaSyANPM6HBdl3ZLcITL-2BkQQ2gOJEtlubAE"
 		    }
 	firebase.initializeApp(config);
+	<%if(login==false){%>
+		firebase.auth().signOut().then(function() {
+			
+			}, function(error) {
+	
+			});
+		
+	<%} else{%>
+		firebase.auth().signInWithCustomToken("<%=token%>").catch(function(error) {
+			location.replace("/invaild");
+		});	
+	<%}%>
 
-	firebase.auth().signInWithCustomToken("<%=token%>").catch(function(error) {
-		location.replace("/invaild");
-	});
-	
-	
 	function logout(){
 		firebase.auth().signOut().then(function() {
 			  location.replace("/logout");
 			}, function(error) {
 				location.replace("/invalid");
 			});
-	}
+	}	
 	</script>
 </head>
 
@@ -71,12 +78,17 @@
                     <li>
                         <a class="page-scroll" href="/">main</a>
                     </li>
+                     <% if(login == false){%>
+                    <li>
+                        <a class="page-scroll" href="/login">Login</a>
+                    </li><%}else{%>
                     <li>
 					  <a class="page-scroll"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><strong><%=name%></strong></a>
             		</li>
                     <li>
                         <a class="page-scroll" onclick="logout()" style="cursor:pointer">Logout</a>
                     </li>
+                    <%}%>
                 </ul>
             </div>
             

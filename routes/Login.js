@@ -21,11 +21,10 @@ router.post('/' , function(req , res , next){
 	} else if(req.body.web=='true'){
 		 passport.authenticate('local', function(err, user, info) {
 			    if (err){
-			    	return res.json({result:'fail' , content:'내부 서버 오류입니다.'}); 
+			    		return res.json({result:'fail' , content:'내부 서버 오류입니다.'}); 
 			    	}
-			   
 			    if (!user){ 
-			    	return res.json({result:'fail' , content:'Email이나 비밀번호가 틀렸습니다.'});
+			    		return res.json({result:'fail' , content:'Email이나 비밀번호가 틀렸습니다.'});
 			    	}
 			    req.logIn(user, function(err){
 			      if (err) { return next(err);}
