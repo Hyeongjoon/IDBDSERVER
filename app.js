@@ -41,8 +41,8 @@ var session = new Session({
 
 var app = express();
 
-//app.set('port', 80);
-//app.listen(app.get('port'));
+app.set('port', 80);
+app.listen(app.get('port'));
 
 //ejs
 

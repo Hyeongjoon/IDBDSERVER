@@ -46,7 +46,7 @@ p {
   background-color: #004063;
 }
 .bg-section1 {
-  background-color: #2D2DDD;
+  background-color: #F3F3F3;
   border-top-width:5px;
   border-top-style: solid;
   border-bottom-width:5px;
@@ -82,6 +82,7 @@ aside {
   font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
   font-weight: 700;
   text-transform: uppercase;
+  
 }
 .navbar-default .navbar-header .navbar-brand:hover,
 .navbar-default .navbar-header .navbar-brand:focus {
@@ -98,7 +99,7 @@ aside {
   text-transform: uppercase;
   font-weight: 700;
   font-size: 13px;
-  color: #222222;
+  color: #2F3034;
 }
 .navbar-default .nav > li > a:hover,
 .navbar-default .nav > li > a:focus:hover {
@@ -164,11 +165,9 @@ header {
   background-size: cover;
   -o-background-size: cover;
   background-position: center;
- /** background-image: url('../img/header.png');**/
- background :  #F3F3F3;
+  background :  #DCEBEA;
   text-align: center;
   color: white;
-
 }
 header .header-content {
   position: relative;
