@@ -97,6 +97,7 @@ var mining = require('./routes/Mining');
 var mail_send = require('./routes/Mail_send');
 var emailverify = require('./routes/email_verify');
 var FbVerify = require('./routes/Fbverify');
+var and_fb = require('./routes/android_fb_email');
 
 //app.use('/', socketT);
 app.get('/*', function(req, res, next) {
@@ -120,17 +121,8 @@ app.use('/auth' , auth);
 app.use('/emailverify' ,ensureAuthenticated , emailverify );
 app.use('/emailverify_Fb' ,FbVerify);
 app.use('/logout', ensureAuthenticated , logout);
-app.use('/mining', function(req, res,next){
-	if(req.isAuthenticated()){
-		if(req.session.passport.user.email==null){
-			res.redirect('/emailverify');
-		} else{
-			return next();
-		}
-	} else{
-		return next();
-	}
-} , mining);
+app.use('/mining', mining);
+app.use('/android_mail_fb' , and_fb );
 
 var url = require('url');
 var decryptHelper = require('./helper/DecryptHelper');

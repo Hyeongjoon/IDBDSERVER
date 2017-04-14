@@ -66,5 +66,49 @@ router.post('/' , function(req , res , next){
 	}
 });
 
+router.post('/fb' , function(req , res , next){
+	async.waterfall([
+		function(callback){ 
+				userDAO.findFbUser(req.body.facebook_id , callback);
+		}, function(args1 , callback){
+			if(args1.length==0){
+				userDAO.insertFbUser(req.body.facebook_id , req.body.name , callback);
+			} else if(args1.length==1){
+				callback(null , args1);
+			} else{
+				callback('err' , null);
+			}
+		}], function(err , results){
+				console.log(results);
+			if(err){
+				res.json({result : false});
+			} else{
+				var tokenId;
+				var email = null
+				if(results.insertId == undefined){
+					tokenId = results[0].uid
+					email = results[0].email;
+				} else{
+					tokenId = results.insertId;
+				}
+				admin.auth().createCustomToken(tokenId+"")
+	      		    .then(function(customToken) {
+	      			var user = {
+	      					result : true,
+	      					uid : tokenId,
+							name : req.body.name,
+							email : email,
+							token : customToken
+					}
+	      			console.log(user);
+	      			    res.json(user) //토큰땜에 여기서 이메일이랑 이름 설정 불가능 ㅠㅠ 
+	      		    })																		//왜냐하면 토큰으로 로그인정보 체크 시 정보 못줌 ㅠㅠ
+	      		    .catch(function(error) {
+	      			  	res.json({result : false});
+	      		    });
+			}
+		});
+});
+
 
 module.exports = router;

@@ -8,7 +8,6 @@ var userDAO = require('../model/UserDAO');
 var querystring = require('querystring');
 
 
-
 router.get('/' , function(req, res, next){
 	var parseObj = url.parse(req.url);
 	console.log(parseObj.query);
