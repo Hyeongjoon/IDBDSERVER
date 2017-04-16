@@ -43,7 +43,7 @@ p {
   margin-bottom: 20px;
 }
 .bg-primary {
-  background-color: #004063;
+  background-color: #433d3f;
 }
 .bg-section1 {
   background-color: #F3F3F3;
@@ -77,8 +77,13 @@ aside {
   -moz-transition: all 0.35s;
   transition: all 0.35s;
 }
+
+.index-image {
+	border-bottom:10px solid #ee596c;
+}
+
 .navbar-default .navbar-header .navbar-brand {
-  color: #A8CECB;
+  color: #ee596c;
   font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
   font-weight: 700;
   text-transform: uppercase;
@@ -86,7 +91,7 @@ aside {
 }
 .navbar-default .navbar-header .navbar-brand:hover,
 .navbar-default .navbar-header .navbar-brand:focus {
-  color: #A8CECB;
+  color: #ee596c;
 }
 .navbar-default .navbar-header .navbar-toggle {
   font-weight: 700;
@@ -103,11 +108,11 @@ aside {
 }
 .navbar-default .nav > li > a:hover,
 .navbar-default .nav > li > a:focus:hover {
-  color: #A8CECB;
+  color: #ee596c;
 }
 .navbar-default .nav > li.active > a,
 .navbar-default .nav > li.active > a:focus {
-  color: #A8CECB !important;
+  color: #ee596c !important;
   background-color: transparent;
 }
 .navbar-default .nav > li.active > a:hover,
@@ -133,19 +138,19 @@ aside {
   }
   .navbar-default .nav > li > a:hover,
   .navbar-default .nav > li > a:focus:hover {
-    color: #A8CECB;
+    color: #ee596c;
   }
   .navbar-default.affix {
     background-color: white;
     border-color: rgba(34, 34, 34, 0.05);
   }
   .navbar-default.affix .navbar-header .navbar-brand {
-    color: #F05F40;
+    color: #ee596c;
     font-size: 14px;
   }
   .navbar-default.affix .navbar-header .navbar-brand:hover,
   .navbar-default.affix .navbar-header .navbar-brand:focus {
-    color: #A8CECB;
+    color: #ee596c;
   }
   .navbar-default.affix .nav > li > a,
   .navbar-default.affix .nav > li > a:focus {
@@ -153,7 +158,7 @@ aside {
   }
   .navbar-default.affix .nav > li > a:hover,
   .navbar-default.affix .nav > li > a:focus:hover {
-    color: #A8CECB;
+    color: #ee596c;
   }
 }
 header {
@@ -165,7 +170,7 @@ header {
   background-size: cover;
   -o-background-size: cover;
   background-position: center;
-  background :  #DCEBEA;
+  background :  #e5dcdd;
   text-align: center;
   color: white;
 }
@@ -313,7 +318,7 @@ header .header-content .header-content-inner p {
 .btn-default.active,
 .open > .dropdown-toggle.btn-default {
   color: #222222;
-  background-color: #A8CECB;
+  background-color: #a60015;
   border-color: #ededed;
 }
 .btn-default:active,

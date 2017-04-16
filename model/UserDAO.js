@@ -73,3 +73,8 @@ exports.insertFbUser = function(fbid , userName , callback){
 	var inform = { name : userName , facebook_id : fbid};
 	base.FbInsert(sqlQuery , inform , callback);
 }
+
+exports.deleteUser = function(uid , callback){
+	var sqlQuery = 'DELETE FROM user WHERE uid = ' + mysql.escape(uid);
+	base.deletion(sqlQuery , callback);
+}

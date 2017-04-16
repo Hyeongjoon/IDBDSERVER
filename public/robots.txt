@@ -1,0 +1,9 @@
+User-agent: * 
+Disallow: /login 
+Allow: /
+Allow: /mining
+
+User-agent: Mediapartners-Google 
+Allow: /
+Disallow: /login 
+
