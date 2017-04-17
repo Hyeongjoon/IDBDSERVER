@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>IDBD</title>
+    <title>idbd</title>
     
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
@@ -79,7 +79,7 @@
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <a href="/"><img class="navbar-brand page-scroll" src="/img/web_logo.png"/></a>	
+                <a class="page-scroll" href="#header"><img class="navbar-brand page-scroll" src="/img/web_logo.png"/></a>	
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -96,7 +96,7 @@
                         <a class="page-scroll" href="/login">Login</a>
                     </li><%}else{%>
                     <li>
-					  <a class="page-scroll"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><strong><%=name%></strong></a>
+					  <a class="page-scroll" href="/status"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><strong><%=name%></strong></a>
             		</li>
                     <li>
                         <a class="page-scroll" onclick="logout()" style="cursor:pointer">Logout</a>
@@ -110,7 +110,7 @@
         <!-- /.container-fluid -->
     </nav>
 	
-    <header>
+    <header id="header">
         <div class="header-content">
             <div class="header-content-inner">
             	<div class="row">
@@ -129,6 +129,7 @@
                             </div>
                         </div>
                 		</a>
+                		<div class="index-image">이미지를 클릭해 마이닝을 시작</div>
                 	</div>
                 	<div class="col-md-6 col-md-offset-0 col-xs-8 col-xs-offset-2">
                 		<a class="portfolio-box">
@@ -150,10 +151,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">안드로이드 앱이 출시 되었습니다.</h2>
+                    <h3 class="section-heading">안드로이드 앱이 출시 되었습니다.</h3>
                     <hr class="light">
                     <p class="text-faded">가장 빠르게 item 업데이트 소식을 접하세요!!</p>
-                    <a href="https://play.google.com/store/apps/details?id=com.idbd.admin.myapplication" class="page-scroll btn btn-default btn-xl sr-button">play 스토어에서 다운받기</a>
+                    <a href="https://play.google.com/store/apps/details?id=com.idbd.admin.myapplication" class="btn btn-default btn-xl sr-button">play 스토어에서 다운받기</a>
                 </div>
             </div>
         </div>
@@ -163,39 +164,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">서비스 장점</h2>
+                    <h2 class="section-heading">마이닝이란?</h2>
                     <hr class="primary">
                 </div>
             </div>
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-6 text-center">
+                <div class="col-lg-4 col-md-6 col-lg-offset-4 text-center">
                     <div class="service-box">
                         <i class="fa fa-4x fa-diamond text-primary sr-icons"></i>
-                        <h3>Sturdy Templates</h3>
-                        <p class="text-muted">Our templates are updated regularly so they don't break.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-paper-plane text-primary sr-icons"></i>
-                        <h3>Ready to Ship</h3>
-                        <p class="text-muted">You can use this theme as is, or you can make changes!</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-newspaper-o text-primary sr-icons"></i>
-                        <h3>Up to Date</h3>
-                        <p class="text-muted">We update dependencies to keep things fresh.</p>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 text-center">
-                    <div class="service-box">
-                        <i class="fa fa-4x fa-heart text-primary sr-icons"></i>
-                        <h3>Made with Love</h3>
-                        <p class="text-muted">You have to make your websites with love these days!</p>
+                        <h3>매주 새로운 아이템</h3>
+                        <p class="text-muted">4자리 코드입력으로 아이템을 캐세요!!</p>
                     </div>
                 </div>
             </div>
@@ -209,7 +189,7 @@
                     <hr class="primary">
                     <p>아래 연락처로 연락 주세요</p>
                 </div>
-                <div class="col-lg-4 col-lg-offset-2 text-center">
+                <div class="col-lg-4 text-center">
                     <i class="fa fa-phone fa-3x sr-contact"></i>
                     <p>010-7558-0120</p>
                 </div>
@@ -217,9 +197,18 @@
                     <i class="fa fa-envelope-o fa-3x sr-contact"></i>
                     <p><a href="mailto:sendwitch.co@gmail.com">sendwitch.co@gmail.com</a></p>
                 </div>
+                <div class="col-lg-4 text-center">
+                    <i class="fa fa-map fa-3x sr-contact"></i>
+                    <p>서울시 동대문구 답십리로 38길 19<br /> 동대문구 창업지원센터 304호</p>
+                </div>
             </div>
         </div>
     </section>
+   	<footer class="footer">
+		<div class="container text-center">
+             <a class="sr-button" href="/policy/service">이용약관</a> <a href="/policy/individual">개인정보 취급 방침</a> <h5 class="text-muted">&copy; Copyright sendwitch.co All right reserved.</h5>
+		</div>
+	</footer>
 
     <!-- jQuery -->
     <script src="vendor/jquery/jquery.min.js"></script>

@@ -99,6 +99,8 @@ var emailverify = require('./routes/email_verify');
 var FbVerify = require('./routes/Fbverify');
 var and_fb = require('./routes/android_fb_email');
 var delete_id = require('./routes/delete');
+var policy = require('./routes/policy');
+var status = require('./routes/Status');
 
 //app.use('/', socketT);
 app.get('/*', function(req, res, next) {
@@ -125,6 +127,8 @@ app.use('/logout', ensureAuthenticated , logout);
 app.use('/mining', mining);
 app.use('/android_mail_fb' , and_fb );
 app.use('/delete' , delete_id);
+app.use('/policy' , policy);
+app.use('/status' ,ensureAuthenticated  ,status);
 
 var url = require('url');
 var decryptHelper = require('./helper/DecryptHelper');

@@ -1,9 +1,12 @@
 User-agent: * 
-Disallow: /login 
+Disallow: /login
 Allow: /
 Allow: /mining
+Allow: /policy/service
+Allow: /policy/individual
 
 User-agent: Mediapartners-Google 
+Disallow: /login
 Allow: /
-Disallow: /login 
-
+Allow: /policy/service
+Allow: /policy/individual
