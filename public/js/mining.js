@@ -21,11 +21,11 @@ function commit(token){
 					$('#modal-content').text('당첨이 완료된 상품입니다. ㅠㅠ 아쉽지만 다른 번호를 입력해 주세요');
 					$('#modal').modal('show');
 				} else if(result['content'] == 'won'){
-					$('#modal-title').text('당첨 되었습니다.');
+					$('#suc-modal-title').text('당첨 되었습니다.');
 					var temp = "당첨된 상품을 수령하기 위해선 로그인이 필요합니다. 로그인후에 다시 입력해 주세요!!!" + "<br/>";
 					temp= temp + "상품명 : " +result['name'];
-					$('#modal-content').html(temp);
-					$('#modal').modal('show');
+					$('#suc-modal-content').html(temp);
+					$('#suc-modal').modal('show');
 				} else {
 					$('#modal-title').text('서버 오류');
 					$('#modal-content').text('내부 서버 오류입니다. 잠시후에 이용해 주세요');

@@ -71,7 +71,15 @@ $(document).ready(function(){
 			$("#modal-title").text("비밀번호 입력오류");
 			$("#modal-content").text("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
 			$('#modal').modal();
-		} else{
+		} else if(!$("input:checkbox[id=service]").is(":checked")){
+			$("#modal-title").text("오류");
+			$("#modal-content").text("서비스 이용약관에 동의하셔야 합니다.");
+			$('#modal').modal();
+		} else if(!$("input:checkbox[id=individual]").is(":checked")){
+			$("#modal-title").text("오류");
+			$("#modal-content").text("개인정보 이용약관에 동의하셔야 합니다.");
+			$('#modal').modal();}
+		else{
 			$.ajax({
 				url: 'http://idbd.co.kr/signUp',
 				dataType: 'json',
@@ -86,7 +94,7 @@ $(document).ready(function(){
 				if (result['result'] == 'success') {
 						location.replace("/mail_send");
 					} else {
-						$("#modal-title").text("로그인 실패");
+						$("#modal-title").text("회원가입 실패");
 						$("#modal-content").text(result['content']);
 						$('#modal').modal();
 					}

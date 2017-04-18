@@ -101,6 +101,7 @@ var and_fb = require('./routes/android_fb_email');
 var delete_id = require('./routes/delete');
 var policy = require('./routes/policy');
 var status = require('./routes/Status');
+var modify_pwd = require('./routes/modify_pwd');
 
 //app.use('/', socketT);
 app.get('/*', function(req, res, next) {
@@ -109,7 +110,7 @@ app.get('/*', function(req, res, next) {
 	  } else {
 	    next();     
 	  }
-	})
+	});
 
 app.use('/' , index);
 app.use('/signUp',notensureAuthenticated, signUp);
@@ -129,6 +130,7 @@ app.use('/android_mail_fb' , and_fb );
 app.use('/delete' , delete_id);
 app.use('/policy' , policy);
 app.use('/status' ,ensureAuthenticated  ,status);
+app.use('/modify_pwd' , modify_pwd);
 
 var url = require('url');
 var decryptHelper = require('./helper/DecryptHelper');

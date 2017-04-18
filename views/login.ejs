@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content="로그인">
     <meta name="author" content="">
 
     <title>로그인</title>
@@ -64,27 +64,28 @@
         </div>
         <!-- /.container-fluid -->
     </nav>
-    <section class="bg-section1">
+    <section class="bg-section2">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <h2 class="section-heading">MINING을 하려면 로그인이 필요합니다</h2>
-                    <hr class="light">
+                    <h2 class="section-heading">LOGIN</h2>
+                    <hr class="primary">
                     <div class="col-md-8 col-md-offset-2">
                     	<form> <!-- 여기부터하자 -->
 						  <div class="form-group">
-						    <label for="email">이메일 주소</label>
-						    <input type="email" class="form-control" id="email" placeholder="이메일을 입력하세요">
+						    <label for="email"></label>
+						    <input type="email" class="form-control" id="email" placeholder="이메일">
 						  </div>
 						  <div class="form-group">
-						    <label for="pwd">암호</label>
-						    <input type="password" class="form-control" id="pwd" placeholder="암호">
+						    <label for="pwd"></label>
+						    <input type="password" class="form-control" id="pwd" placeholder="비밀번호">
 						  </div>
 						  <button type="button" class="btn btn-default btn-xl sr-button" onclick="login()">로그인</button>
+						  <button type="button" class="btn btn-primary btn-xl sr-button" id="call_sign_up_modal">회원가입</button>
 						</form>
-						<a href="/auth/facebook" class="sr-button"><img src="img/fb_login_btn.png" class="btn"  alt=""></a>
-						<hr class="light">
-                    	<button type="button" class="btn btn-default btn-xl sr-button" id="call_sign_up_modal">회원가입</button>
+						<br />
+						<hr class="primary">
+						<a href="/auth/facebook" class="btn"><img src="img/fb_login_btn.png" class="col-xs-8 col-xs-offset-2 col-md-8 col-md-offset-2"></a>
 					</div>
                 </div>
             </div>			
@@ -115,7 +116,7 @@
     </section>
     <footer class="footer">
 		<div class="container text-center">
-             <a class="sr-button" href="/policy/service">이용약관</a> <a href="/policy/individual">개인정보 취급 방침</a> <h5 class="text-muted">&copy; Copyright sendwitch.co All right reserved.</h5>
+             <a href="/policy/service">이용약관</a> <a href="/policy/individual">개인정보 취급 방침</a> <h5 class="text-muted">&copy; Copyright sendwitch.co All right reserved.</h5>
 		</div>
 	</footer>
     
@@ -153,6 +154,10 @@
 				      		<input type="password" class="form-control" id="sign_pw_confirm">
 			      		</div>
 		    		</div>
+		    		<div class="checkbox">
+				    	<label><input type="checkbox" id="service">idbd <a href="/policy/service" target="_blank">서비스 이용 약관</a>에 동의합니다.</label>
+				    	<label><input type="checkbox" id="individual">idbd <a href="/policy/individual" target="_blank">개인정보 수집 및 이용 약관</a>에 동의합니다.</label>
+  					</div>
 	        </form>
       </div>
       <div class="modal-footer">

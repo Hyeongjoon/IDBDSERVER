@@ -31,7 +31,7 @@ exports.makeEmail = function(email , sessionId){
 				    '<td>'+
 				      '<table border="0" cellspacing="0" cellpadding="0">'+
 				        '<tr>'+
-				          '<td style="-webkit-border-radius: 3px; text-align: center; vertical-align: middle; -moz-border-radius: 3px; border-radius: 3px;" bgcolor="#004063"><a href="http://52.78.18.19/verify/?'+encryptedSessionId+'" target="_blank" style="font-size: 16px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; text-decoration: none; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; padding: 12px 18px; border: 1px solid #e9703e; display: inline-block;">인증하기 &rarr;</a></td>'+
+				          '<td style="-webkit-border-radius: 3px; text-align: center; vertical-align: middle; -moz-border-radius: 3px; border-radius: 3px;" bgcolor="#004063"><a href="http://idbd.co.kr/verify/?'+encryptedSessionId+'" target="_blank" style="font-size: 16px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; text-decoration: none; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; padding: 12px 18px; border: 1px solid #e9703e; display: inline-block;">인증하기 &rarr;</a></td>'+
 				        '</tr>'+
 				      '</table>'+
 				    '</td>'+
@@ -64,7 +64,7 @@ exports.makeFbVerifyEmail = function(email , FbId){
 				    '<td>'+
 				      '<table border="0" cellspacing="0" cellpadding="0">'+
 				        '<tr>'+
-				          '<td style="-webkit-border-radius: 3px; text-align: center; vertical-align: middle; -moz-border-radius: 3px; border-radius: 3px;" bgcolor="#004063"><a href="http://52.78.18.19/emailverify_Fb?FbId='+FbId+'&email='+email +'" target="_blank" style="font-size: 16px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; text-decoration: none; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; padding: 12px 18px; border: 1px solid #e9703e; display: inline-block;">인증하기 &rarr;</a></td>'+
+				          '<td style="-webkit-border-radius: 3px; text-align: center; vertical-align: middle; -moz-border-radius: 3px; border-radius: 3px;" bgcolor="#004063"><a href="http://idbd.co.kr/emailverify_Fb?FbId='+FbId+'&email='+email +'" target="_blank" style="font-size: 16px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; text-decoration: none; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; padding: 12px 18px; border: 1px solid #e9703e; display: inline-block;">인증하기 &rarr;</a></td>'+
 				        '</tr>'+
 				      '</table>'+
 				    '</td>'+
@@ -107,7 +107,38 @@ exports.makeFindPwdEmail = function(email , code){
 }
 
 
-
+exports.makeModifyEmail = function(email, token){
+	mailOption.to = email;
+	mailOption.subject='[IDBD] 비밀번호 변경을 위한 링크가 발급되었습니다.';
+	mailOption.html = '<div>'+
+    '<img class="navbar-brand page-scroll" src="http://52.78.18.19/img/web_logo.png"/>'+
+    '</div>'+
+	    '</div>'+
+	    '<div>'+
+	        '<h1 align="center">비밀 번호 변경을 위한 링크입니다.</h1>'+
+			'<hr>'+
+			'<h3 align="center">아래 버튼을 눌러 진행 해 주세요</h3>'+
+	        '<div>'+
+	            '<table border="0" cellspacing="0" cellpadding="0" style="width=100%; margin:auto; text-align:center;">'+
+				  '<tr>'+
+				    '<td>'+
+				      '<table border="0" cellspacing="0" cellpadding="0">'+
+				        '<tr>'+
+				          '<td style="-webkit-border-radius: 3px; text-align: center; vertical-align: middle; -moz-border-radius: 3px; border-radius: 3px;" bgcolor="#004063"><a href="http://idbd.co.kr/modify_pwd/modify/'+token+'" target="_blank" style="font-size: 16px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; text-decoration: none; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; padding: 12px 18px; border: 1px solid #e9703e; display: inline-block;">인증하기 &rarr;</a></td>'+
+				        '</tr>'+
+				      '</table>'+
+				    '</td>'+
+				  '</tr>'+
+				'</table>'+
+	    '</div>';
+	emailTransport.sendMail(mailOption , function(err , info){
+		if(err){
+			console.log(err);
+		} else{
+			console.log(info);
+		}
+	});
+}
 
 
 

@@ -78,3 +78,13 @@ exports.deleteUser = function(uid , callback){
 	var sqlQuery = 'DELETE FROM user WHERE uid = ' + mysql.escape(uid);
 	base.deletion(sqlQuery , callback);
 }
+
+exports.findPwd = function(uid , callback){
+	var sqlQuery = 'SELECT email ,pwd FROM user WHERE uid = ' + mysql.escape(uid);
+	base.select(sqlQuery , callback);
+}
+
+exports.changePwd = function(uid , pwd , callback){
+	var sqlQuery = 'UPDATE user SET pwd = ' + mysql.escape(pwd) + ' WHERE uid = ' + mysql.escape(uid);
+	base.update(sqlQuery , callback);
+}

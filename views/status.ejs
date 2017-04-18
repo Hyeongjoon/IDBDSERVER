@@ -6,7 +6,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
+<meta name="description" content="상태">
 <meta name="author" content="">
 
 <title>idbd</title>
@@ -110,12 +110,13 @@
 				</div>
 				<div class="col-lg-8 col-lg-offset-2 text-center">
 						<div class="col-md-6"><h3>email </h3></div>
-						<div class="col-md-6"><h3 class="text-primary"><%if(email==null){%>이메일 인증이 필요합니다<%} else{%><%=email%><%}%></h3></div>
+						<div class="col-md-6"><%if(email==null){%><h3 class="text-primary">이메일 인증이 필요합니다</h3><button class="btn btn-default">인증하기</button><%} 
+						else{%><h3 class="text-primary"><%=email%></h3><%}%></div>
 				</div>
 				<%if(facebook==false){%>
 				<div class="col-lg-8 col-lg-offset-2 text-center">
 					<br />
-					<button class="col-lg-6 col-lg-offset-3 btn btn-default btn-xl">비밀번호 변경</button>
+					<button id="change_pwd_btn" class="col-lg-6 col-lg-offset-3 btn btn-default btn-xl">비밀번호 변경</button>
 					<br />
 				</div>
 				<%}%>
@@ -128,9 +129,52 @@
 	</section>
 	<footer class="footer">
 		<div class="container text-center">
-             <a class="sr-button" href="/policy/service">이용약관</a> <a href="/policy/individual">개인정보 취급 방침</a> <h5 class="text-muted">&copy; Copyright sendwitch.co All right reserved.</h5>
+             <a href="/policy/service">이용약관</a> <a href="/policy/individual">개인정보 취급 방침</a> <h5 class="text-muted">&copy; Copyright sendwitch.co All right reserved.</h5>
 		</div>
 	</footer>
+	
+	<div id="change_modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" >
+ 	 <div class="modal-dialog">
+    	<div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="confirm-modal-title">확인을 위해 비밀번호를 입력해 주세요</h4>
+      	</div>
+      	<div class="modal-body">
+        <div class="form-horizontal">
+		    		<div class="form-group">
+			    		<div class="col-md-12">
+				    		<label for="confirm_pwd" class="control-label">비밀번호</label>
+				      		<input type="password" placeholder="확인을 위해 비밀번호를 입력해 주세요" class="form-control" id="confirm_pwd">
+			      		</div>
+		    		</div>
+	        </div>
+      	</div>
+      	<div class="modal-footer">
+      	<button type="button" class="btn btn-primary" id="confirm_btn">확인</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">취소 하기</button>
+      </div>
+    	</div>
+  	</div>
+</div>
+
+<div id="com-modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" >
+ 	 <div class="modal-dialog modal-sm">
+    	<div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="com-modal-title">Modal title</h4>
+        
+      	</div>
+      	<div class="modal-body">
+        <p id="com-modal-content">하하하하하</p>
+      </div>
+      	<div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">확인</button>
+      </div>
+    	</div>
+  	</div>
+</div>
 
 <div id="modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" >
  	 <div class="modal-dialog modal-sm">
