@@ -6,8 +6,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="MINING">
+    <meta name="description" content="Mining">
     <meta name="author" content="">
+    <meta property="og:title" content="idbd">
+    <meta property="og:description" content="아이템을 캐라 item day by day">
+    <meta property="og:url" content="http://idbd.co.kr/mining">
+    <meta property="og:image" content="http://idbd.co.kr/img/ogImage.png">
+    <meta property="fb:app_id" content="1743510485961254">
 
     <title>idbd</title>
     
@@ -107,17 +112,16 @@
     <section class="bg-section1 ">
         <div class="container">
             <div class="row">
-                <h1 class="section-heading text-center text-primary">MINING</h1>
+                <h1 class="section-heading text-center text-primary" >MINING</h1>
                 <hr>
                 <%if(item.length==0){%>
-                <div>
-                <p>모든 아이템이 소진 되었습니다. 아이템 소식을 가장 빠르게 접하려면 play 스토어에서 앱을 다운 받거나 페이스북 페이지를 방문하여 팔로우를 해주세요!!</p>
+                <div class="col-md-8 col-md-offset-2 text-center">
+                <p>모든 아이템이 소진 되었습니다.<br /> 아이템 소식을 가장 빠르게 접하려면<br />	play 스토어에서 앱을 다운 받거나<br /> 페이스북 페이지를 방문하여 팔로우를 해주세요!!</p>
+                <h2 class="text-primary">1차 프라이즈 오픈 <br />4월 21일 0시</h2>
+                <a href="https://www.facebook.com/idbdwebapp/" class="page-scroll btn btn-default btn-xl sr-button">페이스북 페이지</a><br /><br />
                 <a href="https://play.google.com/store/apps/details?id=com.idbd.admin.myapplication" class="page-scroll btn btn-default btn-xl sr-button">play 스토어에서 다운받기</a>
                 </div>
                 <br/>
-                <div>
-                <a href="https://www.facebook.com/idbdapp/" class="page-scroll btn btn-default btn-xl sr-button">페이스북 페이지</a>
-                </div>
                 <br/>
                 <%} else{%>
                 <div class="col-xs-10 col-xs-offset-1 col-lg-5 col-lg-offset-1" style="margin-bottom: 10px">
