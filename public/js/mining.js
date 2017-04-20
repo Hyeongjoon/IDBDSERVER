@@ -9,7 +9,7 @@ function commit(token){
 		success: function(result) {
 			if(result['result']=='false'){
 				if(result['content']=='non'){
-					$('#modal-title').text('Retry');
+					$('#modal-title').text('fail');
 					var temp = "남아 있는 item list" + "<br/>";
 					for(var i = 0 ; i < result['list'].length ; i++){
 						temp = temp + result['list'][i].pname + "<br/>";
@@ -17,7 +17,7 @@ function commit(token){
 					$('#modal-content').html(temp);
 					$('#modal').modal('show');
 				} else if(result['content'] == 'selected'){
-					$('#modal-title').text('Retry');
+					$('#modal-title').text('fail');
 					$('#modal-content').text('당첨이 완료된 상품입니다. ㅠㅠ 아쉽지만 다른 번호를 입력해 주세요');
 					$('#modal').modal('show');
 				} else if(result['content'] == 'won'){

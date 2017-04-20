@@ -112,11 +112,9 @@
     <section class="bg-section1 ">
         <div class="container">
             <div class="row">
-                <h1 class="section-heading text-center text-primary" >MINING</h1>
-                <hr>
+                <h1 class="section-heading text-center text-primary" >mining</h1>
                 <%if(item.length==0){%>
                 <div class="col-md-8 col-md-offset-2 text-center">
-                <p>모든 아이템이 소진 되었습니다.<br /> 아이템 소식을 가장 빠르게 접하려면<br />	play 스토어에서 앱을 다운 받거나<br /> 페이스북 페이지를 방문하여 팔로우를 해주세요!!</p>
                 <h2 class="text-primary">1차 프라이즈 오픈 <br />4월 21일 0시</h2>
                 <a href="https://www.facebook.com/idbdwebapp/" class="page-scroll btn btn-default btn-xl sr-button">페이스북 페이지</a><br /><br />
                 <a href="https://play.google.com/store/apps/details?id=com.idbd.admin.myapplication" class="page-scroll btn btn-default btn-xl sr-button">play 스토어에서 다운받기</a>
@@ -130,12 +128,13 @@
                 <br />
                 <div class="col-xs-10 col-xs-offset-1 col-lg-offset-0 col-lg-4 text-center mining-input">
                 	<h4>4자리 숫자를 입력해 주세요</h4>
-                	<div class="form-inline">
-                	  <div class="form-group">
-                	    <label for="code_input" class="sr-only">code</label>
-				      	<input type="number" class="form-control" id="code_input" placeholder="0000 ~ 9999">
+                	<div class="form-inline">	
+                	  <div class="input-group">
+				      	<input type="number" class="form-control" id="code_input" placeholder="    0000 ~ 9999">
+				      	  <span class="input-group-btn">
+					        <button class="btn btn-default" id="code_random" type="button">랜덤</button>
+					      </span>
 				      	</div>
-				        <button class="btn btn-default btn-xl" id="code_random" type="button">랜덤</button>
 				    </div>
 				    <br/>
                 <button id="mining_btn" class="btn btn-primary btn-xl page-scroll">행운을 빌어!</button>
@@ -179,7 +178,7 @@
     	<div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h2 class="modal-title text-center" id="modal-title">Modal title</h2>
+        <h2 class="modal-title text-center text-primary" id="modal-title">Modal title</h2>
         <div class="modal-body">
         <h5 id="modal-content">하하하하하</h5>
       </div>

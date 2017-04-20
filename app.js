@@ -101,6 +101,7 @@ var delete_id = require('./routes/delete');
 var policy = require('./routes/policy');
 var status = require('./routes/Status');
 var modify_pwd = require('./routes/modify_pwd');
+var invalid = require('./routes/Inavlid');
 
 //app.use('/', socketT);
 app.get('/*', function(req, res, next) {
@@ -129,6 +130,7 @@ app.use('/delete' , delete_id);
 app.use('/policy' , policy);
 app.use('/status' ,ensureAuthenticated  ,status);
 app.use('/modify_pwd' , modify_pwd);
+app.use('/invalid' , invalid);
 
 var url = require('url');
 var decryptHelper = require('./helper/DecryptHelper');
@@ -137,7 +139,7 @@ function ensureAuthenticated(req, res, next) {
     // 로그인이 되어 있으면, 다음 파이프라인으로 진행
     if (req.isAuthenticated()) { return next(); }
     // 로그인이 안되어 있으면, 만료된 페이지 
-    res.render('invalid', {});
+    res.redirect('/invalid')
 }
 
 

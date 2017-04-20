@@ -1,5 +1,8 @@
 User-agent: * 
 Disallow: /login
+Disallow: /logout
+Disallow: /fail
+Disallow: /invalid
 Allow: /
 Allow: /mining
 Allow: /policy/service
@@ -8,6 +11,10 @@ Allow: /policy/individual
 User-agent: Mediapartners-Google 
 Disallow: /login
 Disallow: /status
+Disallow: /status
+Disallow: /logout
+Disallow: /fail
+Disallow: /invalid
 Allow: /
 Allow: /policy/service
 Allow: /policy/individual

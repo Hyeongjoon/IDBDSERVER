@@ -6,6 +6,7 @@ var prizeDAO = require('../model/PrizeDAO');
 var mailHelper = require('../helper/EmailMake');
 var userDAO = require('../model/UserDAO');
 var won_logDAO = require('../model/Won_logDAO');
+var conuntDAO = require('../model/CountDAO');
 var decryptHelper = require('../helper/DecryptHelper');
 
 
@@ -69,6 +70,8 @@ router.post('/:token' , function(req, res, next){
 	var pName;
 	var email;
 	async.waterfall([function(callback){
+		conuntDAO.addCount(callback);
+	},function(args1, callback){
 		prizeDAO.confirmCode(req.body.code , callback);
 		} , function(args1 , callback){
 			if(args1.length==0){

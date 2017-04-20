@@ -16,6 +16,11 @@ create table user
          unique(email)
 ) Engine =InnoDB DEFAULT CHARSET = utf8;
 
+	DROP TABLE IF exists count;
+create table count
+		(`count` bigint unsigned NOT NULL
+) Engine =InnoDB DEFAULT CHARSET = utf8;
+
 	DROP TABLE IF EXISTS schedule_table;
 create table schedule_table
 	(`uid` int unsigned NOT NULL,
